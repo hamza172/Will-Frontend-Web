@@ -69,10 +69,26 @@ const Step3 = ({ nextStep, prevStep, handleChange,changeState, values }) => {
                     </Form.Group>
 
                     {/* Trustee Address */}
-                    <Form.Group>
+                    {/* <Form.Group>
                         <Form.Label>Trustee Address</Form.Label>
                         <Form.Control value={values.trusteeAddress} type="text" onChange={(e) => {handleChange("trusteeAddress", e)}}></Form.Control>
-                    </Form.Group>                                    
+                    </Form.Group>                                     */}
+                    <Form.Group>
+                        <Form.Label>City</Form.Label>
+                        <Form.Control value={values.trusteeCity} type="text" onChange={(e) => {handleChange("trusteeCity", e)}}></Form.Control>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Zip Code</Form.Label>
+                        <Form.Control value={values.trusteeZipCode} type="number" onChange={(e) => {handleChange("ziptrusteeZipCodeCode", e)}}></Form.Control>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>State</Form.Label>
+                        <Form.Control value={values.trusteeState} type="text" onChange={(e) => {handleChange("trusteeState", e)}}></Form.Control>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Address</Form.Label>
+                        <Form.Control value={values.trusteeAddress} type="text" onChange={(e) => {handleChange("trusteeAddress", e)}}></Form.Control>
+                    </Form.Group>
                 </div>
                 }
 
@@ -94,10 +110,26 @@ const Step3 = ({ nextStep, prevStep, handleChange,changeState, values }) => {
                     </Form.Group>
 
                     {/* Co-Trustee Address */}
-                    <Form.Group>
+                    {/* <Form.Group>
                         <Form.Label>Co-Trustee Address</Form.Label>
                         <Form.Control value={values.CotrusteeAddress} type="text" onChange={(e) => {handleChange("CotrusteeAddress", e)}}></Form.Control>
-                    </Form.Group>                                    
+                    </Form.Group>                                     */}
+                    <Form.Group>
+                        <Form.Label>City</Form.Label>
+                        <Form.Control value={values.CotrusteeCity} type="text" onChange={(e) => {handleChange("CotrusteeCity", e)}}></Form.Control>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Zip Code</Form.Label>
+                        <Form.Control value={values.CotrusteeZipCode} type="number" onChange={(e) => {handleChange("CotrusteeZipCode", e)}}></Form.Control>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>State</Form.Label>
+                        <Form.Control value={values.CotrusteeState} type="text" onChange={(e) => {handleChange("CotrusteeState", e)}}></Form.Control>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Address</Form.Label>
+                        <Form.Control value={values.CotrusteeAddress} type="text" onChange={(e) => {handleChange("CotrusteeAddress", e)}}></Form.Control>
+                    </Form.Group>
                 </div>
                 }     
 

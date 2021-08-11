@@ -39,15 +39,48 @@ const Step3 = ({ nextStep, prevStep, handleChange, values }) => {
                     </Form.Group>                
 
                     {/* Address of Donee */}
-                    <Form.Group>
+                    {/* <Form.Group>
                         <Form.Label>Address of Donee</Form.Label>
                         <Form.Control value={values.doneeAddress} type="text" onChange={(e) => {handleChange("doneeAddress", e)}}></Form.Control>
-                    </Form.Group>   
+                    </Form.Group>    */}
+                    <Form.Group>
+                        <Form.Label>City</Form.Label>
+                        <Form.Control value={values.doneeCity} type="text" onChange={(e) => {handleChange("doneeCity", e)}}></Form.Control>
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>Zip Code</Form.Label>
+                        <Form.Control value={values.doneeZipCode} type="number" onChange={(e) => {handleChange("doneeZipCode", e)}}></Form.Control>
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>State</Form.Label>
+                        <Form.Control value={values.doneeState} type="text" onChange={(e) => {handleChange("doneeState", e)}}></Form.Control>
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>Address</Form.Label>
+                        <Form.Control value={values.doneeAddress} type="text" onChange={(e) => {handleChange("doneeAddress", e)}}></Form.Control>
+                    </Form.Group>
 
                     {/* Relationship */}
                     <Form.Group>
                         <Form.Label>Relationship between Donor and Donee</Form.Label>
-                        <Form.Control value={values.relationshipDonorDonee} type="text" onChange={(e) => {handleChange("relationshipDonorDonee", e)}}></Form.Control>
+                        {/* <Form.Control value={values.relationshipDonorDonee} type="text" onChange={(e) => {handleChange("relationshipDonorDonee", e)}}></Form.Control> */}
+                        <select className="form-control" value={values.relationshipDonorDonee} onChange={(e) => {handleChange("relationshipDonorDonee", e)}} >
+                            <option value="Husband">Husband</option>
+                            <option value="Wife">Wife</option>
+                            <option value="Partner">Partner</option>
+                            <option value="Brother">Brother</option>
+                            <option value="Sister">Sister</option>
+                            <option value="Son">Son</option>
+                            <option value="Daughter">Daughter</option>
+                            <option value="Grandson">Grandson</option>
+                            <option value="Granddaughter">Granddaughter</option>
+                            <option value="Friend">Friend</option>
+                            <option value="Business Partner">Business Partner</option>
+                            <option value="Other">Other</option>
+                        </select>
                     </Form.Group>                                
                 </div>                
                 }
@@ -62,10 +95,29 @@ const Step3 = ({ nextStep, prevStep, handleChange, values }) => {
                     </Form.Group>                
 
                     {/* Address of Company */}
-                    <Form.Group>
+                    {/* <Form.Group>
                         <Form.Label>Address of Company</Form.Label>
                         <Form.Control value={values.doneeAddress} type="text" onChange={(e) => {handleChange("doneeAddress", e)}}></Form.Control>
-                    </Form.Group>  
+                    </Form.Group>   */}
+                    <Form.Group>
+                        <Form.Label>City</Form.Label>
+                        <Form.Control value={values.doneeCity} type="text" onChange={(e) => {handleChange("doneeCity", e)}}></Form.Control>
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>Zip Code</Form.Label>
+                        <Form.Control value={values.doneeZipCode} type="number" onChange={(e) => {handleChange("doneeZipCode", e)}}></Form.Control>
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>State</Form.Label>
+                        <Form.Control value={values.doneeState} type="text" onChange={(e) => {handleChange("doneeState", e)}}></Form.Control>
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>Address</Form.Label>
+                        <Form.Control value={values.doneeAddress} type="text" onChange={(e) => {handleChange("doneeAddress", e)}}></Form.Control>
+                    </Form.Group>                    
                     
                     {/* Is Donee a Minor */}
                     <Form.Group>

@@ -38,10 +38,31 @@ const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
                     </Form.Group>                
 
                     {/* Address of Donor */}
-                    <Form.Group>
+                    {/* <Form.Group>
                         <Form.Label>Address of Donor</Form.Label>
                         <Form.Control value={values.donorAddress} type="text" onChange={(e) => {handleChange("donorAddress", e)}}></Form.Control>
-                    </Form.Group>                                
+                    </Form.Group>                                 */}
+
+                    <Form.Group>
+                        <Form.Label>City</Form.Label>
+                        <Form.Control value={values.donorCity} type="text" onChange={(e) => {handleChange("donorCity", e)}}></Form.Control>
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>Zip Code</Form.Label>
+                        <Form.Control value={values.donorZipCode} type="number" onChange={(e) => {handleChange("donorZipCode", e)}}></Form.Control>
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>State</Form.Label>
+                        <Form.Control value={values.donorState} type="text" onChange={(e) => {handleChange("donorState", e)}}></Form.Control>
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>Address</Form.Label>
+                        <Form.Control value={values.donorAddress} type="text" onChange={(e) => {handleChange("donorAddress", e)}}></Form.Control>
+                    </Form.Group>
+
                 </div>                
                 }
 
@@ -55,10 +76,30 @@ const Step2 = ({ nextStep, prevStep, handleChange, values }) => {
                     </Form.Group>                
 
                     {/* Address of Company */}
-                    <Form.Group>
+                    {/* <Form.Group>
                         <Form.Label>Address of Company</Form.Label>
                         <Form.Control value={values.donorAddress} type="text" onChange={(e) => {handleChange("donorAddress", e)}}></Form.Control>
-                    </Form.Group>                                
+                    </Form.Group>                                 */}
+
+                    <Form.Group>
+                        <Form.Label>City</Form.Label>
+                        <Form.Control value={values.donorCity} type="text" onChange={(e) => {handleChange("donorCity", e)}}></Form.Control>
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>Zip Code</Form.Label>
+                        <Form.Control value={values.donorZipCode} type="number" onChange={(e) => {handleChange("donorZipCode", e)}}></Form.Control>
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>State</Form.Label>
+                        <Form.Control value={values.donorState} type="text" onChange={(e) => {handleChange("donorState", e)}}></Form.Control>
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>Address</Form.Label>
+                        <Form.Control value={values.donorAddress} type="text" onChange={(e) => {handleChange("donorAddress", e)}}></Form.Control>
+                    </Form.Group>
                 </div>                
                 }
 

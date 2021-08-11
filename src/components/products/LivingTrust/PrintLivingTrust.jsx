@@ -61,6 +61,9 @@ const PrintLivingTrust = () => {
                     <h2>Step 2</h2>
                     <h5>Personal Details</h5>
                     <p>Name: {lt.name}</p>
+                    <p>City: {lt.city}</p>
+                    <p>Zip Code: {lt.zipCode}</p>
+                    <p>State: {lt.state}</p>
                     <p>Address: {lt.address}</p>
                     <p>Phone: {lt.phone}</p>
                     <p>Email: {lt.email}</p>
@@ -74,7 +77,10 @@ const PrintLivingTrust = () => {
                     {lt.isTheGrantorNotTheTrustee === "Yes" &&
                     <div>
                         <p>Trustee Name: {lt.trusteeName}</p>
-                        <p>Trustee Address: {lt.trusteeAddress}</p>
+                        <p>City: {lt.trusteeCity}</p>
+                        <p>Zip Code: {lt.trusteeZipCode}</p>
+                        <p>State: {lt.trusteeState}</p>
+                        <p>Address: {lt.trusteeAddress}</p>
                     </div>
                     }
                     {lt.isTheGrantorNotTheTrustee === "No" &&
@@ -88,7 +94,10 @@ const PrintLivingTrust = () => {
                     {lt.doYouWantCotrustee === "Yes" &&
                     <div>
                         <p>{lt.CotrusteeName}</p>
-                        <p>{lt.CotrusteeAddress}</p>
+                        <p>City: {lt.CotrusteeCity}</p>
+                        <p>Zip Code: {lt.CotrusteeZipCode}</p>
+                        <p>State: {lt.CotrusteeState}</p>
+                        <p>Address: {lt.CotrusteeAddress}</p>
                     </div>
                     }
                     <p>Would you like to Name the Trust (Our Preference is The [Grantor Name] Living Trust): {lt.wouldYouLikeToNameTheTrust}</p> 
@@ -100,74 +109,82 @@ const PrintLivingTrust = () => {
                 <div>
                     <h2>Step 4</h2>
                     <h5>Gift and Asset</h5>
-                    <p>What type of Asset: {lt.assetType}</p>
 
-                    {lt.assetType === "Real Estate" &&
-                    <div>
-                        <p>Address: {lt.realEstateAddress}</p>
-                        <p>Type: {lt.realEstateType}</p>
-                    </div>
-                    }
+                    {lt.step4Gifts.map((gift, index) => {
+                        return(
+                            <div key={index}>
 
-                    {lt.assetType === "Financial Account" &&
-                    <div>
-                        <p>Name: {lt.financialAccountName}</p>
-                        <p>Type of Account: {lt.financialAccountType}</p>
-                        <p>Account Number: {lt.financialAccountNumber}</p>
-                    </div>
-                    }                    
+                                <p>What type of Asset: {gift.assetType}</p>
+                                {gift.assetType === "Real Estate" &&
+                                <div>
+                                    <p>Address: {gift.realEstateAddress}</p>
+                                    <p>Type: {gift.realEstateType}</p>
+                                </div>
+                                }
 
-                    {lt.assetType === "Stock and Bond Certificate" &&
-                    <div>
-                        <p>Stock-Name of Issuer: {lt.stockAndBondStockName}</p>
-                        <p>Stock-Number of Shares: {lt.stockAndBondStockNumberOfShares}</p>
-                        <p>Stock-Certificate Number: {lt.stockAndBondStockCertificateNumber}</p>
-                        <p>Stock-Description: {lt.stockAndBondStockDescription}</p>
-                        <p>Bond-Name of Issuer: {lt.stockAndBondBondName}</p>
-                        <p>Bond-Face Value of Bond: {lt.stockAndBondBondValue}</p>                        
-                        <p>Bond-Certificate Number: {lt.stockAndBondBondCertificateNumber}</p>
-                        <p>Bond-Description: {lt.stockAndBondBondDescription}</p>                        
-                    </div>
-                    }
+                                {gift.assetType === "Financial Account" &&
+                                <div>
+                                    <p>Name: {gift.financialAccountName}</p>
+                                    <p>Type of Account: {gift.financialAccountType}</p>
+                                    <p>Account Number: {gift.financialAccountNumber}</p>
+                                </div>
+                                }                                                    
 
-                    {lt.assetType === "Business Interest" &&
-                    <div>
-                        <p>Business Name: {lt.businessName}</p>
-                        <p>Description of Interest: {lt.businessDescription}</p>
-                    </div>
-                    }
+                                {gift.assetType === "Stock and Bond Certificate" &&
+                                <div>
+                                    <p>Stock-Name of Issuer: {gift.stockAndBondStockName}</p>
+                                    <p>Stock-Number of Shares: {gift.stockAndBondStockNumberOfShares}</p>
+                                    <p>Stock-Certificate Number: {gift.stockAndBondStockCertificateNumber}</p>
+                                    <p>Stock-Description: {gift.stockAndBondStockDescription}</p>
+                                    <p>Bond-Name of Issuer: {gift.stockAndBondBondName}</p>
+                                    <p>Bond-Face Value of Bond: {gift.stockAndBondBondValue}</p>                        
+                                    <p>Bond-Certificate Number: {gift.stockAndBondBondCertificateNumber}</p>
+                                    <p>Bond-Description: {gift.stockAndBondBondDescription}</p>                        
+                                </div>
+                                }
 
-                    {lt.assetType === "Contractual Interest" &&
-                    <div>
-                        <p>Title of Contract: {lt.titleOfContract}</p>
-                        <p>Name of Other Party: {lt.nameOfOtherParty}</p>
-                        <p>Date of Contract: {lt.dateOfContract}</p>
-                        <p>Description: {lt.contarctDescription}</p>
-                    </div>
-                    }
+                                {gift.assetType === "Business Interest" &&
+                                <div>
+                                    <p>Business Name: {gift.businessName}</p>
+                                    <p>Description of Interest: {gift.businessDescription}</p>
+                                </div>
+                                }
 
-                    {lt.assetType === "Life Assurance Proceed" &&
-                    <div>
-                        <p>Name of Issuer: {lt.lifeAssuranceName}</p>
-                        <p>Description of Policy: {lt.lifeAssuranceDescription}</p>
-                        <p>Policy Number: {lt.lifeAssuranceNumber}</p>
-                    </div>
-                    }
+                                {gift.assetType === "Contractual Interest" &&
+                                <div>
+                                    <p>Title of Contract: {gift.titleOfContract}</p>
+                                    <p>Name of Other Party: {gift.nameOfOtherParty}</p>
+                                    <p>Date of Contract: {gift.dateOfContract}</p>
+                                    <p>Description: {gift.contarctDescription}</p>
+                                </div>
+                                }
+                                
+                                {gift.assetType === "Life Assurance Proceed" &&
+                                <div>
+                                    <p>Name of Issuer: {gift.lifeAssuranceName}</p>
+                                    <p>Description of Policy: {gift.lifeAssuranceDescription}</p>
+                                    <p>Policy Number: {gift.lifeAssuranceNumber}</p>
+                                </div>
+                                }
 
-                    {lt.assetType === "Personal Property" &&
-                    <div>
-                        <p>Name of Issuer: {lt.retirementProceedName}</p>
-                        <p>Description of Policy: {lt.retirementProceedDescription}</p>
-                        <p>Policy Number: {lt.retirementProceedNumber}</p>
-                    </div>
-                    }
+                                {gift.assetType === "Personal Property" &&
+                                <div>
+                                    <p>Name of Issuer: {gift.retirementProceedName}</p>
+                                    <p>Description of Policy: {gift.retirementProceedDescription}</p>
+                                    <p>Policy Number: {gift.retirementProceedNumber}</p>
+                                </div>
+                                }
 
-                    {lt.assetType === "Retirement Proceed" &&
-                    <div>
-                        <p>Do you want to place all your personal property in the Trust: {lt.personalPropertyQuestion}</p>
-                        {lt.personalPropertyQuestion === "No" && <p>Description of Property: {lt.personalPropertyDescription}</p>}
-                    </div>
-                    }                    
+                                {gift.assetType === "Retirement Proceed" &&
+                                <div>
+                                    <p>Do you want to place all your personal property in the Trust: {gift.personalPropertyQuestion}</p>
+                                    {gift.personalPropertyQuestion === "No" && <p>Description of Property: {gift.personalPropertyDescription}</p>}
+                                </div>
+                                }                                 
+
+                            </div>
+                        );
+                    })}                   
                     
                 </div>
 
@@ -182,10 +199,25 @@ const PrintLivingTrust = () => {
                         )
                     })}</p>
 
-                    <p>Name Specific Gift you will like to make from the trust:</p>
+                    {lt.giveToAlt.map((g, index) => {
+                        return(
+                            <div key={index}>
+                                {index !== 0 &&
+                                <div>
+                                    <p>Name Specific Gift you will like to make from the trust:</p>
+                                    <p>Item: {g.giveTheFollowingItems}</p>
+                                    <p>To: {g.to}</p>
+                                    <p>Alternate Recipient: {g.alternateRecipient}</p>
+                                    <hr></hr>
+                                </div>
+                                }
+                            </div>
+                        );
+                    })}
+                    {/* <p>Name Specific Gift you will like to make from the trust:</p>
                     <p>Items: {lt.giveTheFollowingItems}</p>
                     <p>To: {lt.to}</p>
-                    <p>Alternate Recipient: {lt.alternateRecipient}</p>
+                    <p>Alternate Recipient: {lt.alternateRecipient}</p> */}
                 </div>                                                                
 
                 {/* Step 6 */}
@@ -193,8 +225,16 @@ const PrintLivingTrust = () => {
                     <h2>Step 6</h2>
                     <h5>Charity</h5>
 
-                    <p>Name of Charity: {lt.nameOfCharity}</p>
-                    <p>Gift: {lt.gift}</p>
+                    {lt.step5Charities.map((charity, index) => {
+                        return(
+                        <div>
+                            <p>Name of Charity: {charity.nameOfCharity}</p>
+                            <p>Gift: {charity.gift}</p>
+                            <hr></hr>
+                        </div>
+                    );})}
+                    {/* <p>Name of Charity: {lt.nameOfCharity}</p>
+                    <p>Gift: {lt.gift}</p> */}
                 </div>
 
                 {/* Step 7 */}
@@ -216,9 +256,9 @@ const PrintLivingTrust = () => {
                     <h2>Step 8</h2>
                     <h5>Pour Over Will</h5>
                     <p>Do You Want Pour- Over Will (Do you want to include Pour-Over Will): {lt.pourOverWillQuestion}</p>
-                    {lt.pourOverWillQuestion === "Yes" &&
+                    {/* {lt.pourOverWillQuestion === "Yes" &&
                     <a>{lt.pourOverWillFile}</a>
-                    }
+                    } */}
                 </div>
 
                 {/* Step 9 */}
@@ -252,17 +292,17 @@ const PrintLivingTrust = () => {
                     <h5>Signature and Selfie</h5>
                     <img style={{display: "block", width: 300, height: 100}} src={process.env.REACT_APP_API_URL + "/uploads/" + lt.signature}></img>
 
-                    <h5>Grantor Signature</h5>
-                    <img style={{display: "block", width: 300, height: 100}} src={process.env.REACT_APP_API_URL + "/uploads/" + lt.signatureGrantor}></img>
+                    {/* <h5>Grantor Signature</h5> */}
+                    {/* <img style={{display: "block", width: 300, height: 100}} src={process.env.REACT_APP_API_URL + "/uploads/" + lt.signatureGrantor}></img> */}
 
-                    <h5>Trustee Signature</h5>
-                    <img style={{display: "block", width: 300, height: 100}} src={process.env.REACT_APP_API_URL + "/uploads/" + lt.signatureTrustee}></img>
+                    {/* <h5>Trustee Signature</h5> */}
+                    {/* <img style={{display: "block", width: 300, height: 100}} src={process.env.REACT_APP_API_URL + "/uploads/" + lt.signatureTrustee}></img> */}
 
-                    <h5>Successor Signature</h5>
-                    <img style={{display: "block", width: 300, height: 100}} src={process.env.REACT_APP_API_URL + "/uploads/" + lt.signatureSuccessor}></img>
+                    {/* <h5>Successor Signature</h5> */}
+                    {/* <img style={{display: "block", width: 300, height: 100}} src={process.env.REACT_APP_API_URL + "/uploads/" + lt.signatureSuccessor}></img> */}
 
-                    <h5>Afidavit from Notary Public</h5>
-                    <a href={process.env.REACT_APP_API_URL + "/uploads/" + lt.affidavit}>{process.env.REACT_APP_API_URL + "/uploads/" + lt.affidavit}</a>
+                    {/* <h5>Afidavit from Notary Public</h5>
+                    <a href={process.env.REACT_APP_API_URL + "/uploads/" + lt.affidavit}>{process.env.REACT_APP_API_URL + "/uploads/" + lt.affidavit}</a> */}
 
                     <p>Date: {lt.date}</p>
                     <p>Place: {lt.place}</p>

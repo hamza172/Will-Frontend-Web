@@ -67,6 +67,7 @@ export default class ManageWill extends React.Component {
 						<th>#</th>
 						<th>Name</th>
 						<th>Date</th>
+						<th>Type</th>
 						<th>Reg No.</th>
 						<th>View Will</th>
 						<th>Add Codicil</th>
@@ -85,9 +86,24 @@ export default class ManageWill extends React.Component {
 							return(
 								<tr>
 									<td>{this.state.wills.length - index}</td>
-									<td>{will.personalDetails.firstName} {will.personalDetails.lastName}</td>
-									<td>{will.createdAt}</td>
-									<td>{will._id}</td>
+									{will.type === "Standard" && 
+									<>
+										<td>{will.personalDetails.firstName} {will.personalDetails.lastName}</td>
+										<td>{will.dateCreated}</td>
+										<td>{will.type}</td>
+										<td>{will._id}</td>										
+									</>
+									}									
+
+									{will.type === "Muslim" && 
+									<>
+										<td>{will.firstName} {will.lastName}</td>
+										<td>{will.dateCreated}</td>
+										<td>{will.type}</td>
+										<td>{will._id}</td>										
+									</>
+									}
+
 									<td><a className="btn btn-primary" href={'/managewill/viewwillpdf?will_id=' + will._id}>Download PDF</a></td>
 									{will._id === this.state.activeWillID && 
 										<td><a className="btn btn-primary" href={'/managewill/addcodicil?will_id=' + will._id}>Add Codicil</a></td>

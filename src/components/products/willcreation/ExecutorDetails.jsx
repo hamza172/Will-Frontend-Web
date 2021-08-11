@@ -91,11 +91,7 @@ const ExecutorDetails = () => {
     <FormContainer>
       <h4 className="mb-5"> Step4: Executor Details</h4>
 
-      <Form.Label
-        as="legend"
-        className="text-center mb-5"
-        style={{ backgroundColor: "beige" }}
-      >
+      <Form.Label as="legend" className="text-center mb-5" style={{ backgroundColor: "beige" }}>
         Who would you like to manage your affairs when you die
       </Form.Label>
       <Form.Label>
@@ -109,32 +105,17 @@ const ExecutorDetails = () => {
       <Form className={classes.root} onSubmit={handleSubmit}>
         {inputFields.map((inputField) => (
           <div key={inputField.id}>
+
             <Form.Group controlId="name">
               <Form.Label>Full Name of Executor</Form.Label>
-              <Form.Control
-                type="text"
-                name="name"
-                required
-                value={inputField.name}
-                onChange={(event) => handleChangeInput(inputField.id, event)}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                Please fill the required field.
-              </Form.Control.Feedback>
+              <Form.Control type="text" name="name" required value={inputField.name} onChange={(event) => handleChangeInput(inputField.id, event)}></Form.Control>
+              <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="relationship">
               <Form.Label>Relationship with Executor</Form.Label>
-              <Form.Control
-                as="select"
-                name="relationship"
-                required
-                value={inputField.relationship}
-                onChange={(event) => handleChangeInput(inputField.id, event)}
-              >
-                <option selected disabled value="">
-                  [Please select one]
-                </option>
+              <Form.Control as="select" name="relationship" required value={inputField.relationship} onChange={(event) => handleChangeInput(inputField.id, event)}>
+                <option selected disabled value="">[Please select one]</option>
                 <option value="husband">Husband</option>
                 <option value="Wife">Wife</option>
                 <option value="Partner">Partner</option>
@@ -148,79 +129,37 @@ const ExecutorDetails = () => {
                 <option value="Business Partner">Business Partner</option>
                 <option value="Other">Other</option>
               </Form.Control>
-              <Form.Control.Feedback type="invalid">
-                Please fill the required field.
-              </Form.Control.Feedback>
+              <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="address">
               <Form.Label>Address</Form.Label>
-              <Form.Control
-                type="text"
-                name="address"
-                required
-                value={inputField.add}
-                onChange={(event) => handleChangeInput(inputField.id, event)}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                Please fill the required field.
-              </Form.Control.Feedback>
+              <Form.Control type="text" name="address" required value={inputField.add} onChange={(event) => handleChangeInput(inputField.id, event)}></Form.Control>
+              <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="town">
               <Form.Label>Town</Form.Label>
-              <Form.Control
-                type="text"
-                name="town"
-                required
-                value={inputField.add}
-                onChange={(event) => handleChangeInput(inputField.id, event)}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                Please fill the required field.
-              </Form.Control.Feedback>
+              <Form.Control type="text" name="town" required value={inputField.add} onChange={(event) => handleChangeInput(inputField.id, event)}></Form.Control>
+              <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="state">
               <Form.Label>State</Form.Label>
-              <Form.Control
-                type="text"
-                name="state"
-                required
-                value={inputField.state}
-                onChange={(event) => handleChangeInput(inputField.id, event)}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                Please fill the required field.
-              </Form.Control.Feedback>
+              <Form.Control type="text" name="state" required value={inputField.state} onChange={(event) => handleChangeInput(inputField.id, event)}></Form.Control>
+              <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="email">
               <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="text"
-                name="email"
-                required
-                value={inputField.email}
-                onChange={(event) => handleChangeInput(inputField.id, event)}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                Please fill the required field.
-              </Form.Control.Feedback>
+              <Form.Control type="text" name="email" required value={inputField.email} onChange={(event) => handleChangeInput(inputField.id, event)}></Form.Control>
+              <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="ph">
               <Form.Label>Phone Number</Form.Label>
-              <Form.Control
-                type="text"
-                name="ph"
-                required
-                value={inputField.ph}
-                onChange={(event) => handleChangeInput(inputField.id, event)}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                Please fill the required field.
-              </Form.Control.Feedback>
+              <Form.Control type="text" name="ph" required value={inputField.ph} onChange={(event) => handleChangeInput(inputField.id, event)}></Form.Control>
+              <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
             </Form.Group>
 
             <Button
@@ -242,18 +181,11 @@ const ExecutorDetails = () => {
             </Button>
           </div>
         ))}
+        
         <Form.Group controlId="addAltExec">
           <Form.Label>Do you want to add alternate executor? </Form.Label>
-          <Form.Control
-            as="select"
-            name="addAltExec"
-            required
-            value={addAltExec}
-            onChange={(event) => setAddAltExec(event.target.value)}
-          >
-            <option selected disabled value="">
-              [Please select one]
-            </option>
+          <Form.Control as="select" name="addAltExec" required value={addAltExec} onChange={(event) => setAddAltExec(event.target.value)}>
+            <option selected disabled value="">[Please select one]</option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </Form.Control>
@@ -261,29 +193,18 @@ const ExecutorDetails = () => {
 
         <Form.Group controlId="isRenumerated">
           <Form.Label>Will the executor be renumerated? </Form.Label>
-          <Form.Control
-            as="select"
-            name="isRenumerated"
-            required
-            value={isRenumerated}
-            onChange={(event) => setIsRenumerated(event.target.value)}
-          >
-            <option selected disabled value="">
-              [Please select one]
-            </option>
+          <Form.Control as="select" name="isRenumerated" required value={isRenumerated} onChange={(event) => setIsRenumerated(event.target.value)}>
+            <option selected disabled value="">[Please select one]</option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </Form.Control>
         </Form.Group>
+
         <Form.Group controlId="execRenumeration">
           <Form.Label>Executor Renumeration</Form.Label>
-          <Form.Control
-            type="text"
-            name="execRenumeration"
-            value={execRenumeration}
-            onChange={(event) => setExecRenumeration(event.target.value)}
-          ></Form.Control>
+          <Form.Control type="text" name="execRenumeration" value={execRenumeration} onChange={(event) => setExecRenumeration(event.target.value)}></Form.Control>
         </Form.Group>
+
         <Button
           className="mt-5 mb-5 mr-5"
           variant="contained"

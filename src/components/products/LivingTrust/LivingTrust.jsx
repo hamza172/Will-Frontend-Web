@@ -24,6 +24,9 @@ export default class LivingTrust extends Component {
         areYouCreatingARevocableOrIrrevocable: "Yes",
 
         name: "",
+        city: "",
+        zipCode: "",
+        state: "",
         address: "",
         phone: "",
         email: "",
@@ -33,57 +36,73 @@ export default class LivingTrust extends Component {
         organisationConfirmation: false,
         individuaConfirmation: false,
         trusteeName: "",
+        trusteeCity: "",
+        trusteeZipCode: "",
+        trusteeState: "",
         trusteeAddress: "",
         doYouWantCotrustee: "No",
         CotrusteeName: "",
+        CotrusteeCity: "",
+        CotrusteeZipCode: "",
+        CotrusteeState: "",
         CotrusteeAddress: "",
         wouldYouLikeToNameTheTrust : "No",
         trustName: "",
 
-        assetType: "Real Estate",
-        realEstateAddress: "",
-        realEstateType: "",
-        financialAccountName: "",
-        financialAccountType: "",
-        financialAccountNumber: "",
-        stockAndBondStockName: "",
-        stockAndBondStockNumberOfShares: "",
-        stockAndBondStockCertificateNumber: "",
-        stockAndBondStockDescription: "",
-        stockAndBondBondName: "",
-        stockAndBondBondValue: "",
-        stockAndBondBondCertificateNumber: "",
-        stockAndBondBondDescription: "",
-        businessName: "",
-        businessDescription: "",
-        titleOfContract: "",
-        nameOfOtherParty: "",
-        dateOfContract: "",
-        contarctDescription: "",
-        lifeAssuranceName: "",
-        lifeAssuranceDescription: "",
-        lifeAssuranceNumber: "",
-        retirementProceedName: "",
-        retirementProceedDescription: "",
-        retirementProceedNumber: "",
-        personalPropertyQuestion: "Yes",
-        personalPropertyDescription: "",
+        step4Gifts: [{
+            assetType: "Real Estate",
+            realEstateAddress: "",
+            realEstateType: "",
+            financialAccountName: "",
+            financialAccountType: "",
+            financialAccountNumber: "",            
+            stockAndBondStockName: "",
+            stockAndBondStockNumberOfShares: "",
+            stockAndBondStockCertificateNumber: "",
+            stockAndBondStockDescription: "",
+            stockAndBondBondName: "",
+            stockAndBondBondValue: "",
+            stockAndBondBondCertificateNumber: "",
+            stockAndBondBondDescription: "",
+            businessName: "",
+            businessDescription: "",
+            titleOfContract: "",
+            nameOfOtherParty: "",
+            dateOfContract: "",
+            contarctDescription: "",
+            lifeAssuranceName: "",
+            lifeAssuranceDescription: "",
+            lifeAssuranceNumber: "",
+            retirementProceedName: "",
+            retirementProceedDescription: "",
+            retirementProceedNumber: "",
+            personalPropertyQuestion: "Yes",
+            personalPropertyDescription: "",
+        }],
+        step4GiftsCount: 1,        
 
-        beneficiariesNames: [],
-        beneficiariesCount: 0,
-        giveTheFollowingItems: "",
-        to: "",
-        alternateRecipient: "",
+        beneficiariesNames: [""],
+        beneficiariesCount: 1,
+        giveToAlt: [{
+            giveTheFollowingItems: "",
+            to: "",
+            alternateRecipient: "",
+        }            
+        ],
+        giveToAltCount: 0,        
 
-        nameOfCharity: "",
-        gift: "",
+        step5Charities: [{
+            nameOfCharity: "",
+            gift: "",
+        }],
+        step5CharityCount: 1,
 
         subtrustQuestion: "No",
         subtrustName: "",
         subtrustAge: "",
 
         pourOverWillQuestion: "No",
-        pourOverWillFile: null,
+        // pourOverWillFile: null,
 
         additionalInstructionOne: "",
         additionalInstructionTwo: "",
@@ -98,7 +117,7 @@ export default class LivingTrust extends Component {
         signatureGrantor: null,
         signatureTrustee: null,
         signatureSuccessor: null,
-        affidavit: null,
+        // affidavit: null,
         date: "",
         place: "",
         time: "",
@@ -132,28 +151,28 @@ export default class LivingTrust extends Component {
         const { step } = this.state;
 
         const { areYouOver18, areYouOfSaneMind, doYouOwnThePropertyVested, areYouCreatingARevocableOrIrrevocable,
-                name, address, phone, email,
-                isTheGrantorNotTheTrustee, trusteeType, organisationConfirmation, individuaConfirmation, trusteeName, trusteeAddress, doYouWantCotrustee, CotrusteeName, CotrusteeAddress, wouldYouLikeToNameTheTrust, trustName,
-                assetType, realEstateAddress, realEstateType, financialAccountName, financialAccountType, financialAccountNumber, stockAndBondStockName, stockAndBondStockNumberOfShares, stockAndBondStockCertificateNumber, stockAndBondStockDescription, stockAndBondBondName, stockAndBondBondValue, stockAndBondBondCertificateNumber, stockAndBondBondDescription, businessName, businessDescription, titleOfContract, nameOfOtherParty, dateOfContract, contarctDescription, lifeAssuranceName, lifeAssuranceDescription, lifeAssuranceNumber, retirementProceedName, retirementProceedDescription, retirementProceedNumber, personalPropertyQuestion, personalPropertyDescription,
-                beneficiariesNames, beneficiariesCount, giveTheFollowingItems, to, alternateRecipient,
-                nameOfCharity, gift,
+                name, city, zipCode, state, address, phone, email,
+                isTheGrantorNotTheTrustee, trusteeType, organisationConfirmation, individuaConfirmation, trusteeName, trusteeCity, trusteeZipCode, trusteeState, trusteeAddress, doYouWantCotrustee, CotrusteeName, CotrusteeCity, CotrusteeZipCode, CotrusteeState, CotrusteeAddress, wouldYouLikeToNameTheTrust, trustName,
+                step4Gifts, step4GiftsCount, assetType, realEstateAddress, realEstateType, financialAccountName, financialAccountType, financialAccountNumber, stockAndBondStockName, stockAndBondStockNumberOfShares, stockAndBondStockCertificateNumber, stockAndBondStockDescription, stockAndBondBondName, stockAndBondBondValue, stockAndBondBondCertificateNumber, stockAndBondBondDescription, businessName, businessDescription, titleOfContract, nameOfOtherParty, dateOfContract, contarctDescription, lifeAssuranceName, lifeAssuranceDescription, lifeAssuranceNumber, retirementProceedName, retirementProceedDescription, retirementProceedNumber, personalPropertyQuestion, personalPropertyDescription,
+                beneficiariesNames, beneficiariesCount, giveToAlt, giveToAltCount,
+                step5Charities, step5CharityCount,
                 subtrustQuestion, subtrustName, subtrustAge,
-                pourOverWillQuestion, pourOverWillFile,
+                pourOverWillQuestion,
                 additionalInstructionOne, additionalInstructionTwo,
                 remunerationQuestion, remunerationInstruction, remunerationAmount, remunerationPeriod,
-                signature, selfie, signatureGrantor, signatureTrustee, signatureSuccessor, affidavit, date, place, time } = this.state;
+                signature, selfie, signatureGrantor, signatureTrustee, signatureSuccessor, date, place, time } = this.state;
 
         const values = { areYouOver18, areYouOfSaneMind, doYouOwnThePropertyVested, areYouCreatingARevocableOrIrrevocable,
-                        name, address, phone, email,
-                        isTheGrantorNotTheTrustee, trusteeType, organisationConfirmation, individuaConfirmation, trusteeName, trusteeAddress, doYouWantCotrustee, CotrusteeName, CotrusteeAddress, wouldYouLikeToNameTheTrust, trustName,
-                        assetType, realEstateAddress, realEstateType, financialAccountName, financialAccountType, financialAccountNumber, stockAndBondStockName, stockAndBondStockNumberOfShares, stockAndBondStockCertificateNumber, stockAndBondStockDescription, stockAndBondBondName, stockAndBondBondValue, stockAndBondBondCertificateNumber, stockAndBondBondDescription, businessName, businessDescription, titleOfContract, nameOfOtherParty, dateOfContract, contarctDescription, lifeAssuranceName, lifeAssuranceDescription, lifeAssuranceNumber, retirementProceedName, retirementProceedDescription, retirementProceedNumber, personalPropertyQuestion, personalPropertyDescription,
-                        beneficiariesNames, beneficiariesCount, giveTheFollowingItems, to, alternateRecipient,
-                        nameOfCharity, gift,
+                        name, city, zipCode, state, address, phone, email,
+                        isTheGrantorNotTheTrustee, trusteeType, organisationConfirmation, individuaConfirmation, trusteeName, trusteeCity, trusteeZipCode, trusteeState, trusteeAddress, doYouWantCotrustee, CotrusteeName, CotrusteeCity, CotrusteeZipCode, CotrusteeState, CotrusteeAddress, wouldYouLikeToNameTheTrust, trustName,
+                        step4Gifts, step4GiftsCount, assetType, realEstateAddress, realEstateType, financialAccountName, financialAccountType, financialAccountNumber, stockAndBondStockName, stockAndBondStockNumberOfShares, stockAndBondStockCertificateNumber, stockAndBondStockDescription, stockAndBondBondName, stockAndBondBondValue, stockAndBondBondCertificateNumber, stockAndBondBondDescription, businessName, businessDescription, titleOfContract, nameOfOtherParty, dateOfContract, contarctDescription, lifeAssuranceName, lifeAssuranceDescription, lifeAssuranceNumber, retirementProceedName, retirementProceedDescription, retirementProceedNumber, personalPropertyQuestion, personalPropertyDescription,
+                        beneficiariesNames, beneficiariesCount, giveToAlt, giveToAltCount,
+                        step5Charities, step5CharityCount,
                         subtrustQuestion, subtrustName, subtrustAge,
-                        pourOverWillQuestion, pourOverWillFile,
+                        pourOverWillQuestion,
                         additionalInstructionOne, additionalInstructionTwo,
                         remunerationQuestion, remunerationInstruction, remunerationAmount, remunerationPeriod,
-                        signature, selfie, signatureGrantor, signatureTrustee, signatureSuccessor, affidavit, date, place, time };
+                        signature, selfie, signatureGrantor, signatureTrustee, signatureSuccessor, date, place, time };
 
         switch (step) {
             case 1: 
@@ -170,7 +189,7 @@ export default class LivingTrust extends Component {
                 )
             case 4:
                 return (
-                    <Step4 nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} values={values} />
+                    <Step4 nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} changeState={this.changeState} values={values} />
                 )    
             case 5:
                 return (
@@ -178,7 +197,7 @@ export default class LivingTrust extends Component {
                 )
             case 6:
                 return (
-                    <Step6 nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} values={values} />
+                    <Step6 nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} changeState={this.changeState} values={values} />
                 )
             case 7:
                 return (

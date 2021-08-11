@@ -36,18 +36,11 @@ const BurialDetails = ({ history }) => {
       <h3>Burial Arrangements</h3>
 
       <Form noValidate validated={validated} onSubmit={submitHandler}>
+        
         <Form.Group controlId="description">
           <Form.Label>Description</Form.Label>
-          <Form.Control
-            required
-            as="textarea"
-            rows={10}
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          ></Form.Control>
-          <Form.Control.Feedback type="invalid">
-            Please fill the required field.
-          </Form.Control.Feedback>
+          <Form.Control required as="textarea" rows={10} value={description} onChange={(e) => setDescription(e.target.value)}></Form.Control>
+          <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
         </Form.Group>
 
         <Button type="submit" variant="primary">

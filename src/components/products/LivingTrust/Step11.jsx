@@ -31,9 +31,9 @@ const Step11 = ({ nextStep, prevStep, handleChange, changeState, onFileChange, v
 
     const sigCanvas = useRef({});
 
-    const sigCanvasGrantor = useRef({});
-    const sigCanvasTrustee = useRef({});
-    const sigCanvasSuccessor = useRef({});
+    // const sigCanvasGrantor = useRef({});
+    // const sigCanvasTrustee = useRef({});
+    // const sigCanvasSuccessor = useRef({});
 
     const [willAMBID, setWillAMBID] = React.useState();
     const [promoCode, setPromoCode] = React.useState("");
@@ -110,6 +110,9 @@ const Step11 = ({ nextStep, prevStep, handleChange, changeState, onFileChange, v
             formData.append("areYouCreatingARevocableOrIrrevocable", values.areYouCreatingARevocableOrIrrevocable);
 
             formData.append("name", values.name);
+            formData.append("city", values.city);
+            formData.append("zipCode", values.zipCode);
+            formData.append("state", values.state);
             formData.append("address", values.address);
             formData.append("phone", values.phone);
             formData.append("email", values.email);
@@ -119,57 +122,69 @@ const Step11 = ({ nextStep, prevStep, handleChange, changeState, onFileChange, v
             formData.append("organisationConfirmation", values.organisationConfirmation);
             formData.append("individuaConfirmation", values.individuaConfirmation);
             formData.append("trusteeName", values.trusteeName);
+            formData.append("trusteeCity", values.trusteeCity);
+            formData.append("trusteeZipCode", values.trusteeZipCode);
+            formData.append("trusteeState", values.trusteeState);
             formData.append("trusteeAddress", values.trusteeAddress);
             formData.append("doYouWantCotrustee", values.doYouWantCotrustee);
             formData.append("CotrusteeName", values.CotrusteeName);
+            formData.append("CotrusteeCity", values.CotrusteeCity);
+            formData.append("CotrusteeZipCode", values.CotrusteeZipCode);
+            formData.append("CotrusteeState", values.CotrusteeState);
             formData.append("CotrusteeAddress", values.CotrusteeAddress);
             formData.append("wouldYouLikeToNameTheTrust", values.wouldYouLikeToNameTheTrust);
             formData.append("trustName", values.trustName);
 
-            formData.append("assetType", values.assetType);
-            formData.append("realEstateAddress", values.realEstateAddress);
-            formData.append("realEstateType", values.realEstateType);
-            formData.append("financialAccountName", values.financialAccountName);
-            formData.append("financialAccountType", values.financialAccountType);
-            formData.append("financialAccountNumber", values.financialAccountNumber);
-            formData.append("stockAndBondStockName", values.stockAndBondStockName);
-            formData.append("stockAndBondStockNumberOfShares", values.stockAndBondStockNumberOfShares);
-            formData.append("stockAndBondStockCertificateNumber", values.stockAndBondStockCertificateNumber);
-            formData.append("stockAndBondStockDescription", values.stockAndBondStockDescription);
-            formData.append("stockAndBondBondName", values.stockAndBondBondName);
-            formData.append("stockAndBondBondValue", values.stockAndBondBondValue);
-            formData.append("stockAndBondBondCertificateNumber", values.stockAndBondBondCertificateNumber);
-            formData.append("stockAndBondBondDescription", values.stockAndBondBondDescription);
-            formData.append("businessName", values.businessName);
-            formData.append("businessDescription", values.businessDescription);
-            formData.append("titleOfContract", values.titleOfContract);
-            formData.append("nameOfOtherParty", values.nameOfOtherParty);
-            formData.append("dateOfContract", values.dateOfContract);
-            formData.append("contarctDescription", values.contarctDescription);
-            formData.append("lifeAssuranceName", values.lifeAssuranceName);
-            formData.append("lifeAssuranceDescription", values.lifeAssuranceDescription);
-            formData.append("lifeAssuranceNumber", values.lifeAssuranceNumber);
-            formData.append("retirementProceedName", values.retirementProceedName);
-            formData.append("retirementProceedDescription", values.retirementProceedDescription);
-            formData.append("retirementProceedNumber", values.retirementProceedNumber);
-            formData.append("personalPropertyQuestion", values.personalPropertyQuestion);
-            formData.append("personalPropertyDescription", values.personalPropertyDescription);
+            formData.append("step4Gifts", JSON.stringify(values.step4Gifts));
+            formData.append("step4GiftsCount", values.step4GiftsCount);
+            // formData.append("assetType", values.assetType);
+            // formData.append("realEstateAddress", values.realEstateAddress);
+            // formData.append("realEstateType", values.realEstateType);
+            // formData.append("financialAccountName", values.financialAccountName);
+            // formData.append("financialAccountType", values.financialAccountType);
+            // formData.append("financialAccountNumber", values.financialAccountNumber);
+            // formData.append("stockAndBondStockName", values.stockAndBondStockName);
+            // formData.append("stockAndBondStockNumberOfShares", values.stockAndBondStockNumberOfShares);
+            // formData.append("stockAndBondStockCertificateNumber", values.stockAndBondStockCertificateNumber);
+            // formData.append("stockAndBondStockDescription", values.stockAndBondStockDescription);
+            // formData.append("stockAndBondBondName", values.stockAndBondBondName);
+            // formData.append("stockAndBondBondValue", values.stockAndBondBondValue);
+            // formData.append("stockAndBondBondCertificateNumber", values.stockAndBondBondCertificateNumber);
+            // formData.append("stockAndBondBondDescription", values.stockAndBondBondDescription);
+            // formData.append("businessName", values.businessName);
+            // formData.append("businessDescription", values.businessDescription);
+            // formData.append("titleOfContract", values.titleOfContract);
+            // formData.append("nameOfOtherParty", values.nameOfOtherParty);
+            // formData.append("dateOfContract", values.dateOfContract);
+            // formData.append("contarctDescription", values.contarctDescription);
+            // formData.append("lifeAssuranceName", values.lifeAssuranceName);
+            // formData.append("lifeAssuranceDescription", values.lifeAssuranceDescription);
+            // formData.append("lifeAssuranceNumber", values.lifeAssuranceNumber);
+            // formData.append("retirementProceedName", values.retirementProceedName);
+            // formData.append("retirementProceedDescription", values.retirementProceedDescription);
+            // formData.append("retirementProceedNumber", values.retirementProceedNumber);
+            // formData.append("personalPropertyQuestion", values.personalPropertyQuestion);
+            // formData.append("personalPropertyDescription", values.personalPropertyDescription);
 
             formData.append("beneficiariesNames", JSON.stringify(values.beneficiariesNames));
             formData.append("beneficiariesCount", values.beneficiariesCount);
-            formData.append("giveTheFollowingItems", values.giveTheFollowingItems);
-            formData.append("to", values.to);
-            formData.append("alternateRecipient", values.alternateRecipient);
+            formData.append("giveToAlt", JSON.stringify(values.giveToAlt));
+            formData.append("giveToAltCount", values.giveToAltCount);
+            // formData.append("giveTheFollowingItems", values.giveTheFollowingItems);
+            // formData.append("to", values.to);
+            // formData.append("alternateRecipient", values.alternateRecipient);
 
-            formData.append("nameOfCharity", values.nameOfCharity);
-            formData.append("gift", values.gift);
+            // formData.append("nameOfCharity", values.nameOfCharity);
+            // formData.append("gift", values.gift);
+            formData.append("step5Charities", JSON.stringify(values.step5Charities));
+            formData.append("step5CharityCount", values.step5CharityCount);
 
             formData.append("subtrustQuestion", values.subtrustQuestion);
             formData.append("subtrustName", values.subtrustName);
             formData.append("subtrustAge", values.subtrustAge);
 
             formData.append("pourOverWillQuestion", values.pourOverWillQuestion);
-            formData.append("pourOverWillFile", values.pourOverWillFile);
+            // formData.append("pourOverWillFile", values.pourOverWillFile);
 
             formData.append("additionalInstructionOne", values.additionalInstructionOne);
             formData.append("additionalInstructionTwo", values.additionalInstructionTwo);
@@ -184,7 +199,7 @@ const Step11 = ({ nextStep, prevStep, handleChange, changeState, onFileChange, v
             formData.append("signatureGrantor", values.signatureGrantor);
             formData.append("signatureTrustee", values.signatureTrustee);
             formData.append("signatureSuccessor", values.signatureSuccessor);
-            formData.append("affidavit", values.affidavit);
+            // formData.append("affidavit", values.affidavit);
             formData.append("date", values.date);
             formData.append("place", values.place);
             formData.append("time", values.time);
@@ -332,27 +347,30 @@ const Step11 = ({ nextStep, prevStep, handleChange, changeState, onFileChange, v
 
             <h5>Signature of Grantor</h5>
             <div style={{display: "flex", alignItems: "center"}}>
-                <SignatureCanvas ref={sigCanvasGrantor} penColor='green' canvasProps={{width: 300, height: 100, className: 'sigCanvas'}} />
+                <input style={{display: "block", marginBottom: 15}} type="file" onChange={(e) => {onFileChange("signatureGrantor", e)}}></input>
+                {/* <SignatureCanvas ref={sigCanvasGrantor} penColor='green' canvasProps={{width: 300, height: 100, className: 'sigCanvas'}} />
                 <button className="btn btn-primary ml-2" style={{height: 50}} onClick={() => {clear(sigCanvasGrantor)}}>Clear</button>
-                <button className="btn btn-primary ml-2" style={{height: 50}} onClick={() => {save(sigCanvasGrantor, "signatureGrantor")}}>Save</button>
+                <button className="btn btn-primary ml-2" style={{height: 50}} onClick={() => {save(sigCanvasGrantor, "signatureGrantor")}}>Save</button> */}
             </div>
 
             <h5>Signature of Trustee</h5>
             <div style={{display: "flex", alignItems: "center"}}>
-                <SignatureCanvas ref={sigCanvasTrustee} penColor='green' canvasProps={{width: 300, height: 100, className: 'sigCanvas'}} />
+                <input style={{display: "block", marginBottom: 15}} type="file" onChange={(e) => {onFileChange("signatureTrustee", e)}}></input>
+                {/* <SignatureCanvas ref={sigCanvasTrustee} penColor='green' canvasProps={{width: 300, height: 100, className: 'sigCanvas'}} />
                 <button className="btn btn-primary ml-2" style={{height: 50}} onClick={() => {clear(sigCanvasTrustee)}}>Clear</button>
-                <button className="btn btn-primary ml-2" style={{height: 50}} onClick={() => {save(sigCanvasTrustee, "signatureTrustee")}}>Save</button>
+                <button className="btn btn-primary ml-2" style={{height: 50}} onClick={() => {save(sigCanvasTrustee, "signatureTrustee")}}>Save</button> */}
             </div>
 
             <h5>Signature of Successor</h5>
             <div style={{display: "flex", alignItems: "center"}}>
-                <SignatureCanvas ref={sigCanvasSuccessor} penColor='green' canvasProps={{width: 300, height: 100, className: 'sigCanvas'}} />
+                <input style={{display: "block", marginBottom: 15}} type="file" onChange={(e) => {onFileChange("signatureSuccessor", e)}}></input>
+                {/* <SignatureCanvas ref={sigCanvasSuccessor} penColor='green' canvasProps={{width: 300, height: 100, className: 'sigCanvas'}} />
                 <button className="btn btn-primary ml-2" style={{height: 50}} onClick={() => {clear(sigCanvasSuccessor)}}>Clear</button>
-                <button className="btn btn-primary ml-2" style={{height: 50}} onClick={() => {save(sigCanvasSuccessor, "signatureSuccessor")}}>Save</button>
+                <button className="btn btn-primary ml-2" style={{height: 50}} onClick={() => {save(sigCanvasSuccessor, "signatureSuccessor")}}>Save</button> */}
             </div>
             
-            <h5>Affidavit from Notary Public</h5>
-            <input style={{display: "block", marginBottom: 15}} type="file" onChange={(e) => {onFileChange("affidavit", e)}}></input>
+            {/* <h5>Affidavit from Notary Public</h5>
+            <input style={{display: "block", marginBottom: 15}} type="file" onChange={(e) => {onFileChange("affidavit", e)}}></input> */}
 
             <Form>
                 {/* Date */}

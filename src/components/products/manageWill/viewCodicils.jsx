@@ -38,7 +38,7 @@ export default class ViewCodicils extends React.Component {
 		})
 		.then((response) => {			
 			this.setState( {codicils: response.data.codicils} );
-			console.log(this.state.codicils);
+			console.log(response.data.codicils);
 		})
 		.catch((error) => {
 			console.log(error);
@@ -64,7 +64,7 @@ export default class ViewCodicils extends React.Component {
 					return(
 						<tr>
 							<td>{this.state.codicils.length - index}</td>
-							<td>{codicil.createdAt}</td>
+							<td>{codicil.dateCreated}</td>
 							<td>{codicil._id}</td>
 							<td><a className="btn btn-primary" href={"/managewill/codicil?codicil_id=" + codicil._id}>View</a></td>
 						</tr>

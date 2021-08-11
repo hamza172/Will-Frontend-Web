@@ -99,21 +99,11 @@ const AdditionDetails = () => {
       <Form className={classes.root} onSubmit={handleSubmit}>
         {inputFields.map((inputField) => (
           <div className="mb-5" key={inputField.id}>
+
             <Form.Group controlId="description">
               <Form.Label> Description</Form.Label>
-              <Form.Control
-                type="text"
-                name="description"
-                as="textarea"
-                row={8}
-                description="description"
-                required
-                value={inputField.description}
-                onChange={(event) => handleChangeInput(inputField.id, event)}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                Please fill the required field.
-              </Form.Control.Feedback>
+              <Form.Control type="text" name="description" as="textarea" row={8} description="description" required value={inputField.description} onChange={(event) => handleChangeInput(inputField.id, event)}></Form.Control>
+              <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
             </Form.Group>
 
             <Button
@@ -135,17 +125,11 @@ const AdditionDetails = () => {
             </Button>
           </div>
         ))}
+
         <Form.Group controlId="isLiterate">
           <Form.Label>Is the Tester Literate? </Form.Label>
-          <Form.Control
-            as="select"
-            value={isLiterate}
-            required
-            onChange={handleChange}
-          >
-            <option selected disabled value="">
-              [Please select one]
-            </option>
+          <Form.Control as="select" value={isLiterate} required onChange={handleChange}>
+            <option selected disabled value="">[Please select one]</option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </Form.Control>
@@ -155,28 +139,14 @@ const AdditionDetails = () => {
           <>
             <Form.Group controlId="name">
               <Form.Label>Name</Form.Label>
-              <Form.Control
-                required
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                Please fill the required field.
-              </Form.Control.Feedback>
+              <Form.Control required type="text" value={name} onChange={(e) => setName(e.target.value)}></Form.Control>
+              <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="address">
               <Form.Label>Address</Form.Label>
-              <Form.Control
-                required
-                type="text"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                Please fill the required field.
-              </Form.Control.Feedback>
+              <Form.Control required type="text" value={address} onChange={(e) => setAddress(e.target.value)}></Form.Control>
+              <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
             </Form.Group>
           </>
         )}

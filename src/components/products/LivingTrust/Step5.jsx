@@ -52,22 +52,65 @@ const Step5 = ({ nextStep, prevStep, handleChange, changeState, values }) => {
 
                 <hr></hr>
 
-                <p>Name Specific Gift you will like to make from the trust.</p>
-                {/* Give the following Items */}
-                <Form.Group>
-                    <Form.Label>Give the following Items</Form.Label>
-                    <Form.Control value={values.giveTheFollowingItems} type="text" onChange={(e) => {handleChange("giveTheFollowingItems", e)}}></Form.Control>
-                </Form.Group>
-                {/* To */}
-                <Form.Group>
-                    <Form.Label>To</Form.Label>
-                    <Form.Control value={values.to} type="text" onChange={(e) => {handleChange("to", e)}}></Form.Control>
-                </Form.Group>
-                {/* Alternate Recipient */}
-                <Form.Group>
-                    <Form.Label>Alternate Recipient</Form.Label>
-                    <Form.Control value={values.alternateRecipient} type="text" onChange={(e) => {handleChange("alternateRecipient", e)}}></Form.Control>
-                </Form.Group>                                                
+                {[...Array(values.giveToAltCount)].map((e, i) => <div>
+
+                    <p>Name Specific Gift you will like to make from the trust.</p>
+
+                    <Form.Group>
+                        <Form.Label>Give the following Items</Form.Label>
+                        <select className="form-control" value={values.giveToAlt[i].giveTheFollowingItems} onChange={(e) => {
+                            values.giveToAlt[i].giveTheFollowingItems = e.target.value;
+                            changeState(values.giveToAlt[i].giveTheFollowingItems);
+                        }}>
+                            {values.step4Gifts.map((gift, index) => {
+                                return(
+                                    <option value={gift.assetType}>{gift.assetType}</option>
+                                );
+                            })}
+                        </select>
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>To</Form.Label>
+                        <select className="form-control" value={values.giveToAlt[i].to} onChange={(e) => {
+                            values.giveToAlt[i].to = e.target.value;
+                            changeState(values.giveToAlt[i].to);                            
+                        }} >
+                            {values.beneficiariesNames.map((name, i) => {
+                                return(
+                                    <option key={i} value={name}>{name}</option>
+                                );
+                            })}
+                        </select>
+                    </Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>Alternate Recipient</Form.Label>
+                        <Form.Control type="text" value={values.giveToAlt[i].alternateRecipient}  onChange={(e) => {
+                            values.giveToAlt[i].alternateRecipient = e.target.value;
+                            changeState(values.giveToAlt[i].alternateRecipient);
+                        }}></Form.Control>
+                    </Form.Group>
+
+                </div>)}
+
+                <button className="btn btn-primary" onClick={(e) => {
+                    e.preventDefault();
+                    changeState("giveToAltCount", values.giveToAltCount + 1);
+                    values.giveToAlt.push({
+                        giveTheFollowingItems: values.step4Gifts[0].assetType,
+                        to: values.beneficiariesNames[0],
+                        alternateRecipient: "",
+                    });
+                    changeState("giveToAlt", values.giveToAlt);
+                }}>Add Another</button>
+
+                <button className="btn btn-primary ml-4" onClick={(e) => {
+                    e.preventDefault();
+                    changeState("giveToAltCount", values.giveToAltCount - 1);
+                    values.giveToAlt.splice(-1,1);
+                    changeState("giveToAlt", values.giveToAlt);
+                }}>Delete</button>                                                       
 
             </Form>
 

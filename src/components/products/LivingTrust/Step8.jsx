@@ -28,11 +28,11 @@ const Step8 = ({ nextStep, prevStep, handleChange, onFileChange, values }) => {
                     </select>
                 </Form.Group>  
 
-                {values.pourOverWillQuestion === "Yes" &&
+                {/* {values.pourOverWillQuestion === "Yes" &&
                 <div>
                     <input type="file" onChange={(e) => {onFileChange("pourOverWillFile", e)}}></input>
                 </div>
-                }              
+                }               */}
             </Form>
 
             <button className="btn btn-primary" onClick={Previous} >Prev</button>

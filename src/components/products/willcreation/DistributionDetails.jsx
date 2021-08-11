@@ -139,9 +139,7 @@ const DistributionDetails = ({ history }) => {
         <Form.Group controlId="beneficiary">
           <Form.Label>Beneficiary </Form.Label>
           <Form.Control as="select" value={beneficiary} onChange={handleChange}>
-            <option selected disabled value="">
-              [Please select one]
-            </option>
+            <option selected disabled value="">[Please select one]</option>
             <option value="Wife">Wife</option>
             <option value="Husband">Husband</option>
             <option value="Child">Child</option>
@@ -160,14 +158,8 @@ const DistributionDetails = ({ history }) => {
           <>
             <Form.Label>Select Wife </Form.Label>
             <Form.Group controlId="wife">
-              <Form.Control
-                as="select"
-                value={wife}
-                onChange={(e) => setWife(e.target.value)}
-              >
-                <option selected disabled value="">
-                  [Please select one]
-                </option>
+              <Form.Control as="select" value={wife} onChange={(e) => setWife(e.target.value)}>
+                <option selected disabled value="">[Please select one]</option>
                 {wivesDetails.map((wives) => (
                   <>
                     <option value={wives.name}>{wives.name}</option>
@@ -177,18 +169,14 @@ const DistributionDetails = ({ history }) => {
             </Form.Group>
           </>
         )}
+
         {showChildren && (
           <>
             <Form.Label>Select Child </Form.Label>
             <Form.Group controlId="child">
-              <Form.Control
-                as="select"
-                value={child}
-                onChange={(e) => setChild(e.target.value)}
+              <Form.Control as="select" value={child} onChange={(e) => setChild(e.target.value)}
               >
-                <option selected disabled value="">
-                  [Please select one]
-                </option>
+                <option selected disabled value="">[Please select one]</option>
                 {childrenDetails.map((child) => (
                   <option value={child.name}>{child.name}</option>
                 ))}
@@ -201,72 +189,38 @@ const DistributionDetails = ({ history }) => {
           <>
             <Form.Group controlId="name">
               <Form.Label>Full Name of Beneficiary</Form.Label>
-              <Form.Control
-                type="text"
-                required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                Please fill the required field.
-              </Form.Control.Feedback>
+              <Form.Control type="text" required value={name} onChange={(e) => setName(e.target.value)}></Form.Control>
+              <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="address">
               <Form.Label>Address</Form.Label>
-              <Form.Control
-                type="text"
-                required
-                value={add}
-                onChange={(e) => setAdd(e.target.value)}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                Please fill the required field.
-              </Form.Control.Feedback>
+              <Form.Control type="text" required value={add} onChange={(e) => setAdd(e.target.value)}></Form.Control>
+              <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="email">
               <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="text"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                Please fill the required field.
-              </Form.Control.Feedback>
+              <Form.Control type="text" required value={email} onChange={(e) => setEmail(e.target.value)}></Form.Control>
+              <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
             </Form.Group>
+
             <Form.Group controlId="ph">
               <Form.Label>Phone Number</Form.Label>
-              <Form.Control
-                type="number"
-                name="ph"
-                required
-                value={ph}
-                onChange={(e) => setPh(e.target.value)}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                Please fill the required field.
-              </Form.Control.Feedback>
+              <Form.Control type="number" name="ph" required value={ph} onChange={(e) => setPh(e.target.value)}></Form.Control>
+              <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
             </Form.Group>
+
           </>
         )}
 
         {inputFields.map((inputField) => (
           <div key={inputField.id}>
+
             <Form.Group controlId="type">
-              <Form.Label> Asset Type</Form.Label>
-              <Form.Control
-                as="select"
-                name="type"
-                required
-                value={inputField.type}
-                onChange={(event) => handleChangeInput(inputField.id, event)}
-              >
-                <option selected disabled value="">
-                  [Please select one]
-                </option>
+              <Form.Label>Asset Type</Form.Label>
+              <Form.Control as="select" name="type" required value={inputField.type} onChange={(event) => handleChangeInput(inputField.id, event)}>
+                <option selected disabled value="">[Please select one]</option>
                 <option value="Real estate">Real estate</option>
                 <option value="Cash">Cash</option>
                 <option value="Investment">Investment</option>
@@ -274,77 +228,44 @@ const DistributionDetails = ({ history }) => {
                 <option value="Debt">Debt</option>
                 <option value="Insurance Policies">Insurance Policies</option>
                 <option value="Pension">Pension</option>
-                <option value="Life Tenant of a property">
-                  Life Tenant of a property
-                </option>
+                <option value="Life Tenant of a property">Life Tenant of a property</option>
               </Form.Control>
             </Form.Group>
+
             {tenantField && (
               <>
                 <Form.Group controlId="tenant">
                   <Form.Label>
                     Who is the property due to after the death of life tenant?
                   </Form.Label>
-                  <Form.Control
-                    required
-                    name="tenant"
-                    type="text"
-                    value={tenant}
-                    onChange={(event) => setTenant(event.target.value)}
-                  ></Form.Control>
-                  <Form.Control.Feedback type="invalid">
-                    Please fill the required field.
-                  </Form.Control.Feedback>
+                  <Form.Control required name="tenant" type="text" value={tenant} onChange={(event) => setTenant(event.target.value)}></Form.Control>
+                  <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
                 </Form.Group>
               </>
             )}
+
             <Form.Group controlId="description">
               <Form.Label>Description</Form.Label>
-              <Form.Control
-                required
-                as="textarea"
-                name="description"
-                rows={10}
-                value={inputField.description}
-                onChange={(event) => handleChangeInput(inputField.id, event)}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                Please fill the required field.
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group controlId="amount">
-              <Form.Label>Value / Amount</Form.Label>
-              <Form.Control
-                required
-                name="amount"
-                type="number"
-                value={inputField.amount}
-                onChange={(event) => handleChangeInput(inputField.id, event)}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                Please fill the required field.
-              </Form.Control.Feedback>
+              <Form.Control required as="textarea" name="description" rows={10} value={inputField.description} onChange={(event) => handleChangeInput(inputField.id, event)}></Form.Control>
+              <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
             </Form.Group>
 
-            <Button
-              className="mr-3"
-              color="primary"
-              variant="contained"
-              disabled={inputFields.length === 1}
-              onClick={() => handleRemoveFields(inputField.id)}
-            >
+            <Form.Group controlId="amount">
+              <Form.Label>Value / Amount</Form.Label>
+              <Form.Control required name="amount" type="number" value={inputField.amount} onChange={(event) => handleChangeInput(inputField.id, event)}></Form.Control>
+              <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
+            </Form.Group>
+
+            <Button className="mr-3" color="primary" variant="contained" disabled={inputFields.length === 1} onClick={() => handleRemoveFields(inputField.id)}>
               Delete <RemoveIcon />
             </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              disabled={inputFields.length === 4}
-              onClick={handleAddFields}
-            >
+
+            <Button variant="contained" color="primary" disabled={inputFields.length === 4} onClick={handleAddFields}>
               Add More <AddIcon />
             </Button>
           </div>
         ))}
+        
         <Button
           className="mt-5 mb-5"
           variant="contained"

@@ -59,10 +59,7 @@ const WivesDetails = () => {
 
   const handleRemoveFields = (id) => {
     const values = [...inputFields];
-    values.splice(
-      values.findIndex((value) => value.id === id),
-      1
-    );
+    values.splice(values.findIndex((value) => value.id === id),1);
     setInputFields(values);
   };
 
@@ -80,67 +77,32 @@ const WivesDetails = () => {
         possession transfer autpmatically to a legally married wife unless you
         distribute your estate to your other wives or mother of your children
       </Form.Label>
+
       <Form className={classes.root} onSubmit={handleSubmit}>
+
         {inputFields.map((inputField) => (
           <div key={inputField.id}>
+
             <Form.Group controlId="name">
               <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                name="name"
-                required
-                value={inputField.name}
-                onChange={(event) => handleChangeInput(inputField.id, event)}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                Please fill the required field.
-              </Form.Control.Feedback>
+              <Form.Control type="text" name="name" required value={inputField.name} onChange={(event) => handleChangeInput(inputField.id, event)}></Form.Control>
+              <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="dob">
               <Form.Label>Date Of Birth</Form.Label>
-              <Form.Control
-                type="text"
-                name="dob"
-                required
-                value={inputField.dob}
-                onChange={(event) => handleChangeInput(inputField.id, event)}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                Please fill the required field.
-              </Form.Control.Feedback>
+              <Form.Control type="text" name="dob" required value={inputField.dob} onChange={(event) => handleChangeInput(inputField.id, event)}></Form.Control>
+              <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group controlId="address">
               <Form.Label>Address</Form.Label>
-              <Form.Control
-                type="text"
-                name="address"
-                required
-                value={inputField.add}
-                onChange={(event) => handleChangeInput(inputField.id, event)}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                Please fill the required field.
-              </Form.Control.Feedback>
+              <Form.Control type="text" name="address" required value={inputField.add} onChange={(event) => handleChangeInput(inputField.id, event)}></Form.Control>
+              <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
             </Form.Group>
 
-            <Button
-              className="mr-3"
-              color="primary"
-              variant="contained"
-              disabled={inputFields.length === 1}
-              onClick={() => handleRemoveFields(inputField.id)}
-            >
-              Delete <RemoveIcon />
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleAddFields}
-            >
-              Add More <AddIcon />
-            </Button>
+            <Button className="mr-3" color="primary" variant="contained" disabled={inputFields.length === 1} onClick={() => handleRemoveFields(inputField.id)}>Delete<RemoveIcon /></Button>
+            <Button variant="contained" color="primary" onClick={handleAddFields}>Add More<AddIcon /></Button>
           </div>
         ))}
         <Button

@@ -32,6 +32,19 @@ const InHome = () => {
           Setup Reminder
         </Button>
       </Grid>
+
+      <Grid item xs={12} className="mb-3">
+        <Button color="primary" variant="contained" component={Link} to="/managewill/viewdeedofgift">
+          View Deed of Gifts
+        </Button>
+      </Grid>
+
+      <Grid item xs={12} className="mb-3">
+        <Button color="primary" variant="contained" component={Link} to="/managewill/viewlivingtrust">
+          View Living Trust
+        </Button>
+      </Grid>
+      
     </div>
   );
 };

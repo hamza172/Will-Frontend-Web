@@ -71,7 +71,7 @@ const Step4 = ({ nextStep, prevStep, handleChange, values }) => {
                         {/* Date */}
                         <Form.Group>
                             <Form.Label>Date</Form.Label>
-                            <Form.Control value={values.specificDate} type="text" onChange={(e) => {handleChange("specificDate", e)}} />
+                            <Form.Control value={values.specificDate} type="date" onChange={(e) => {handleChange("specificDate", e)}} />
                         </Form.Group>                                    
                     </div>
                 }                

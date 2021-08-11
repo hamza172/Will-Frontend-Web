@@ -72,33 +72,22 @@ const Validation = ({ history }) => {
       <h3>Validation</h3>
 
       <Form onSubmit={submitHandler}>
+
         <Form.Group controlId="file1">
           <Form.Label>Selfie of the person that prepared </Form.Label>
-          <Form.Control
-            type="file"
-            onChange={(e) => setFile1(e.target.files[0])}
-          ></Form.Control>
+          <Form.Control type="file" onChange={(e) => setFile1(e.target.files[0])}></Form.Control>
         </Form.Group>
+
         <Form.Group controlId="file2">
           <Form.Label>Selfie of the person that read </Form.Label>
-          <Form.Control
-            type="file"
-            onChange={(e) => setFile2(e.target.files[0])}
-          ></Form.Control>
-          <Form.Control.Feedback type="invalid">
-            Please fill the required field.
-          </Form.Control.Feedback>
+          <Form.Control type="file" onChange={(e) => setFile2(e.target.files[0])}></Form.Control>
+          <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group controlId="file3">
           <Form.Label>Selfie of Testator</Form.Label>
-          <Form.Control
-            type="file"
-            onChange={(e) => setFile3(e.target.files[0])}
-          ></Form.Control>
-          <Form.Control.Feedback type="invalid">
-            Please fill the required field.
-          </Form.Control.Feedback>
+          <Form.Control type="file" onChange={(e) => setFile3(e.target.files[0])}></Form.Control>
+          <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
         </Form.Group>
 
         <Button type="submit" variant="primary">

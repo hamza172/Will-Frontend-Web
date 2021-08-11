@@ -109,10 +109,16 @@ const Step7 = ({ nextStep, prevStep, handleChange, changeState, onFileChange, va
     
             formData.append("typeOfDonor", values.typeOfDonor);
             formData.append("donorFullName", values.donorFullName);
+            formData.append("donorCity", values.donorCity);
+            formData.append("donorZipCode", values.donorZipCode);
+            formData.append("donorState", values.donorState);
             formData.append("donorAddress", values.donorAddress);
     
             formData.append("typeOfDonee", values.typeOfDonee);
             formData.append("doneeFullName", values.doneeFullName);
+            formData.append("doneeCity", values.doneeCity);
+            formData.append("doneeZipCode", values.doneeZipCode);
+            formData.append("doneeState", values.doneeState);
             formData.append("doneeAddress", values.doneeAddress);
             formData.append("relationshipDonorDonee", values.relationshipDonorDonee);
             formData.append("isDoneeMinor", values.isDoneeMinor);

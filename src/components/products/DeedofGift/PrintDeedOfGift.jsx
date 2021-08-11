@@ -31,6 +31,7 @@ const PrintDeedOfGift = () => {
         })
         .then((response) => {
           setDeed(response.data.deed);
+          console.log(response.data.deed);
         setTimeout(() => {
             window.print();
         }, 1000)
@@ -63,13 +64,19 @@ const PrintDeedOfGift = () => {
                         {deed.typeOfDonor === "Individual" &&
                             <div>
                                 <p>Full Name of Donor: {deed.donorFullName}</p>
-                                <p>Address of Donor: {deed.donorAddress}</p>
+                                <p>City: {deed.donorCity}</p>
+                                <p>Zip Code: {deed.donorZipCode}</p>
+                                <p>State: {deed.donorState}</p>
+                                <p>Address: {deed.donorAddress}</p>
                             </div>
                         }                
                         {deed.typeOfDonor === "Company" &&
                             <div>
                                 <p>Full Name of Company: {deed.donorFullName}</p>
-                                <p>Address of Company: {deed.donorAddress}</p>
+                                <p>City: {deed.donorCity}</p>
+                                <p>Zip Code: {deed.donorZipCode}</p>
+                                <p>State: {deed.donorState}</p>
+                                <p>Address: {deed.donorAddress}</p>
                             </div>
                         }
                     </div>
@@ -81,14 +88,20 @@ const PrintDeedOfGift = () => {
                         {deed.typeOfDonee === "Individual" &&
                             <div>
                                 <p>Full Name of Donee: {deed.doneeFullName}</p>
-                                <p>Address of Donee: {deed.doneeAddress}</p>
+                                <p>City: {deed.doneeCity}</p>
+                                <p>Zip Code: {deed.doneeZipCode}</p>
+                                <p>State: {deed.doneeState}</p>
+                                <p>Address: {deed.doneeAddress}</p>
                                 <p>Relationship between Donor and Donee: {deed.relationshipDonorDonee}</p>
                             </div>
                         }
                         {deed.typeOfDonee === "Company" &&
                             <div>
                                 <p>Full Name of Company: {deed.doneeFullName}</p>
-                                <p>Address of Company: {deed.doneeAddress}</p>
+                                <p>City: {deed.doneeCity}</p>
+                                <p>Zip Code: {deed.doneeZipCode}</p>
+                                <p>State: {deed.doneeState}</p>
+                                <p>Address: {deed.doneeAddress}</p>
                                 <p>Is Donee a Minor?: {deed.isDoneeMinor}</p>
                                 {deed.isDoneeMinor === "Yes" &&
                                 <div>

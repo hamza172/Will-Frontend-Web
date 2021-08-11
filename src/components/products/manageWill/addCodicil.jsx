@@ -68,7 +68,11 @@ useEffect(() => {
     })
     .then((response) => {
 
-        // Set all the data in Local Storage
+        if(response.data.will.type === "Muslim") {
+          window.location.replace("/managewill/addcodicil_muslim?will_id=" + parseURLParams(window.location.href).will_id[0]);
+        }
+        else {
+          // Set all the data in Local Storage
           // Set Personal Detail
           localStorage.setItem('personalDetails', JSON.stringify(
             response.data.will.personalDetails
@@ -141,6 +145,7 @@ useEffect(() => {
           setSuffix(response.data.will.personalDetails.suffix);
           setMaritalStatus(response.data.will.personalDetails.maritalStatus);
           setValidated(true);
+        }
     })
     .catch((error) => {
         console.log(error);

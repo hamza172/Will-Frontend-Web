@@ -125,6 +125,12 @@ import LivingTrust from './components/products/LivingTrust/LivingTrust';
 import ViewLivingTrust from './components/products/LivingTrust/ViewLivingTrust';
 import PrintLivingTrust from './components/products/LivingTrust/PrintLivingTrust';
 
+// Muslim Will Creation Imports
+import MuslimWillCreation from './components/products/willcreation/MuslimWillCreation/MuslimWillCreation';
+
+// Muslim Codicil Imports
+import MuslimCodicil from './components/products/manageWill/AddMuslimCodicil/MuslimCodicil';
+
 class App extends React.Component {
   state = {  }
   constructor(props) {
@@ -200,6 +206,7 @@ class App extends React.Component {
         <Route path="/individualuser/home" component={InHome}/>
 
         <Route path="/products/willcreation" component={WillCreationForm}/>
+        {/* Standard Will */}
         <Route path="/willcreation/personal" component={PersonalForm}/>
         <Route path="/willcreation/wives" component={WivesDetails}/>
         <Route path="/willcreation/executor" component={ExecutorDetails}/>
@@ -214,6 +221,14 @@ class App extends React.Component {
         <Route path="/willcreation/signing" component={SigningDetails}/>
         <Route path="/willcreation/validation" component={Validation}/>
         <Route path="/success" component={Sucess}/>
+
+        {/* Muslim Will */}
+        <Route path="/willcreation/muslim_will_creation" component={MuslimWillCreation}/>
+        
+        {/* Muslim Codicil */}
+        <Route path="/managewill/addcodicil_muslim" component={MuslimCodicil}/>
+        
+
 
         {/* Updated Wali */}
         <Route path="/products/managewill" component={ManageWill}/>

@@ -76,20 +76,14 @@ const SigningDetails = () => {
       <h4 className="mb-5"> Signing Details</h4>
 
       <Form className={classes.root} onSubmit={handleSubmit}>
+
         {inputFields.map((inputField) => (
           <div key={inputField.id}>
+            
             <Form.Group controlId="name">
               <Form.Label> Witness Name</Form.Label>
-              <Form.Control
-                type="text"
-                name="name"
-                required
-                value={inputField.name}
-                onChange={(event) => handleChangeInput(inputField.id, event)}
-              ></Form.Control>
-              <Form.Control.Feedback type="invalid">
-                Please fill the required field.
-              </Form.Control.Feedback>
+              <Form.Control type="text" name="name" required value={inputField.name} onChange={(event) => handleChangeInput(inputField.id, event)}></Form.Control>
+              <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
             </Form.Group>
 
             <Button

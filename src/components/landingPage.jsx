@@ -72,7 +72,7 @@ class LandingPage extends Component {
           </Button>
         </div>        
         <br />
-        <div>
+        {/* <div>
           <Button
             color="primary"
             variant="contained"
@@ -81,9 +81,9 @@ class LandingPage extends Component {
           >
             View Deed of Gifts
           </Button>
-        </div>
+        </div> */}
 
-        <br />
+        {/* <br /> */}
         <div>
           <Button
             color="primary"
@@ -94,8 +94,8 @@ class LandingPage extends Component {
             Add Living Trust
           </Button>
         </div>        
-        <br />
-        <div>
+        {/* <br /> */}
+        {/* <div>
           <Button
             color="primary"
             variant="contained"
@@ -104,7 +104,7 @@ class LandingPage extends Component {
           >
             View Living Trust
           </Button>
-        </div>      
+        </div>       */}
         
       </div>
     );

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { PaystackButton } from "react-paystack";
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
@@ -14,19 +13,25 @@ export default class DeedofGift extends Component {
     state = {
         step: 1,
 
-        countryOfGift: "",
+        countryOfGift: "Nigeria",
         stateOfGift: "",
         revokeThisGift: "",
         dateOfTransfer: "",
 
         typeOfDonor: "Individual",
-        donorFullName: "",
+        donorFullName: "",        
+        donorCity: "",
+        donorZipCode: "",
+        donorState: "",
         donorAddress: "",
 
         typeOfDonee: "Individual",
         doneeFullName: "",
+        doneeCity: "",
+        doneeZipCode: "",
+        doneeState: "",
         doneeAddress: "",
-        relationshipDonorDonee: "",
+        relationshipDonorDonee: "Husband",
         isDoneeMinor: "No",
         doneeGuardianName: "",
         doneeGuardianAddress: "",
@@ -38,8 +43,8 @@ export default class DeedofGift extends Component {
         specificDate: "",
         monetaryValue: 0,
 
-        additionalClauses: [],
-        clausesCount: 0,
+        additionalClauses: [""],
+        clausesCount: 1,
 
         agentFullName: "",
         agentAddress: "",
@@ -77,15 +82,17 @@ export default class DeedofGift extends Component {
 
         const { step } = this.state;
 
-        const { countryOfGift, stateOfGift, revokeThisGift, dateOfTransfer, typeOfDonor, donorFullName, donorAddress, typeOfDonee, doneeFullName,
+        const { countryOfGift, stateOfGift, revokeThisGift, dateOfTransfer, typeOfDonor, donorFullName, donorCity, donorZipCode, donorState, donorAddress, typeOfDonee,
+                doneeFullName, doneeCity, doneeZipCode, doneeState, 
                 doneeAddress, relationshipDonorDonee, isDoneeMinor, doneeGuardianName, doneeGuardianAddress, typeOfGift, giftPossessionTime,
                 descriptionOfGift, purposeOfGift, specificDate, monetaryValue, additionalClauses, clausesCount, agentFullName, agentAddress,
                 addAlternateAgent, alternateAgentFullName, alternateAgentAddress, selectedFile, signature } = this.state;
 
-        const values = { countryOfGift, stateOfGift, revokeThisGift, dateOfTransfer, typeOfDonor, donorFullName, donorAddress, typeOfDonee, doneeFullName,
-                doneeAddress, relationshipDonorDonee, isDoneeMinor, doneeGuardianName, doneeGuardianAddress, typeOfGift, giftPossessionTime,
-                descriptionOfGift, purposeOfGift, specificDate, monetaryValue, additionalClauses, clausesCount, agentFullName, agentAddress,
-                addAlternateAgent, alternateAgentFullName, alternateAgentAddress, selectedFile, signature };
+        const values = { countryOfGift, stateOfGift, revokeThisGift, dateOfTransfer, typeOfDonor, donorFullName, donorCity, donorZipCode, donorState, donorAddress, typeOfDonee,
+                        doneeFullName, doneeCity, doneeZipCode, doneeState, 
+                        doneeAddress, relationshipDonorDonee, isDoneeMinor, doneeGuardianName, doneeGuardianAddress, typeOfGift, giftPossessionTime,
+                        descriptionOfGift, purposeOfGift, specificDate, monetaryValue, additionalClauses, clausesCount, agentFullName, agentAddress,
+                        addAlternateAgent, alternateAgentFullName, alternateAgentAddress, selectedFile, signature };
 
         switch (step) {
             case 1: 
