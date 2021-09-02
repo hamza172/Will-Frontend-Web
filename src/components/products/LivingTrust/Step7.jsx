@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
 
-const Step7 = ({ nextStep, prevStep, handleChange, values }) => {
+const Step7 = ({ nextStep, prevStep, handleChange, changeState, values }) => {
 
     const Continue = e => {
         e.preventDefault();
@@ -15,39 +15,59 @@ const Step7 = ({ nextStep, prevStep, handleChange, values }) => {
 
     return (
         <div style={{padding: 30}}>
+
             <h1>Step 7</h1>
-            <h1>Subtrust</h1>
+            <h1>Charity</h1>
 
             <Form>
-
-                {/* Do you want to create Subtrust for Beneficiaries that are young or cannot handle the gift  */}
-                <Form.Group>
-                    <Form.Label>Do you want to create Subtrust for Beneficiaries that are young or cannot handle the gift ?</Form.Label>
-                    <select className="form-control" value={values.subtrustQuestion} onChange={(e) => {handleChange("subtrustQuestion", e)}}>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                    </select>
-                </Form.Group>
-
-                {values.subtrustQuestion === "Yes" &&
-                <div>
-                    {/* Name */}
+                {[...Array(values.step5CharityCount)].map((e, i) => <div>
                     <Form.Group>
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control value={values.subtrustName} type="text" onChange={(e) => {handleChange("subtrustName", e)}}></Form.Control>
+                        <Form.Label>Name of Charity</Form.Label>
+                        <Form.Control value={values.step5Charities[i].nameOfCharity} type="text" onChange={(e) => {
+                            values.step5Charities[i].nameOfCharity = e.target.value;
+                            changeState(values.step5Charities[i].nameOfCharity);
+                        }}></Form.Control>                        
                     </Form.Group>
-                    {/* Age */}
                     <Form.Group>
-                        <Form.Label>Hold Till Age Limit</Form.Label>
-                        <Form.Control value={values.subtrustAge} type="number" onChange={(e) => {handleChange("subtrustAge", e)}}></Form.Control>
-                    </Form.Group>                                    
-                </div>
-                }
-
+                        <Form.Label>Gift</Form.Label>
+                        <Form.Control value={values.step5Charities[i].gift} type="text" onChange={(e) => {
+                            values.step5Charities[i].gift = e.target.value;
+                            changeState(values.step5Charities[i].gift);
+                        }}></Form.Control>
+                    </Form.Group>
+                </div>)}
+                {/* Name of Charity */}
+                {/* <Form.Group>
+                    <Form.Label>Name of Charity</Form.Label>
+                    <Form.Control value={values.nameOfCharity} type="text" onChange={(e) => {handleChange("nameOfCharity", e)}}></Form.Control>
+                </Form.Group> */}
+                {/* Gift */}
+                {/* <Form.Group>
+                    <Form.Label>Gift</Form.Label>
+                    <Form.Control value={values.gift} type="text" onChange={(e) => {handleChange("gift", e)}}></Form.Control>
+                </Form.Group>                             */}
             </Form>
+            
+            <button className="btn btn-primary" onClick={(e) => {
+                    e.preventDefault();
+                    changeState("step5CharityCount", values.step5CharityCount + 1);
+                    values.step5Charities.push({
+                        nameOfCharity: "",
+                        gift: "",
+                    });
+                    changeState("step5Charities", values.step5Charities);
+                }}>Add Another</button>
 
-            <button className="btn btn-primary" onClick={Previous} >Prev</button>
-            <button className="btn btn-primary ml-4" onClick={Continue}>Next</button>
+                <button className="btn btn-primary ml-4" onClick={(e) => {
+                    e.preventDefault();
+                    changeState("step5CharityCount", values.step5CharityCount - 1);
+                    values.step5Charities.splice(-1,1);
+                    changeState("step5Charities", values.step5Charities);
+                }}>Delete</button>
+
+                <br></br>
+            <button className="btn btn-primary mt-4" onClick={Previous} >Prev</button>
+            <button className="btn btn-primary ml-4 mt-4" onClick={Continue}>Next</button>
         </div>
     )
 }

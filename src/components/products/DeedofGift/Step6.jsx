@@ -27,6 +27,24 @@ const Step6 = ({ nextStep, prevStep, handleChange, changeState, values }) => {
                     <Form.Control value={values.agentFullName} type="text" onChange={(e) => {handleChange("agentFullName", e)}}></Form.Control>
                 </Form.Group>                
 
+                {/* Agent City */}
+                <Form.Group>
+                    <Form.Label>Agent City</Form.Label>
+                    <Form.Control value={values.agentCity} type="text" onChange={(e) => {handleChange("agentCity", e)}}></Form.Control>
+                </Form.Group> 
+
+                {/* Agent ZipCode */}
+                <Form.Group>
+                    <Form.Label>Agent ZipCode</Form.Label>
+                    <Form.Control value={values.agentZipCode} type="text" onChange={(e) => {handleChange("agentZipCode", e)}}></Form.Control>
+                </Form.Group> 
+
+                {/* Agent State */}
+                <Form.Group>
+                    <Form.Label>Agent State</Form.Label>
+                    <Form.Control value={values.agentState} type="text" onChange={(e) => {handleChange("agentState", e)}}></Form.Control>
+                </Form.Group> 
+
                 {/* Agent Address */}
                 <Form.Group>
                     <Form.Label>Agent Address</Form.Label>
@@ -49,6 +67,24 @@ const Step6 = ({ nextStep, prevStep, handleChange, changeState, values }) => {
                             <Form.Label>Alternate Agent Full Name</Form.Label>
                             <Form.Control value={values.alternateAgentFullName} type="text" onChange={(e) => {handleChange("alternateAgentFullName", e)}}></Form.Control>
                         </Form.Group>                
+
+                        {/* Agent City */}
+                        <Form.Group>
+                            <Form.Label>Alternate Agent City</Form.Label>
+                            <Form.Control value={values.alternateAgentCity} type="text" onChange={(e) => {handleChange("alternateAgentCity", e)}}></Form.Control>
+                        </Form.Group>
+
+                        {/* Agent ZipCode */}
+                        <Form.Group>
+                            <Form.Label>Alternate Agent ZipCode</Form.Label>
+                            <Form.Control value={values.alternateAgentZipCode} type="text" onChange={(e) => {handleChange("alternateAgentZipCode", e)}}></Form.Control>
+                        </Form.Group>
+
+                        {/* Agent State */}
+                        <Form.Group>
+                            <Form.Label>Alternate Agent State</Form.Label>
+                            <Form.Control value={values.alternateAgentState} type="text" onChange={(e) => {handleChange("alternateAgentState", e)}}></Form.Control>
+                        </Form.Group>
 
                         {/* Agent Address */}
                         <Form.Group>

@@ -22,14 +22,14 @@ const Step3 = ({ nextStep, prevStep, handleChange,changeState, values }) => {
 
                 {/* Is the Grantor not the Trustee */}
                 <Form.Group>
-                    <Form.Label>Is the Grantor not the Trustee</Form.Label>
+                    <Form.Label>Is the Grantor the Trustee</Form.Label>
                     <select className="form-control" value={values.isTheGrantorNotTheTrustee} onChange={(e) => {handleChange("isTheGrantorNotTheTrustee", e)}}>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </select>
                 </Form.Group>
 
-                {values.isTheGrantorNotTheTrustee === "No" &&
+                {values.isTheGrantorNotTheTrustee === "Yes" &&
                 <div>
                     {/* Trustee Type */}
                     <Form.Group>
@@ -40,19 +40,19 @@ const Step3 = ({ nextStep, prevStep, handleChange,changeState, values }) => {
                         </select>
                     </Form.Group>
 
-                    {values.trusteeType === "Individual" &&
+                    {/* {values.trusteeType === "Individual" &&
                     <div>
-                        <Form.Group style={{display: "flex"}}>
-                            <Form.Label>Confirm that the right to act as a trustee has been written in the article ofr association. Then, Name and Address, Role</Form.Label>
+                        <Form.Group style={{display: "flex"}}>                        
+                            <Form.Label>Confirm that individual is of sound mind, over 18 and can own a property. Then Name and Address of Trustee</Form.Label>
                             <Form.Control type="checkbox" checked={values.individuaConfirmation} onChange={(e) => {changeState("individuaConfirmation", !values.individuaConfirmation)}}></Form.Control>
                         </Form.Group>
                     </div>
-                    }                    
+                    }                     */}
 
                     {values.trusteeType === "Organisation" &&
                     <div>
                         <Form.Group style={{display: "flex"}}>
-                            <Form.Label>Confirm that individual is of sound mind, over 18 and can own a property. Then Name and Address of Trustee</Form.Label>
+                            <Form.Label>Confirm that the right to act as a trustee has been written in the article ofr association. Then, Name and Address, Role</Form.Label>
                             <Form.Control type="checkbox" checked={values.organisationConfirmation}onChange={(e) => {changeState("organisationConfirmation", !values.organisationConfirmation)}}></Form.Control>
                         </Form.Group>
                     </div>
@@ -60,7 +60,7 @@ const Step3 = ({ nextStep, prevStep, handleChange,changeState, values }) => {
                 </div>
                 }
 
-                {values.isTheGrantorNotTheTrustee === "Yes" &&
+                {values.isTheGrantorNotTheTrustee === "No" &&
                 <div>
                     {/* Trustee Name */}
                     <Form.Group>

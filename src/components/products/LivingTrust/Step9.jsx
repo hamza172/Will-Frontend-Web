@@ -11,32 +11,32 @@ const Step9 = ({ nextStep, prevStep, handleChange, values }) => {
     const Previous = e => {
         e.preventDefault();
         prevStep();
-    }
-
+    }    
     return (
         <div style={{padding: 30}}>
 
-            <h1>Step 9</h1>            
-            <h1>Additional Instruction</h1>
+            <h1>Step 9</h1>
+            <h1>Pour Over Will</h1>
 
             <Form>
-
-                {/* Any additional instruction 1 */}
+                {/* Do you want to include Pour-Over Will */}
                 <Form.Group>
-                    <Form.Label>Any additional instruction for the Trust that you will like to be add for the time you are alive.</Form.Label>
-                    <Form.Control value={values.additionalInstructionOne} as="textarea" rows={3} onChange={(e) => {handleChange("additionalInstructionOne", e)}} />
-                </Form.Group>
+                    <Form.Label>Do you want to include Pour-Over Will</Form.Label>
+                    <select className="form-control" value={values.pourOverWillQuestion} onChange={(e) => {handleChange("pourOverWillQuestion", e)}}>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </Form.Group>  
 
-                {/* Any additional instruction 2 */}
-                <Form.Group>
-                    <Form.Label>Any additional instruction for the Trust that you will like to add following you demise or the time you are incapacitated</Form.Label>
-                    <Form.Control value={values.additionalInstructionTwo} as="textarea" rows={3} onChange={(e) => {handleChange("additionalInstructionTwo", e)}} />
-                </Form.Group>
-
+                {/* {values.pourOverWillQuestion === "Yes" &&
+                <div>
+                    <input type="file" onChange={(e) => {onFileChange("pourOverWillFile", e)}}></input>
+                </div>
+                }               */}
             </Form>
 
             <button className="btn btn-primary" onClick={Previous} >Prev</button>
-            <button className="btn btn-primary ml-4" onClick={Continue}>Next</button>            
+            <button className="btn btn-primary ml-4" onClick={Continue}>Next</button>
             
         </div>
     )

@@ -70,7 +70,7 @@ export default class ViewDocuments extends React.Component {
                     return(
                         <tr>
                             <td>{index + 1}</td>
-                            <td>{doc.createdAt}</td>
+                            <td>{doc.dateCreated ? doc.dateCreated:doc.createdAt}</td>
                             <td>{doc._id}</td>
                             <td>{doc.name}</td>
                             <td>{doc.type}</td>

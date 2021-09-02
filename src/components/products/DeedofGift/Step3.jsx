@@ -66,7 +66,6 @@ const Step3 = ({ nextStep, prevStep, handleChange, values }) => {
                     {/* Relationship */}
                     <Form.Group>
                         <Form.Label>Relationship between Donor and Donee</Form.Label>
-                        {/* <Form.Control value={values.relationshipDonorDonee} type="text" onChange={(e) => {handleChange("relationshipDonorDonee", e)}}></Form.Control> */}
                         <select className="form-control" value={values.relationshipDonorDonee} onChange={(e) => {handleChange("relationshipDonorDonee", e)}} >
                             <option value="Husband">Husband</option>
                             <option value="Wife">Wife</option>
@@ -81,7 +80,14 @@ const Step3 = ({ nextStep, prevStep, handleChange, values }) => {
                             <option value="Business Partner">Business Partner</option>
                             <option value="Other">Other</option>
                         </select>
-                    </Form.Group>                                
+                    </Form.Group>
+
+                    {values.relationshipDonorDonee === "Other" &&
+                        <Form.Group>
+                            <Form.Label>Relationship</Form.Label>
+                            <Form.Control value={values.otherRelationshipDonorDonee} type="text" onChange={(e) => {handleChange("otherRelationshipDonorDonee", e)}}></Form.Control>
+                        </Form.Group>
+                    }                                
                 </div>                
                 }
 

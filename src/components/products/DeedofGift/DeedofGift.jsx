@@ -13,11 +13,13 @@ export default class DeedofGift extends Component {
     state = {
         step: 1,
 
+        // Step 1
         countryOfGift: "Nigeria",
         stateOfGift: "",
         revokeThisGift: "",
         dateOfTransfer: "",
 
+        // Step 2
         typeOfDonor: "Individual",
         donorFullName: "",        
         donorCity: "",
@@ -25,6 +27,7 @@ export default class DeedofGift extends Component {
         donorState: "",
         donorAddress: "",
 
+        // Step 3
         typeOfDonee: "Individual",
         doneeFullName: "",
         doneeCity: "",
@@ -32,26 +35,43 @@ export default class DeedofGift extends Component {
         doneeState: "",
         doneeAddress: "",
         relationshipDonorDonee: "Husband",
+        otherRelationshipDonorDonee: "",
         isDoneeMinor: "No",
         doneeGuardianName: "",
         doneeGuardianAddress: "",
 
-        typeOfGift: "Real Property",
-        giftPossessionTime: "Immediate",
-        descriptionOfGift: "",
-        purposeOfGift: "",
-        specificDate: "",
-        monetaryValue: 0,
+        // Step 4
+        step4AssetsCount: 1,
+        step4Assets: [{
+            typeOfGift: "Real Property",
+            giftPossessionTime: "Immediate",
+            descriptionOfGift: "",
+            purposeOfGift: "",
+            specificDate: "",
+            monetaryValue: 0,
+            documentLocation: "",
+            assetFile: null,
+            assetFileName: ""
+        }],
 
+        // Step 5
         additionalClauses: [""],
         clausesCount: 1,
 
+        // Step 6
         agentFullName: "",
+        agentCity: "",
+        agentZipCode: "",
+        agentState: "",
         agentAddress: "",
         addAlternateAgent: "No",
         alternateAgentFullName: "",
+        alternateAgentCity: "",   
+        alternateAgentZipCode: "",   
+        alternateAgentState: "",   
         alternateAgentAddress: "",   
         
+        // Step 7
         selectedFile: null,
         signature: null,
     }
@@ -74,25 +94,29 @@ export default class DeedofGift extends Component {
         this.setState({ [input]: val });
     }
 
-    onFileChange = event => {
-        this.setState({ selectedFile: event.target.files[0] });      
+    onFileChange = (input, val) => {
+        this.setState({ [input]: val });      
     }
 
     render() {
 
         const { step } = this.state;
 
-        const { countryOfGift, stateOfGift, revokeThisGift, dateOfTransfer, typeOfDonor, donorFullName, donorCity, donorZipCode, donorState, donorAddress, typeOfDonee,
-                doneeFullName, doneeCity, doneeZipCode, doneeState, 
-                doneeAddress, relationshipDonorDonee, isDoneeMinor, doneeGuardianName, doneeGuardianAddress, typeOfGift, giftPossessionTime,
-                descriptionOfGift, purposeOfGift, specificDate, monetaryValue, additionalClauses, clausesCount, agentFullName, agentAddress,
-                addAlternateAgent, alternateAgentFullName, alternateAgentAddress, selectedFile, signature } = this.state;
+        const { countryOfGift, stateOfGift, revokeThisGift, dateOfTransfer,
+                typeOfDonor, donorFullName, donorCity, donorZipCode, donorState, donorAddress,
+                typeOfDonee, doneeFullName, doneeCity, doneeZipCode, doneeState, doneeAddress, relationshipDonorDonee, otherRelationshipDonorDonee, isDoneeMinor, doneeGuardianName, doneeGuardianAddress, 
+                step4AssetsCount, step4Assets, 
+                additionalClauses, clausesCount,
+                agentFullName, agentCity, agentZipCode, agentState, agentAddress, addAlternateAgent, alternateAgentFullName, alternateAgentCity, alternateAgentZipCode, alternateAgentState, alternateAgentAddress, 
+                selectedFile, signature } = this.state;
 
-        const values = { countryOfGift, stateOfGift, revokeThisGift, dateOfTransfer, typeOfDonor, donorFullName, donorCity, donorZipCode, donorState, donorAddress, typeOfDonee,
-                        doneeFullName, doneeCity, doneeZipCode, doneeState, 
-                        doneeAddress, relationshipDonorDonee, isDoneeMinor, doneeGuardianName, doneeGuardianAddress, typeOfGift, giftPossessionTime,
-                        descriptionOfGift, purposeOfGift, specificDate, monetaryValue, additionalClauses, clausesCount, agentFullName, agentAddress,
-                        addAlternateAgent, alternateAgentFullName, alternateAgentAddress, selectedFile, signature };
+        const values = { countryOfGift, stateOfGift, revokeThisGift, dateOfTransfer,
+                        typeOfDonor, donorFullName, donorCity, donorZipCode, donorState, donorAddress, 
+                        typeOfDonee, doneeFullName, doneeCity, doneeZipCode, doneeState, doneeAddress, relationshipDonorDonee, otherRelationshipDonorDonee, isDoneeMinor, doneeGuardianName, doneeGuardianAddress, 
+                        step4AssetsCount, step4Assets,
+                        additionalClauses, clausesCount,
+                        agentFullName, agentCity, agentZipCode, agentState, agentAddress, addAlternateAgent, alternateAgentFullName, alternateAgentCity, alternateAgentZipCode, alternateAgentState, alternateAgentAddress,
+                        selectedFile, signature };
 
         switch (step) {
             case 1: 
@@ -109,7 +133,7 @@ export default class DeedofGift extends Component {
                 )
             case 4:
                 return (
-                    <Step4 nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} values={values} />
+                    <Step4 nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} changeState={this.changeState} onFileChange={this.onFileChange} values={values} />
                 )    
             case 5:
                 return (

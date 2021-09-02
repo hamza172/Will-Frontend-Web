@@ -1,7 +1,8 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
+import { v4 as uuidv4 } from "uuid";
 
-const Step4 = ({ nextStep, prevStep, handleChange, changeState, values }) => {
+const Step4 = ({ nextStep, prevStep, handleChange, changeState, onFileChange, values }) => {
 
     const Continue = e => {
         e.preventDefault();
@@ -36,7 +37,7 @@ const Step4 = ({ nextStep, prevStep, handleChange, changeState, values }) => {
                             <option value="Contractual Interest">Contractual Interest</option>
                             <option value="Life Assurance Proceed">Life Assurance Proceed</option>
                             <option value="Retirement Proceed">Retirement Proceed</option>
-                            <option value="Personal Property">Personal Property</option>                        
+                            <option value="Personal Possession">Personal Possession</option>                        
                         </select>
                     </Form.Group>
 
@@ -274,11 +275,11 @@ const Step4 = ({ nextStep, prevStep, handleChange, changeState, values }) => {
                         </div>
                     } 
 
-                    {values.step4Gifts[i].assetType === "Personal Property" &&
+                    {values.step4Gifts[i].assetType === "Personal Possession" &&
                         <div>
-                            {/* Do you want to place all your personal property in the Trust */}
+                            {/* Do you want to place all your Personal Possession in the Trust */}
                             <Form.Group>
-                                <Form.Label>Do you want to place all your personal property in the Trust ?</Form.Label>
+                                <Form.Label>Do you want to place all your Personal Possession in the Trust ?</Form.Label>
                                 <select className="form-control" value={values.step4Gifts[i].personalPropertyQuestion} onChange={(e) => {
                                     values.step4Gifts[i].personalPropertyQuestion = e.target.value;
                                     changeState(values.step4Gifts[i].personalPropertyQuestion);                                    
@@ -297,7 +298,22 @@ const Step4 = ({ nextStep, prevStep, handleChange, changeState, values }) => {
                             </Form.Group> 
                             }                   
                         </div>
-                    }                      
+                    }
+
+                    {/* Document Location */}
+                    <Form.Group>
+                        <Form.Label>Document Location</Form.Label>
+                        <Form.Control value={values.step4Gifts[i].documentLocation} type="text" onChange={(e) => {
+                            values.step4Gifts[i].documentLocation = e.target.value;
+                            changeState(values.step4Gifts[i].documentLocation);
+                        }}></Form.Control>
+                    </Form.Group>
+
+                    {/* Asset File */}
+                    <input style={{display: "block", marginBottom: 15}} type="file" onChange={(e) => {
+                        values.step4Gifts[i].assetFile = e.target.files[0];
+                        onFileChange(values.step4Gifts[i].assetFile);
+                    }}></input>                      
 
                 </div>)}  
 
@@ -306,6 +322,7 @@ const Step4 = ({ nextStep, prevStep, handleChange, changeState, values }) => {
                     e.preventDefault();
                     changeState("step4GiftsCount", values.step4GiftsCount + 1);
                     values.step4Gifts.push({
+                        giftID: uuidv4(),
                         assetType: "Real Estate",
                         realEstateAddress: "",
                         realEstateType: "",

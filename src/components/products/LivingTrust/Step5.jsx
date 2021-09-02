@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
+import { v4 as uuidv4 } from "uuid";
 
 const Step5 = ({ nextStep, prevStep, handleChange, changeState, values }) => {
 
@@ -29,9 +30,16 @@ const Step5 = ({ nextStep, prevStep, handleChange, changeState, values }) => {
                 {[...Array(values.beneficiariesCount)].map((e, i) => <div>
                     <Form.Group key={i}>
                         <Form.Label>Beneficiarie Name</Form.Label>
-                        <Form.Control value={values.beneficiariesNames[i]} type="text" onChange={(e) => {
-                            values.beneficiariesNames[i] = e.target.value;
-                            changeState(values.beneficiariesNames[i]);
+                        <Form.Control value={values.beneficiariesNames[i].name} type="text" onChange={(e) => {
+                            values.beneficiariesNames[i].name = e.target.value;
+                            changeState(values.beneficiariesNames[i].name);
+                        }}></Form.Control>
+                    </Form.Group>
+                    <Form.Group key={i}>
+                        <Form.Label>Beneficiarie DOB</Form.Label>
+                        <Form.Control value={values.beneficiariesNames[i].dob} type="date" onChange={(e) => {
+                            values.beneficiariesNames[i].dob = e.target.value;
+                            changeState(values.beneficiariesNames[i].dob);
                         }}></Form.Control>
                     </Form.Group>
                 </div>)}                
@@ -39,7 +47,11 @@ const Step5 = ({ nextStep, prevStep, handleChange, changeState, values }) => {
                 <button className="btn btn-primary" onClick={(e) => {
                     e.preventDefault();
                     changeState("beneficiariesCount", values.beneficiariesCount + 1);
-                    values.beneficiariesNames.push("");
+                    values.beneficiariesNames.push({
+                        personID: uuidv4(),
+                        name: "",
+                        dob: "",
+                    });
                     changeState("beneficiariesNames", values.beneficiariesNames);
                 }}>Add Another</button>
 
@@ -52,7 +64,7 @@ const Step5 = ({ nextStep, prevStep, handleChange, changeState, values }) => {
 
                 <hr></hr>
 
-                {[...Array(values.giveToAltCount)].map((e, i) => <div>
+                {/* {[...Array(values.giveToAltCount)].map((e, i) => <div>
 
                     <p>Name Specific Gift you will like to make from the trust.</p>
 
@@ -110,7 +122,7 @@ const Step5 = ({ nextStep, prevStep, handleChange, changeState, values }) => {
                     changeState("giveToAltCount", values.giveToAltCount - 1);
                     values.giveToAlt.splice(-1,1);
                     changeState("giveToAlt", values.giveToAlt);
-                }}>Delete</button>                                                       
+                }}>Delete</button>                                                        */}
 
             </Form>
 

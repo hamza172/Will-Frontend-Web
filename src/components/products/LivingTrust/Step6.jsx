@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { Form } from 'react-bootstrap';
 
 const Step6 = ({ nextStep, prevStep, handleChange, changeState, values }) => {
@@ -15,58 +15,36 @@ const Step6 = ({ nextStep, prevStep, handleChange, changeState, values }) => {
 
     return (
         <div style={{padding: 30}}>
-
             <h1>Step 6</h1>
-            <h1>Charity</h1>
 
-            <Form>
-                {[...Array(values.step5CharityCount)].map((e, i) => <div>
-                    <Form.Group>
-                        <Form.Label>Name of Charity</Form.Label>
-                        <Form.Control value={values.step5Charities[i].nameOfCharity} type="text" onChange={(e) => {
-                            values.step5Charities[i].nameOfCharity = e.target.value;
-                            changeState(values.step5Charities[i].nameOfCharity);
-                        }}></Form.Control>                        
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Gift</Form.Label>
-                        <Form.Control value={values.step5Charities[i].gift} type="text" onChange={(e) => {
-                            values.step5Charities[i].gift = e.target.value;
-                            changeState(values.step5Charities[i].gift);
-                        }}></Form.Control>
-                    </Form.Group>
-                </div>)}
-                {/* Name of Charity */}
-                {/* <Form.Group>
-                    <Form.Label>Name of Charity</Form.Label>
-                    <Form.Control value={values.nameOfCharity} type="text" onChange={(e) => {handleChange("nameOfCharity", e)}}></Form.Control>
-                </Form.Group> */}
-                {/* Gift */}
-                {/* <Form.Group>
-                    <Form.Label>Gift</Form.Label>
-                    <Form.Control value={values.gift} type="text" onChange={(e) => {handleChange("gift", e)}}></Form.Control>
-                </Form.Group>                             */}
-            </Form>
-            
-            <button className="btn btn-primary" onClick={(e) => {
-                    e.preventDefault();
-                    changeState("step5CharityCount", values.step5CharityCount + 1);
-                    values.step5Charities.push({
-                        nameOfCharity: "",
-                        gift: "",
-                    });
-                    changeState("step5Charities", values.step5Charities);
-                }}>Add Another</button>
+            <Form.Group>
+                <Form.Label>Select Beneficiary</Form.Label>
+                <select className="form-control" onChange={(e) => {
+                    values.step6Mapper[0].personID = e.target.value;
+                    changeState(values.step6Mapper[0].personID);
+                }}>
+                    {[...Array(values.beneficiariesCount)].map((e, i) => 
+                        <option value={values.beneficiariesNames[i].personID}>{values.beneficiariesNames[i].name}</option>
+                    )}           
+                </select>            
+            </Form.Group>
 
-                <button className="btn btn-primary ml-4" onClick={(e) => {
-                    e.preventDefault();
-                    changeState("step5CharityCount", values.step5CharityCount - 1);
-                    values.step5Charities.splice(-1,1);
-                    changeState("step5Charities", values.step5Charities);
-                }}>Delete</button>
+            <Form.Group>
+                <Form.Label>Select Asset</Form.Label>
+                <select className="form-control" onChange={(e) => {
+                    values.step6Mapper[0].giftID = e.target.value;
+                    changeState(values.step6Mapper[0].giftID);   
+                }}>
+                    {[...Array(values.step4GiftsCount)].map((e, i) => 
+                        <option value={values.step4Gifts[i].giftID}>{values.step4Gifts[i].assetType}</option>
+                    )}           
+                </select>            
+            </Form.Group>
 
-                <br></br>
-            <button className="btn btn-primary mt-4" onClick={Previous} >Prev</button>
+            <button onClick={(e) => {
+                console.log(values.step6Mapper)
+            }}>Test</button>
+            <button className="btn btn-primary mt-4" onClick={Previous}>Prev</button>
             <button className="btn btn-primary ml-4 mt-4" onClick={Continue}>Next</button>
         </div>
     )
