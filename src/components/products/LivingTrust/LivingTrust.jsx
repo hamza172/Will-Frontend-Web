@@ -98,9 +98,12 @@ export default class LivingTrust extends Component {
         beneficiariesCount: 1,
 
         // Step 6
-        step6Mapper: [{
-            giftID: "",
-            personID: ""
+        step6FormsCount: 1,
+        step6BenCount: 1,
+        step6AssetCount: 1,
+        step6State: [{                        
+            beneficieries: [],
+            assets: [],
         }],
 
         // Step 7
@@ -174,7 +177,7 @@ export default class LivingTrust extends Component {
                 isTheGrantorNotTheTrustee, trusteeType, organisationConfirmation, individuaConfirmation, trusteeName, trusteeCity, trusteeZipCode, trusteeState, trusteeAddress, doYouWantCotrustee, CotrusteeName, CotrusteeCity, CotrusteeZipCode, CotrusteeState, CotrusteeAddress, wouldYouLikeToNameTheTrust, trustName,
                 step4Gifts, step4GiftsCount, assetType, realEstateAddress, realEstateType, financialAccountName, financialAccountType, financialAccountNumber, stockAndBondStockName, stockAndBondStockNumberOfShares, stockAndBondStockCertificateNumber, stockAndBondStockDescription, stockAndBondBondName, stockAndBondBondValue, stockAndBondBondCertificateNumber, stockAndBondBondDescription, businessName, businessDescription, titleOfContract, nameOfOtherParty, dateOfContract, contarctDescription, lifeAssuranceName, lifeAssuranceDescription, lifeAssuranceNumber, retirementProceedName, retirementProceedDescription, retirementProceedNumber, personalPropertyQuestion, personalPropertyDescription,
                 beneficiariesNames, beneficiariesCount,
-                step6Mapper,
+                step6FormsCount, step6BenCount, step6AssetCount, step6State,
                 step5Charities, step5CharityCount,
                 subtrustQuestion, subtrustName, subtrustAge,
                 pourOverWillQuestion,
@@ -187,7 +190,7 @@ export default class LivingTrust extends Component {
                         isTheGrantorNotTheTrustee, trusteeType, organisationConfirmation, individuaConfirmation, trusteeName, trusteeCity, trusteeZipCode, trusteeState, trusteeAddress, doYouWantCotrustee, CotrusteeName, CotrusteeCity, CotrusteeZipCode, CotrusteeState, CotrusteeAddress, wouldYouLikeToNameTheTrust, trustName,
                         step4Gifts, step4GiftsCount, assetType, realEstateAddress, realEstateType, financialAccountName, financialAccountType, financialAccountNumber, stockAndBondStockName, stockAndBondStockNumberOfShares, stockAndBondStockCertificateNumber, stockAndBondStockDescription, stockAndBondBondName, stockAndBondBondValue, stockAndBondBondCertificateNumber, stockAndBondBondDescription, businessName, businessDescription, titleOfContract, nameOfOtherParty, dateOfContract, contarctDescription, lifeAssuranceName, lifeAssuranceDescription, lifeAssuranceNumber, retirementProceedName, retirementProceedDescription, retirementProceedNumber, personalPropertyQuestion, personalPropertyDescription,
                         beneficiariesNames, beneficiariesCount,
-                        step6Mapper,
+                        step6FormsCount, step6BenCount, step6AssetCount, step6State,
                         step5Charities, step5CharityCount,
                         subtrustQuestion, subtrustName, subtrustAge,
                         pourOverWillQuestion,
