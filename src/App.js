@@ -130,6 +130,8 @@ import NonMuslimWillCreation from "./components/products/willcreation/NonMuslimW
 // Muslim Codicil Imports
 import MuslimCodicil from "./components/products/manageWill/AddMuslimCodicil/MuslimCodicil";
 
+import NonMuslimCodicil from "./components/products/manageWill/AddNonMuslimCodicil/NonMuslimCodicil";
+
 class App extends React.Component {
   state = {};
   constructor(props) {
@@ -262,7 +264,11 @@ class App extends React.Component {
           {/* Updated Wali */}
           <Route path="/products/managewill" component={ManageWill} />
           <Route path="/managewill/addcodicil" component={AddCodicil} />
-          <Route path="/managewill/wives" component={ManageWivesDetails} />
+          <Route
+            path="/managewill/addcodicil_nonmuslim"
+            component={NonMuslimCodicil}
+          />
+          {/* <Route path="/managewill/wives" component={ManageWivesDetails} />
           <Route
             path="/managewill/executor"
             component={ManageExecutorDetails}
@@ -287,7 +293,7 @@ class App extends React.Component {
             path="/managewill/additional"
             component={ManageAdditionDetails}
           />
-          <Route path="/managewill/signing" component={ManageSigningDetails} />
+          <Route path="/managewill/signing" component={ManageSigningDetails} /> */}
 
           <Route path="/managewill/viewwillpdf" component={ViewWillPDF} />
           <Route path="/managewill/viewcodicils" component={ViewCodicils} />

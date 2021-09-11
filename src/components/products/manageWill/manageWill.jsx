@@ -117,12 +117,18 @@ export default class ManageWill extends React.Component {
                   </td>
                   {will._id === this.state.activeWillID && (
                     <td>
-                      <a
+                      <button
                         className="btn btn-primary"
-                        href={"/managewill/addcodicil?will_id=" + will._id}
+                        onClick={(e) => {
+                          this.props.history.push({
+                            pathname: "/managewill/addcodicil",
+                            search: "?will_id=" + will._id,
+                          });
+                        }}
+                        // href={"/managewill/addcodicil?will_id=" + will._id}
                       >
                         Add Codicil
-                      </a>
+                      </button>
                     </td>
                   )}
                   {will._id !== this.state.activeWillID && (

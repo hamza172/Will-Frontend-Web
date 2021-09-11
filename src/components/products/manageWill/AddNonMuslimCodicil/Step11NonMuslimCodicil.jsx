@@ -1,13 +1,17 @@
 import React from "react";
-import FormContainer from "../FormContainer";
+import FormContainer from "../../willcreation/FormContainer";
+import ScrollToMount from "./../../willcreation/ScrollToMount";
 import { Form, Button } from "react-bootstrap";
+import RemoveIcon from "@material-ui/icons/Remove";
+import AddIcon from "@material-ui/icons/Add";
 
-const Step11NonMuslim = ({
+const Step11NonMuslimCodicil = ({
   values,
   nextStep,
   prevStep,
   handleChange,
   changeState,
+  updateAndClose,
 }) => {
   const Continue = (e) => {
     e.preventDefault();
@@ -138,8 +142,17 @@ const Step11NonMuslim = ({
       <button className="btn btn-primary" onClick={Continue}>
         Next
       </button>
+      <br></br>
+      <button
+        className="btn btn-primary"
+        onClick={(e) => {
+          updateAndClose(e);
+        }}
+      >
+        Update & Close
+      </button>
     </FormContainer>
   );
 };
 
-export default Step11NonMuslim;
+export default Step11NonMuslimCodicil;
