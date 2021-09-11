@@ -105,11 +105,13 @@ const Step12 = ({ nextStep, prevStep, handleChange, changeState, onFileChange, v
         if (response.status === "success") {
             var formData = new FormData();
 
+            // step 1
             formData.append("areYouOver18", values.areYouOver18);
             formData.append("areYouOfSaneMind", values.areYouOfSaneMind);
             formData.append("doYouOwnThePropertyVested", values.doYouOwnThePropertyVested);
             formData.append("areYouCreatingARevocableOrIrrevocable", values.areYouCreatingARevocableOrIrrevocable);
 
+            // step 2
             formData.append("name", values.name);
             formData.append("city", values.city);
             formData.append("zipCode", values.zipCode);
@@ -118,6 +120,7 @@ const Step12 = ({ nextStep, prevStep, handleChange, changeState, onFileChange, v
             formData.append("phone", values.phone);
             formData.append("email", values.email);
 
+            // step 3
             formData.append("isTheGrantorNotTheTrustee", values.isTheGrantorNotTheTrustee);
             formData.append("trusteeType", values.trusteeType);
             formData.append("organisationConfirmation", values.organisationConfirmation);
@@ -136,38 +139,52 @@ const Step12 = ({ nextStep, prevStep, handleChange, changeState, onFileChange, v
             formData.append("wouldYouLikeToNameTheTrust", values.wouldYouLikeToNameTheTrust);
             formData.append("trustName", values.trustName);
 
+            // step 4
+            for(let i = 0; i < values.step4Gifts.length; i++) {
+                let fileEXT = values.step4Gifts[i].assetFile.name.split('.').pop()
+                let filename = values.step4Gifts[i].assetType + " " + values.step4Gifts[i].documentLocation + "." + fileEXT;    
+                values.step4Gifts[i].assetFileName = filename;  
+                formData.append(filename, values.step4Gifts[i].assetFile);          
+            }
             formData.append("step4Gifts", JSON.stringify(values.step4Gifts));
             formData.append("step4GiftsCount", values.step4GiftsCount);
 
+            // step 5
             formData.append("beneficiariesNames", JSON.stringify(values.beneficiariesNames));
             formData.append("beneficiariesCount", values.beneficiariesCount);
-            formData.append("giveToAlt", JSON.stringify(values.giveToAlt));
-            formData.append("giveToAltCount", values.giveToAltCount);
+
+            // step 6
+            formData.append("step6State", JSON.stringify(values.step6State));
             
+            // step 7
             formData.append("step5Charities", JSON.stringify(values.step5Charities));
             formData.append("step5CharityCount", values.step5CharityCount);
 
+            // step 8
             formData.append("subtrustQuestion", values.subtrustQuestion);
             formData.append("subtrustName", values.subtrustName);
             formData.append("subtrustAge", values.subtrustAge);
 
+            // step 9
             formData.append("pourOverWillQuestion", values.pourOverWillQuestion);
             
 
+            // step 10
             formData.append("additionalInstructionOne", values.additionalInstructionOne);
             formData.append("additionalInstructionTwo", values.additionalInstructionTwo);
 
+            // step 11
             formData.append("remunerationQuestion", values.remunerationQuestion);
             formData.append("remunerationInstruction", values.remunerationInstruction);
             formData.append("remunerationAmount", values.remunerationAmount);
             formData.append("remunerationPeriod", values.remunerationPeriod);
 
+            // step 12
             formData.append("signature", values.signature);
             formData.append("selfie", values.selfie);
             formData.append("signatureGrantor", values.signatureGrantor);
             formData.append("signatureTrustee", values.signatureTrustee);
             formData.append("signatureSuccessor", values.signatureSuccessor);
-
             formData.append("date", values.date);
             formData.append("place", values.place);
             formData.append("time", values.time);

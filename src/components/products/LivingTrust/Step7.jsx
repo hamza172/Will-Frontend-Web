@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
 
 const Step7 = ({ nextStep, prevStep, handleChange, changeState, values }) => {
@@ -12,6 +12,37 @@ const Step7 = ({ nextStep, prevStep, handleChange, changeState, values }) => {
         e.preventDefault();
         prevStep();
     }
+
+    const [objs, setObjs] = useState([]);
+
+    useEffect(() => {
+        let allGifts = [];
+        for(let i = 0; i < values.step4Gifts.length; i++) {
+            allGifts.push(values.step4Gifts[i].giftID);
+        }
+        let selectedGifts = [];
+        for(let i = 0; i < values.step6State.length; i++) {
+            for(let j = 0; j < values.step6State[i].assets.length; j++) {
+                selectedGifts.push(values.step6State[i].assets[j].giftID);
+            }            
+        }
+        
+        let leftGifts = allGifts.filter(x => !selectedGifts.includes(x));
+        
+        let objs = []
+        for(let i = 0; i < leftGifts.length; i++) {
+            for(let j = 0; j < values.step4Gifts.length; j++) {
+                if(leftGifts[i] === values.step4Gifts[j].giftID) {
+                    objs.push(values.step4Gifts[j]);
+                }
+            }
+        }
+
+        setObjs(objs);
+
+        // let foo = objs.map((gift => <option data-id={gift.giftID}>{gift.assetType}</option>))
+        // console.log(foo);
+    }, [])
 
     return (
         <div style={{padding: 30}}>
@@ -28,24 +59,30 @@ const Step7 = ({ nextStep, prevStep, handleChange, changeState, values }) => {
                             changeState(values.step5Charities[i].nameOfCharity);
                         }}></Form.Control>                        
                     </Form.Group>
+                    
                     <Form.Group>
                         <Form.Label>Gift</Form.Label>
-                        <Form.Control value={values.step5Charities[i].gift} type="text" onChange={(e) => {
-                            values.step5Charities[i].gift = e.target.value;
-                            changeState(values.step5Charities[i].gift);
-                        }}></Form.Control>
+                        <select className="form-control" value={values.step5Charities[i].gift.assetType} onChange={(e) => {
+                            var index = e.target.selectedIndex;
+                            var optionElement = e.target.childNodes[index]
+                            var giftID =  optionElement.getAttribute('data-id');
+                            for(let k = 0; k < values.step4Gifts.length; k++) {
+                                if(giftID === values.step4Gifts[k].giftID) {
+                                    values.step5Charities[i].gift = values.step4Gifts[k];
+                                    changeState("step6State", [...values.step6State]);
+                                }
+                            }
+                        }}>                            
+                            {objs.map((gift) => {
+                                return(
+                                    <option data-id={gift.giftID}>{gift.assetType}</option>
+                                )
+                            })}
+                        </select>
                     </Form.Group>
+
                 </div>)}
-                {/* Name of Charity */}
-                {/* <Form.Group>
-                    <Form.Label>Name of Charity</Form.Label>
-                    <Form.Control value={values.nameOfCharity} type="text" onChange={(e) => {handleChange("nameOfCharity", e)}}></Form.Control>
-                </Form.Group> */}
-                {/* Gift */}
-                {/* <Form.Group>
-                    <Form.Label>Gift</Form.Label>
-                    <Form.Control value={values.gift} type="text" onChange={(e) => {handleChange("gift", e)}}></Form.Control>
-                </Form.Group>                             */}
+                
             </Form>
             
             <button className="btn btn-primary" onClick={(e) => {
@@ -53,7 +90,7 @@ const Step7 = ({ nextStep, prevStep, handleChange, changeState, values }) => {
                     changeState("step5CharityCount", values.step5CharityCount + 1);
                     values.step5Charities.push({
                         nameOfCharity: "",
-                        gift: "",
+                        gift: {},
                     });
                     changeState("step5Charities", values.step5Charities);
                 }}>Add Another</button>

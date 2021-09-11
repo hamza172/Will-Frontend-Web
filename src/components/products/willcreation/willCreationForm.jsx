@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import FormContainer from "./FormContainer";
 
 const WillCreationForm = ({ history }) => {
-
   const [condition1, setCondition1] = useState();
   const [condition2, setCondition2] = useState();
   const [condition3, setCondition3] = useState();
@@ -21,12 +20,25 @@ const WillCreationForm = ({ history }) => {
       e.stopPropagation();
     } else {
       e.preventDefault();
-      if ((makingFor === "Yes" || makingFor === "No") && (areYouMuslim === false || makeMuslimWill === false) ) {
-        window.location = "/willcreation/personal";
+      if (areYouMuslim === false || makeMuslimWill === false) {
+        if (makingFor === "Yes") {
+          history.push({
+            pathname: "/willcreation/personal_will_creation",
+            search: "?makingFor=Yes",
+          });
+        } else {
+          history.push("/willcreation/personal_will_creation");
+        }
+      } else if (areYouMuslim === true && makeMuslimWill === true) {
+        if (makingFor === "Yes") {
+          history.push({
+            pathname: "/willcreation/muslim_will_creation",
+            search: "?makingFor=Yes",
+          });
+        } else {
+          history.push("/willcreation/muslim_will_creation");
+        }
       }
-      else if( (makingFor === "Yes" || makingFor === "No") && (areYouMuslim === true && makeMuslimWill === true) ) {
-        window.location = "/willcreation/muslim_will_creation";
-      }      
     }
 
     setValidated(true);
@@ -67,8 +79,15 @@ const WillCreationForm = ({ history }) => {
 
         <Form.Group>
           <Form.Label>Are you making for someone else?</Form.Label>
-          <Form.Control as="select" required value={makingFor} onChange={(e) => setMakingFor(e.target.value)}>
-            <option selected disabled value="">[Please select one]</option>
+          <Form.Control
+            as="select"
+            required
+            value={makingFor}
+            onChange={(e) => setMakingFor(e.target.value)}
+          >
+            <option selected disabled value="">
+              [Please select one]
+            </option>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
           </Form.Control>
@@ -80,21 +99,38 @@ const WillCreationForm = ({ history }) => {
         {/* Are you a Muslim */}
         <Form.Group>
           <Form.Label>Are you a Muslim?</Form.Label>
-          <select className="form-control" onChange={(e) => {setAreYouMuslim(!areYouMuslim)}}>
-            <option selected value="No">No</option>
+          <select
+            className="form-control"
+            onChange={(e) => {
+              setAreYouMuslim(!areYouMuslim);
+            }}
+          >
+            <option selected value="No">
+              No
+            </option>
             <option value="Yes">Yes</option>
           </select>
         </Form.Group>
 
-        {areYouMuslim &&
+        {areYouMuslim && (
           <Form.Group>
-            <Form.Label>Would you like to create the Will in accordance to Muslim Will (Wassiyah)</Form.Label>
-              <select className="form-control" onChange={(e) => {setMakeMuslimWill(!makeMuslimWill)}}>
-                <option selected value="No">No</option>
-                <option value="Yes">Yes</option>
-              </select>
+            <Form.Label>
+              Would you like to create the Will in accordance to Muslim Will
+              (Wassiyah)
+            </Form.Label>
+            <select
+              className="form-control"
+              onChange={(e) => {
+                setMakeMuslimWill(!makeMuslimWill);
+              }}
+            >
+              <option selected value="No">
+                No
+              </option>
+              <option value="Yes">Yes</option>
+            </select>
           </Form.Group>
-        }
+        )}
 
         <Button type="submit" variant="primary">
           Save Progress & Continue

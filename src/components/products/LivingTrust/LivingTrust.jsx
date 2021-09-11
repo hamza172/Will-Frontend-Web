@@ -86,6 +86,7 @@ export default class LivingTrust extends Component {
             personalPropertyDescription: "",
             documentLocation: "",
             assetFile: null,
+            assetFileName: ""
         }],
         step4GiftsCount: 1,        
 
@@ -109,7 +110,7 @@ export default class LivingTrust extends Component {
         // Step 7
         step5Charities: [{
             nameOfCharity: "",
-            gift: "",
+            gift: {},
         }],
         step5CharityCount: 1,
 
