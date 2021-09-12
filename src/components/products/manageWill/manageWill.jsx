@@ -109,10 +109,11 @@ export default class ManageWill extends React.Component {
 
                   <td>
                     <a
+                      style={{ backgroundColor: "#333" }}
                       className="btn btn-primary"
-                      href={"/managewill/viewwillpdf?will_id=" + will._id}
+                      // href={"/managewill/viewwillpdf?will_id=" + will._id}
                     >
-                      Download PDF
+                      Download PDF (Currently disabled)
                     </a>
                   </td>
                   {will._id === this.state.activeWillID && (

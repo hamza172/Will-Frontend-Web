@@ -362,6 +362,7 @@ export default class MuslimWillCreation extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
             values={values}
           />
         );
@@ -372,6 +373,7 @@ export default class MuslimWillCreation extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
             values={values}
           />
         );
@@ -382,6 +384,7 @@ export default class MuslimWillCreation extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
             values={values}
           />
         );
@@ -392,6 +395,7 @@ export default class MuslimWillCreation extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
             values={values}
           />
         );
@@ -402,6 +406,7 @@ export default class MuslimWillCreation extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
             values={values}
           />
         );
@@ -412,6 +417,7 @@ export default class MuslimWillCreation extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
             values={values}
           />
         );
@@ -487,6 +493,7 @@ export default class MuslimWillCreation extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
             values={values}
           />
         );
@@ -497,6 +504,7 @@ export default class MuslimWillCreation extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
             values={values}
           />
         );
@@ -507,6 +515,7 @@ export default class MuslimWillCreation extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
             onFileChange={this.onFileChange}
             values={values}
           />

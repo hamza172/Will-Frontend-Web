@@ -343,6 +343,7 @@ export default class NonMuslimWillCreation extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
           />
         );
       case 1:
@@ -353,6 +354,7 @@ export default class NonMuslimWillCreation extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
           />
         );
       case 2:
@@ -363,6 +365,7 @@ export default class NonMuslimWillCreation extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
           />
         );
       case 3:
@@ -373,6 +376,7 @@ export default class NonMuslimWillCreation extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
           />
         );
       case 4:
@@ -383,6 +387,7 @@ export default class NonMuslimWillCreation extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
           />
         );
       case 5:
@@ -393,6 +398,7 @@ export default class NonMuslimWillCreation extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
           />
         );
       case 6:

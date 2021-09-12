@@ -1,117 +1,96 @@
-import React, { useState } from 'react';
-import FormContainer from '../../willcreation/FormContainer';
-import { Form } from 'react-bootstrap';
+import React, { useState } from "react";
+import FormContainer from "../../willcreation/FormContainer";
+import { Form } from "react-bootstrap";
 
 import Button from "@material-ui/core/Button";
 import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
+import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 
-const Step12MuslimCodicil = ({updateAndClose, nextStep, prevStep, handleChange, changeState, values}) => {
+const Step12MuslimCodicil = ({
+  values,
+  nextStep,
+  prevStep,
+  handleChange,
+  changeState,
+  updateAndClose,
+  onFileChange,
+}) => {
+  const Continue = (e) => {
+    e.preventDefault();
+    nextStep();
+  };
 
-    const Continue = (e) => {        
-        e.preventDefault();
+  const Previous = (e) => {
+    e.preventDefault();
+    prevStep();
+  };
 
-        const form = e.currentTarget;
-        if (form.checkValidity() === false) {
-            e.stopPropagation();
-        }
-        else {
-            nextStep();
-        }
-        setValidated(true);        
-    }
+  return (
+    <FormContainer>
+      <h3>Step 12: Pet Care Takers</h3>
 
-    const Previous = e => {
-        e.preventDefault();
-        prevStep();
-    }
+      <Form>
+        <Form.Group controlId="caretaker">
+          <Form.Label>
+            Do you want executor to appoint a pet caretaker?
+          </Form.Label>
+          <Form.Control
+            as="select"
+            value={values.petCaretaker}
+            onChange={(e) => handleChange("petCaretaker", e)}
+          >
+            <option selected disabled value="">
+              [Please select one]
+            </option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </Form.Control>
+        </Form.Group>
 
-    const [validated, setValidated] = useState(false);
+        {values.petCaretaker === "Yes" && (
+          <div>
+            <Form.Group controlId="careTakerName">
+              <Form.Label>CareTaker Name </Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter CareTaker Name"
+                value={values.petCareTakerName}
+                onChange={(e) => handleChange("petCareTakerName", e)}
+              ></Form.Control>
+            </Form.Group>
 
-    return(
-        <FormContainer>
+            <Form.Group controlId="address">
+              <Form.Label>Address</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Address"
+                value={values.petAddress}
+                onChange={(e) => handleChange("petAddress", e)}
+              ></Form.Control>
+            </Form.Group>
+          </div>
+        )}
+      </Form>
 
-            <h3>Step 12: Pets</h3>
+      <button className="btn btn-primary" onClick={Previous}>
+        Prev
+      </button>
+      <button className="btn btn-primary" onClick={Continue}>
+        Next
+      </button>
+      <br></br>
+      <button
+        className="btn btn-primary"
+        onClick={(e) => {
+          updateAndClose(e);
+        }}
+      >
+        Update & Close
+      </button>
+    </FormContainer>
+  );
+};
 
-            <Form noValidate validated={validated} onSubmit={(e) => {
-                    e.preventDefault();
-                    var btnName = e.nativeEvent.submitter.name;
-                    if(btnName === "Continue") {
-                        Continue(e);
-                    }
-                    else if(btnName === "Update-Close") {
-                        updateAndClose(e, true);
-                        setValidated(true);
-                    }                    
-                }}>
-
-                <Form.Group controlId="giftToPet">
-                    <Form.Label>Any gift to Pet?</Form.Label>
-                    <Form.Control required as="select" value={values.giftToPet} onChange={(e) => handleChange("giftToPet", e)}>
-                        <option disabled selected value="">[Please select one]</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                    </Form.Control>
-                </Form.Group>
-
-                {values.giftToPet === "Yes" &&
-                    <div>
-                        <Form.Group controlId="name">
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control required type="text" placeholder="Enter  Name" value={values.petName} onChange={(e) => handleChange("petName", e)}></Form.Control>
-                            <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
-                        </Form.Group>
-
-                        <Form.Group controlId="description">
-                            <Form.Label>Description</Form.Label>
-                            <Form.Control type="text" as="textarea" rows={5} required placeholder="Enter Description" value={values.petDescription} onChange={(e) => handleChange("petDescription", e)}></Form.Control>
-                            <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
-                        </Form.Group>
-
-                        <Form.Group controlId="amount">
-                            <Form.Label>Amount</Form.Label>
-                            <Form.Control type="number" required placeholder="Enter Amount" value={values.petAmount} onChange={(e) => handleChange("petAmount", e)}></Form.Control>
-                            <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
-                        </Form.Group>
-                    </div>
-                }
-
-
-                <Form.Group controlId="caretaker">
-                    <Form.Label>
-                        Do you want executor to appoint a pet caretaker?
-                    </Form.Label>
-                    <Form.Control required as="select" value={values.petCaretaker} onChange={(e) => handleChange("petCaretaker", e)}>
-                        <option selected disabled value="">[Please select one]</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                    </Form.Control>
-                </Form.Group>
-
-                {values.petCaretaker === "Yes" &&
-                    <div>
-                        <Form.Group controlId="careTakerName">
-                            <Form.Label>CareTaker Name </Form.Label>
-                            <Form.Control required type="text" placeholder="Enter CareTaker Name" value={values.petCareTakerName} onChange={(e) => handleChange("petCareTakerName", e)}></Form.Control>
-                            <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
-                        </Form.Group>
-
-                        <Form.Group controlId="address">
-                            <Form.Label>Address</Form.Label>
-                            <Form.Control required type="text" placeholder="Enter Address" value={values.petAddress} onChange={(e) => handleChange("petAddress", e)}></Form.Control>
-                            <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
-                        </Form.Group>
-                    </div>
-                }
-
-                <Button className="mt-5 mb-5 mr-5" variant="contained" color="primary" onClick={Previous}>Back</Button>
-                <Button name="Continue" value="Continue" className="mt-5 mb-5" variant="contained" color="primary" type="submit">Next</Button>
-                <Button name="Update-Close" value="Update-Close" className="mt-5 mb-5 ml-5" variant="contained" color="primary" type="submit">Update & Close</Button>
-            </Form>
-
-        </FormContainer>
-    )
-
-}
-
-export default Step12MuslimCodicil
+export default Step12MuslimCodicil;

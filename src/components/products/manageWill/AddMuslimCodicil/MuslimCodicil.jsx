@@ -3,11 +3,13 @@ import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import Step1MuslimCodicil from "./Step1MuslimCodicil";
 import Step2MuslimCodicil from "./Step2MuslimCodicil";
+import Step3MuslimCodicil from "./Step3MuslimCodicil";
 import Step4MuslimCodicil from "./Step4MuslimCodicil";
 import Step5MuslimCodicil from "./Step5MuslimCodicil";
 import Step6MuslimCodicil from "./Step6MuslimCodicil";
 import Step7MuslimCodicil from "./Step7MuslimCodicil";
 import Step8MuslimCodicil from "./Step8MuslimCodicil";
+import Step9MuslimCodicil from "./Step9MuslimCodicil";
 import Step10MuslimCodicil from "./Step10MuslimCodicil";
 import Step11MuslimCodicil from "./Step11MuslimCodicil";
 import Step12MuslimCodicil from "./Step12MuslimCodicil";
@@ -23,6 +25,21 @@ export default class MuslimCodicil extends Component {
     makingFor: "",
 
     // step 1
+    step1Prefix: "",
+    step1FirstName: "",
+    step1MiddleName: "",
+    step1LastName: "",
+    step1Suffix: "",
+    step1Gender: "",
+    step1Address: "",
+    step1Town: "",
+    step1Country: "",
+    step1County: "",
+    step1PhoneNumber: "",
+    step1Email: "",
+    step1MaritalStatus: "",
+
+    // step 2
     prefix: "",
     firstName: "",
     middleName: "",
@@ -37,12 +54,15 @@ export default class MuslimCodicil extends Component {
     email: "",
     maritalStatus: "",
 
-    // step 2
+    // step 3
     wivesDetails: [
       {
         index: 1,
         name: "",
         dob: "",
+        city: "",
+        zipCode: "",
+        state: "",
         address: "",
       },
     ],
@@ -52,6 +72,7 @@ export default class MuslimCodicil extends Component {
       {
         index: 1,
         name: "",
+        dob: "",
       },
     ],
 
@@ -60,6 +81,9 @@ export default class MuslimCodicil extends Component {
       {
         index: 1,
         name: "",
+        city: "",
+        zipCode: "",
+        state: "",
         address: "",
         relationship: "",
       },
@@ -77,41 +101,45 @@ export default class MuslimCodicil extends Component {
       },
     ],
 
-    // step 7
-    executorDetails: [
+    // step 7 & 9
+    step7AssetDetails: [
       {
+        assetID: uuidv4(),
         index: 1,
+        assetType: "",
+        desc: "",
+        value: "",
+        tenant: "",
+        documentLocation: "",
+        assetFile: null,
+        assetFileName: "",
+        beneficiaries: [
+          {
+            type: "",
+            name: "",
+            address: "",
+            email: "",
+            phoneNumber: "",
+          },
+        ],
+      },
+    ],
+
+    // step 8
+    step8Question: "Yes",
+    step8ExecutorDetails: [
+      {
         name: "",
         relationship: "",
         address: "",
         town: "",
         state: "",
         email: "",
-        phone: "",
+        phoneNumber: "",
+        willExecutorBeRenumerated: "No",
+        executorRenumeration: "",
       },
     ],
-    step7Question: "No",
-    addAltExec: "",
-    isRenumerated: "",
-    execRenumeration: "",
-
-    // step 8
-    beneficiaryAssets: [
-      {
-        index: 1,
-        assetType: "",
-        desc: "",
-        value: "",
-        tenant: "",
-      },
-    ],
-    beneficiary: "",
-    beneficiaryName: "",
-    beneficiaryAddress: "",
-    beneficiaryEmail: "",
-    beneficiaryPhone: "",
-    selectedChild: "",
-    selectedWife: "",
 
     // step 10
     priorityArray: [
@@ -140,10 +168,6 @@ export default class MuslimCodicil extends Component {
     otherTrusteeAdd: "",
 
     // step 12
-    giftToPet: "",
-    petName: "",
-    petDescription: "",
-    petAmount: "",
     petCaretaker: "",
     petCareTakerName: "",
     petAddress: "",
@@ -173,21 +197,24 @@ export default class MuslimCodicil extends Component {
         name: "",
       },
     ],
-
-    // step 16
-    selfie1: null,
-    selfie2: null,
-    selfie3: null,
   };
 
   prevStep = () => {
     const { step } = this.state;
-    this.setState({ step: step - 1 });
+    if (step === 12 && this.state.step8Question === "No") {
+      this.setState({ step: step - 5 });
+    } else {
+      this.setState({ step: step - 1 });
+    }
   };
 
   nextStep = () => {
     const { step } = this.state;
-    this.setState({ step: step + 1 });
+    if (step === 7 && this.state.step8Question === "No") {
+      this.setState({ step: step + 5 });
+    } else {
+      this.setState({ step: step + 1 });
+    }
   };
 
   handleChange = (input, e) => {
@@ -221,6 +248,21 @@ export default class MuslimCodicil extends Component {
         }
 
         // step 1
+        this.setState({ step1Prefix: will.step1Prefix });
+        this.setState({ step1FirstName: will.step1FirstName });
+        this.setState({ step1MiddleName: will.step1MiddleName });
+        this.setState({ step1LastName: will.step1LastName });
+        this.setState({ step1Suffix: will.step1Suffix });
+        this.setState({ step1Gender: will.step1Gender });
+        this.setState({ step1Address: will.step1Address });
+        this.setState({ step1Town: will.step1Town });
+        this.setState({ step1Country: will.step1Country });
+        this.setState({ step1County: will.step1County });
+        this.setState({ step1PhoneNumber: will.step1PhoneNumber });
+        this.setState({ step1Email: will.step1Email });
+        this.setState({ step1MaritalStatus: will.step1MaritalStatus });
+
+        // step 2
         this.setState({ prefix: will.prefix });
         this.setState({ firstName: will.firstName });
         this.setState({ middleName: will.middleName });
@@ -235,7 +277,7 @@ export default class MuslimCodicil extends Component {
         this.setState({ email: will.email });
         this.setState({ maritalStatus: will.maritalStatus });
 
-        // step 2
+        // step 3
         this.setState({ wivesDetails: will.wivesDetails });
 
         // step 4
@@ -247,25 +289,19 @@ export default class MuslimCodicil extends Component {
         // step 6
         this.setState({ guardianDetails: will.guardianDetails });
 
-        // step 7
-        this.setState({ executorDetails: will.executorDetails });
-        this.setState({ step7Question: will.step7Question });
-        this.setState({ addAltExec: will.addAltExec });
-        this.setState({ isRenumerated: will.isRenumerated });
-        this.setState({ execRenumeration: will.execRenumeration });
+        // step 7 & 9
+        for (let i = 0; i < will.step7AssetDetails.length; i++) {
+          will.step7AssetDetails[i].assetFileName = "";
+        }
+        this.setState({ step7AssetDetails: will.step7AssetDetails });
 
         // step 8
-        this.setState({ beneficiaryAssets: will.beneficiaryAssets });
-        this.setState({ beneficiary: will.beneficiary });
-        this.setState({ beneficiaryName: will.beneficiaryName });
-        this.setState({ beneficiaryAddress: will.beneficiaryAddress });
-        this.setState({ beneficiaryEmail: will.beneficiaryEmail });
-        this.setState({ beneficiaryPhone: will.beneficiaryPhone });
-        this.setState({ selectedChild: will.selectedChild });
-        this.setState({ selectedWife: will.selectedWife });
+        this.setState({ step8Question: will.step8Question });
+        this.setState({ step8ExecutorDetails: will.step8ExecutorDetails });
 
         // step 10
         this.setState({ priorityArray: will.priorityArray });
+
         // step 11
         this.setState({
           otherTransferBeneficiary: will.otherTransferBeneficiary,
@@ -279,10 +315,6 @@ export default class MuslimCodicil extends Component {
         this.setState({ otherTrusteeAdd: will.otherTrusteeAdd });
 
         // step 12
-        this.setState({ giftToPet: will.giftToPet });
-        this.setState({ petName: will.petName });
-        this.setState({ petDescription: will.petDescription });
-        this.setState({ petAmount: will.petAmount });
         this.setState({ petCaretaker: will.petCaretaker });
         this.setState({ petCareTakerName: will.petCareTakerName });
         this.setState({ petAddress: will.petAddress });
@@ -304,146 +336,166 @@ export default class MuslimCodicil extends Component {
       });
   }
 
-  updateAndClose = (e, postStatus) => {
+  updateAndClose = (e) => {
     e.preventDefault();
+    let formData = new FormData();
 
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.stopPropagation();
-    } else {
-      console.log("Updated and Closed");
+    // pre
+    formData.append("makingFor", this.state.makingFor);
 
-      var formData = new FormData();
+    // step 1
+    formData.append("step1Prefix", this.state.step1Prefix);
+    formData.append("step1FirstName", this.state.step1FirstName);
+    formData.append("step1MiddleName", this.state.step1MiddleName);
+    formData.append("step1LastName", this.state.step1LastName);
+    formData.append("step1Suffix", this.state.step1Suffix);
+    formData.append("step1Gender", this.state.step1Gender);
+    formData.append("step1Address", this.state.step1Address);
+    formData.append("step1Town", this.state.step1Town);
+    formData.append("step1Country", this.state.step1Country);
+    formData.append("step1County", this.state.step1County);
+    formData.append("step1PhoneNumber", this.state.step1PhoneNumber);
+    formData.append("step1Email", this.state.step1Email);
+    formData.append("step1MaritalStatus", this.state.step1MaritalStatus);
 
-      // step 1
-      formData.append("prefix", this.state.prefix);
-      formData.append("firstName", this.state.firstName);
-      formData.append("middleName", this.state.middleName);
-      formData.append("lastName", this.state.lastName);
-      formData.append("suffix", this.state.suffix);
-      formData.append("gender", this.state.gender);
-      formData.append("address", this.state.address);
-      formData.append("town", this.state.town);
-      formData.append("country", this.state.country);
-      formData.append("county", this.state.county);
-      formData.append("phoneNumber", this.state.phoneNumber);
-      formData.append("email", this.state.email);
-      formData.append("maritalStatus", this.state.maritalStatus);
+    // step 2
+    formData.append("prefix", this.state.prefix);
+    formData.append("firstName", this.state.firstName);
+    formData.append("middleName", this.state.middleName);
+    formData.append("lastName", this.state.lastName);
+    formData.append("suffix", this.state.suffix);
+    formData.append("gender", this.state.gender);
+    formData.append("address", this.state.address);
+    formData.append("town", this.state.town);
+    formData.append("country", this.state.country);
+    formData.append("county", this.state.county);
+    formData.append("phoneNumber", this.state.phoneNumber);
+    formData.append("email", this.state.email);
+    formData.append("maritalStatus", this.state.maritalStatus);
 
-      // step 2
-      formData.append("wivesDetails", JSON.stringify(this.state.wivesDetails));
+    // step 3
+    formData.append("wivesDetails", JSON.stringify(this.state.wivesDetails));
 
-      // step 4
-      formData.append("children", JSON.stringify(this.state.children));
+    // step 4
+    formData.append("children", JSON.stringify(this.state.children));
 
-      // step 5
-      formData.append(
-        "otherFamilyMembers",
-        JSON.stringify(this.state.otherFamilyMembers)
-      );
+    // step 5
+    formData.append(
+      "otherFamilyMembers",
+      JSON.stringify(this.state.otherFamilyMembers)
+    );
 
-      // step 6
-      formData.append(
-        "guardianDetails",
-        JSON.stringify(this.state.guardianDetails)
-      );
+    // step 6
+    formData.append(
+      "guardianDetails",
+      JSON.stringify(this.state.guardianDetails)
+    );
 
-      // step 7
-      formData.append(
-        "executorDetails",
-        JSON.stringify(this.state.executorDetails)
-      );
-      formData.append("step7Question", this.state.step7Question);
-      formData.append("addAltExec", this.state.addAltExec);
-      formData.append("isRenumerated", this.state.isRenumerated);
-      formData.append("execRenumeration", this.state.execRenumeration);
-
-      // step 8
-      formData.append(
-        "beneficiaryAssets",
-        JSON.stringify(this.state.beneficiaryAssets)
-      );
-      formData.append("beneficiary", this.state.beneficiary);
-      formData.append("beneficiaryName", this.state.beneficiaryName);
-      formData.append("beneficiaryAddress", this.state.beneficiaryAddress);
-      formData.append("beneficiaryEmail", this.state.beneficiaryEmail);
-      formData.append("beneficiaryPhone", this.state.beneficiaryPhone);
-      formData.append("selectedChild", this.state.selectedChild);
-      formData.append("selectedWife", this.state.selectedWife);
-
-      // step 10
-      formData.append(
-        "priorityArray",
-        JSON.stringify(this.state.priorityArray)
-      );
-
-      // step 11
-      formData.append(
-        "otherTransferBeneficiary",
-        this.state.otherTransferBeneficiary
-      );
-      formData.append("otherGiftMadeTo", this.state.otherGiftMadeTo);
-      formData.append("otherName", this.state.otherName);
-      formData.append("otherRelationship", this.state.otherRelationship);
-      formData.append("otherAddress", this.state.otherAddress);
-      formData.append("otherContest", this.state.otherContest);
-      formData.append("otherTrusteeName", this.state.otherTrusteeName);
-      formData.append("otherTrusteeAdd", this.state.otherTrusteeAdd);
-
-      // step 12
-      formData.append("giftToPet", this.state.giftToPet);
-      formData.append("petName", this.state.petName);
-      formData.append("petDescription", this.state.petDescription);
-      formData.append("petAmount", this.state.petAmount);
-      formData.append("petCaretaker", this.state.petCaretaker);
-      formData.append("petCareTakerName", this.state.petCareTakerName);
-      formData.append("petAddress", this.state.petAddress);
-
-      // step 13
-      formData.append("burialDescription", this.state.burialDescription);
-
-      // step 14
-      formData.append(
-        "additionalInstructions",
-        JSON.stringify(this.state.additionalInstructions)
-      );
-      formData.append("isLiterate", this.state.isLiterate);
-      formData.append("additionalName", this.state.additionalName);
-      formData.append("additionalAddress", this.state.additionalAddress);
-
-      // step 15
-      formData.append(
-        "signingDetails",
-        JSON.stringify(this.state.signingDetails)
-      );
-
-      formData.append("userID", localStorage.getItem("id"));
-      formData.append(
-        "willID",
-        new URLSearchParams(this.props.history.location.search).get("will_id")
-      );
-
-      axios
-        .post(
-          process.env.REACT_APP_API_URL + "/managewill/updateWill_muslim",
-          formData
-        )
-        .then((response) => {
-          if (response.data.msg === "Success") {
-            if (postStatus === true) {
-              window.location.href = "/products/managewill";
-            }
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    // step 7 & 9
+    for (let i = 0; i < this.state.step7AssetDetails.length; i++) {
+      if (this.state.step7AssetDetails[i].assetFile) {
+        let fileEXT = this.state.step7AssetDetails[i].assetFile?.name
+          .split(".")
+          .pop();
+        let filename =
+          this.state.step7AssetDetails[i].assetType +
+          " " +
+          this.state.step7AssetDetails[i].documentLocation +
+          "." +
+          fileEXT;
+        this.state.step7AssetDetails[i].assetFileName = filename;
+        formData.append(filename, this.state.step7AssetDetails[i].assetFile);
+      }
     }
+    formData.append(
+      "step7AssetDetails",
+      JSON.stringify(this.state.step7AssetDetails)
+    );
+
+    // step 8
+    formData.append("step8Question", this.state.step8Question);
+    formData.append(
+      "step8ExecutorDetails",
+      JSON.stringify(this.state.step8ExecutorDetails)
+    );
+
+    // step 10
+    formData.append("priorityArray", JSON.stringify(this.state.priorityArray));
+
+    // step 11
+    formData.append(
+      "otherTransferBeneficiary",
+      this.state.otherTransferBeneficiary
+    );
+    formData.append("otherGiftMadeTo", this.state.otherGiftMadeTo);
+    formData.append("otherName", this.state.otherName);
+    formData.append("otherRelationship", this.state.otherRelationship);
+    formData.append("otherAddress", this.state.otherAddress);
+    formData.append("otherContest", this.state.otherContest);
+    formData.append("otherTrusteeName", this.state.otherTrusteeName);
+    formData.append("otherTrusteeAdd", this.state.otherTrusteeAdd);
+
+    // step 12
+    formData.append("petCaretaker", this.state.petCaretaker);
+    formData.append("petCareTakerName", this.state.petCareTakerName);
+    formData.append("petAddress", this.state.petAddress);
+
+    // step 13
+    formData.append("burialDescription", this.state.burialDescription);
+
+    // step 14
+    formData.append(
+      "additionalInstructions",
+      JSON.stringify(this.state.additionalInstructions)
+    );
+    formData.append("isLiterate", this.state.isLiterate);
+    formData.append("additionalName", this.state.additionalName);
+    formData.append("additionalAddress", this.state.additionalAddress);
+
+    // step 15
+    formData.append(
+      "signingDetails",
+      JSON.stringify(this.state.signingDetails)
+    );
+
+    formData.append("userID", localStorage.getItem("id"));
+    formData.append(
+      "willID",
+      new URLSearchParams(this.props.history.location.search).get("will_id")
+    );
+
+    axios
+      .post(
+        process.env.REACT_APP_API_URL + "/managewill/updateWill_muslim",
+        formData
+      )
+      .then((response) => {
+        if (response.data.msg === "Success") {
+          window.location.href = "/products/managewill";
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   render() {
     const { step } = this.state;
     const {
+      makingFor,
+      step1Prefix,
+      step1FirstName,
+      step1MiddleName,
+      step1LastName,
+      step1Suffix,
+      step1Gender,
+      step1Address,
+      step1Town,
+      step1Country,
+      step1County,
+      step1PhoneNumber,
+      step1Email,
+      step1MaritalStatus,
       prefix,
       firstName,
       middleName,
@@ -461,19 +513,9 @@ export default class MuslimCodicil extends Component {
       children,
       otherFamilyMembers,
       guardianDetails,
-      step7Question,
-      executorDetails,
-      addAltExec,
-      isRenumerated,
-      execRenumeration,
-      beneficiary,
-      beneficiaryName,
-      beneficiaryAddress,
-      beneficiaryEmail,
-      beneficiaryPhone,
-      selectedChild,
-      selectedWife,
-      beneficiaryAssets,
+      step7AssetDetails,
+      step8Question,
+      step8ExecutorDetails,
       priorityArray,
       otherTransferBeneficiary,
       otherGiftMadeTo,
@@ -483,10 +525,6 @@ export default class MuslimCodicil extends Component {
       otherContest,
       otherTrusteeName,
       otherTrusteeAdd,
-      giftToPet,
-      petName,
-      petDescription,
-      petAmount,
       petCaretaker,
       petCareTakerName,
       petAddress,
@@ -499,6 +537,20 @@ export default class MuslimCodicil extends Component {
     } = this.state;
 
     const values = {
+      makingFor,
+      step1Prefix,
+      step1FirstName,
+      step1MiddleName,
+      step1LastName,
+      step1Suffix,
+      step1Gender,
+      step1Address,
+      step1Town,
+      step1Country,
+      step1County,
+      step1PhoneNumber,
+      step1Email,
+      step1MaritalStatus,
       prefix,
       firstName,
       middleName,
@@ -516,19 +568,9 @@ export default class MuslimCodicil extends Component {
       children,
       otherFamilyMembers,
       guardianDetails,
-      step7Question,
-      executorDetails,
-      addAltExec,
-      isRenumerated,
-      execRenumeration,
-      beneficiary,
-      beneficiaryName,
-      beneficiaryAddress,
-      beneficiaryEmail,
-      beneficiaryPhone,
-      selectedChild,
-      selectedWife,
-      beneficiaryAssets,
+      step7AssetDetails,
+      step8Question,
+      step8ExecutorDetails,
       priorityArray,
       otherTransferBeneficiary,
       otherGiftMadeTo,
@@ -538,10 +580,6 @@ export default class MuslimCodicil extends Component {
       otherContest,
       otherTrusteeName,
       otherTrusteeAdd,
-      giftToPet,
-      petName,
-      petDescription,
-      petAmount,
       petCaretaker,
       petCareTakerName,
       petAddress,
@@ -554,7 +592,7 @@ export default class MuslimCodicil extends Component {
     };
 
     switch (step) {
-      case 1:
+      case 0:
         return (
           <Step1MuslimCodicil
             updateAndClose={this.updateAndClose}
@@ -562,10 +600,11 @@ export default class MuslimCodicil extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
             values={values}
           />
         );
-      case 2:
+      case 1:
         return (
           <Step2MuslimCodicil
             updateAndClose={this.updateAndClose}
@@ -573,6 +612,19 @@ export default class MuslimCodicil extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
+            values={values}
+          />
+        );
+      case 2:
+        return (
+          <Step3MuslimCodicil
+            updateAndClose={this.updateAndClose}
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            handleChange={this.handleChange}
+            changeState={this.changeState}
+            onFileChange={this.onFileChange}
             values={values}
           />
         );
@@ -584,6 +636,7 @@ export default class MuslimCodicil extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
             values={values}
           />
         );
@@ -596,6 +649,7 @@ export default class MuslimCodicil extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
             values={values}
           />
         );
@@ -607,6 +661,7 @@ export default class MuslimCodicil extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
             values={values}
           />
         );
@@ -618,6 +673,7 @@ export default class MuslimCodicil extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
             values={values}
           />
         );
@@ -629,10 +685,23 @@ export default class MuslimCodicil extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
             values={values}
           />
         );
       case 8:
+        return (
+          <Step9MuslimCodicil
+            updateAndClose={this.updateAndClose}
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            handleChange={this.handleChange}
+            changeState={this.changeState}
+            onFileChange={this.onFileChange}
+            values={values}
+          />
+        );
+      case 9:
         return (
           <Step10MuslimCodicil
             updateAndClose={this.updateAndClose}
@@ -640,10 +709,11 @@ export default class MuslimCodicil extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
             values={values}
           />
         );
-      case 9:
+      case 10:
         return (
           <Step11MuslimCodicil
             updateAndClose={this.updateAndClose}
@@ -651,10 +721,11 @@ export default class MuslimCodicil extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
             values={values}
           />
         );
-      case 10:
+      case 11:
         return (
           <Step12MuslimCodicil
             updateAndClose={this.updateAndClose}
@@ -662,10 +733,11 @@ export default class MuslimCodicil extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
             values={values}
           />
         );
-      case 11:
+      case 12:
         return (
           <Step13MuslimCodicil
             updateAndClose={this.updateAndClose}
@@ -673,10 +745,11 @@ export default class MuslimCodicil extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
             values={values}
           />
         );
-      case 12:
+      case 13:
         return (
           <Step14MuslimCodicil
             updateAndClose={this.updateAndClose}
@@ -684,10 +757,11 @@ export default class MuslimCodicil extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
             values={values}
           />
         );
-      case 13:
+      case 14:
         return (
           <Step15MuslimCodicil
             updateAndClose={this.updateAndClose}
@@ -695,6 +769,7 @@ export default class MuslimCodicil extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             changeState={this.changeState}
+            onFileChange={this.onFileChange}
             values={values}
           />
         );
