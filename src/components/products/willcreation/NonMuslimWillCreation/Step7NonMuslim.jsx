@@ -129,7 +129,7 @@ const Step7NonMuslim = ({
               className="mr-3"
               color="primary"
               variant="contained"
-              disabled={values.step7AssetDetails.length === 1}
+              // disabled={values.step7AssetDetails.length === 1}
               onClick={(e) => {
                 e.preventDefault();
                 var temp = [...values.step7AssetDetails];

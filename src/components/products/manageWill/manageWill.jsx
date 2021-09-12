@@ -125,7 +125,6 @@ export default class ManageWill extends React.Component {
                             search: "?will_id=" + will._id,
                           });
                         }}
-                        // href={"/managewill/addcodicil?will_id=" + will._id}
                       >
                         Add Codicil
                       </button>

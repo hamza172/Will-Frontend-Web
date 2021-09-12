@@ -1,108 +1,184 @@
-import React, { useState } from 'react';
-import FormContainer from '../FormContainer';
-import { Form } from 'react-bootstrap';
+import React, { useState } from "react";
+import FormContainer from "../FormContainer";
+import { Form } from "react-bootstrap";
 
 import Button from "@material-ui/core/Button";
 import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
 
-const Step5Muslim = ({nextStep, prevStep, handleChange, changeState, values}) => {
+const Step5Muslim = ({
+  nextStep,
+  prevStep,
+  handleChange,
+  changeState,
+  values,
+}) => {
+  const Continue = (e) => {
+    e.preventDefault();
+    nextStep();
+  };
 
-    const Continue = (e) => {        
-        e.preventDefault();
+  const Previous = (e) => {
+    e.preventDefault();
+    prevStep();
+  };
 
-        const form = e.currentTarget;
-        if (form.checkValidity() === false) {
-            e.stopPropagation();
-        }
-        else {
-            nextStep();
-        }
-        setValidated(true);        
-    }
+  return (
+    <FormContainer>
+      <h4 className="mb-5"> Step 5: Other Family Members</h4>
 
-    const Previous = e => {
-        e.preventDefault();
-        prevStep();
-    }
+      <Form>
+        {[...Array(values.otherFamilyMembers.length)].map((e, i) => (
+          <div key={i + 1}>
+            <Form.Group controlId="name">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="name"
+                value={values.otherFamilyMembers[i].name}
+                onChange={(e) => {
+                  values.otherFamilyMembers[i].name = e.target.value;
+                  changeState(values.otherFamilyMembers[i].name);
+                }}
+              ></Form.Control>
+            </Form.Group>
 
-    const [validated, setValidated] = useState(false);
-    
-    return(
-        <FormContainer>
-            <h4 className="mb-5"> Step5: Other Family Members</h4>
+            <Form.Group controlId="city">
+              <Form.Label>City</Form.Label>
+              <Form.Control
+                type="text"
+                name="city"
+                value={values.otherFamilyMembers[i].city}
+                onChange={(e) => {
+                  values.otherFamilyMembers[i].city = e.target.value;
+                  changeState(values.otherFamilyMembers[i].city);
+                }}
+              ></Form.Control>
+            </Form.Group>
 
-            <Form noValidate validated={validated} onSubmit={Continue}>
+            <Form.Group controlId="zipcode">
+              <Form.Label>Zip Code</Form.Label>
+              <Form.Control
+                type="text"
+                name="zipCode"
+                value={values.otherFamilyMembers[i].zipCode}
+                onChange={(e) => {
+                  values.otherFamilyMembers[i].zipCode = e.target.value;
+                  changeState(values.otherFamilyMembers[i].zipCode);
+                }}
+              ></Form.Control>
+            </Form.Group>
 
-                {[...Array(values.otherFamilyMembers.length)].map((e, i) => <div key={i + 1}>
+            <Form.Group controlId="state">
+              <Form.Label>State</Form.Label>
+              <Form.Control
+                type="text"
+                name="state"
+                value={values.otherFamilyMembers[i].state}
+                onChange={(e) => {
+                  values.otherFamilyMembers[i].state = e.target.value;
+                  changeState(values.otherFamilyMembers[i].state);
+                }}
+              ></Form.Control>
+            </Form.Group>
 
-                <Form.Group controlId="name">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control type="text" name="name" value={values.otherFamilyMembers[i].name} onChange={(e) => {
-                        values.otherFamilyMembers[i].name = e.target.value;
-                        changeState(values.otherFamilyMembers[i].name);                          
-                    }}></Form.Control>
-                    <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
-                </Form.Group>
+            <Form.Group controlId="address">
+              <Form.Label>Address</Form.Label>
+              <Form.Control
+                type="text"
+                name="address"
+                value={values.otherFamilyMembers[i].address}
+                onChange={(e) => {
+                  values.otherFamilyMembers[i].address = e.target.value;
+                  changeState(values.otherFamilyMembers[i].address);
+                }}
+              ></Form.Control>
+            </Form.Group>
 
-                <Form.Group controlId="address">
-                    <Form.Label>Address</Form.Label>
-                    <Form.Control type="text" name="address" value={values.otherFamilyMembers[i].address} onChange={(e) => {
-                        values.otherFamilyMembers[i].address = e.target.value;
-                        changeState(values.otherFamilyMembers[i].address);                          
-                    }}></Form.Control>
-                    <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
-                </Form.Group>
+            <Form.Group controlId="relationship">
+              <Form.Label>Relationship</Form.Label>
+              <select
+                className="form-control"
+                value={values.otherFamilyMembers[i].relationship}
+                onChange={(e) => {
+                  values.otherFamilyMembers[i].relationship = e.target.value;
+                  changeState(values.otherFamilyMembers[i].relationship);
+                }}
+              >
+                <option selected disabled value="">
+                  [Please select one]
+                </option>
+                <option value="Brother">Brother</option>
+                <option value="Sister">Sister</option>
+                <option value="Grand Father">Grand Father</option>
+                <option value="Grand Mother">Grand Mother</option>
+                <option value="Uncle">Uncle</option>
+              </select>
+            </Form.Group>
 
-                <Form.Group controlId="relationship">
-                    <Form.Label>Relationship</Form.Label>
-                    <select className="form-control" value={values.otherFamilyMembers[i].relationship} onChange={(e) => {
-                        values.otherFamilyMembers[i].relationship = e.target.value;
-                        changeState(values.otherFamilyMembers[i].relationship);
-                    }}>
-                        <option selected disabled value="">[Please select one]</option>
-                        <option value="Brother">Brother</option>
-                        <option value="Sister">Sister</option>
-                        <option value="Grand Father">Grand Father</option>
-                        <option value="Grand Mother">Grand Mother</option>
-                        <option value="Uncle">Uncle</option>
-                        <option value="Other">Other</option>
-                    </select>
-                </Form.Group>  
+            <Button
+              className="mr-3"
+              color="primary"
+              variant="contained"
+              disabled={values.otherFamilyMembers.length === 1}
+              onClick={(e) => {
+                var temp = [...values.otherFamilyMembers];
+                var foo = -1;
+                for (var j = 0; j < values.otherFamilyMembers.length; j++) {
+                  if (i + 1 === values.otherFamilyMembers[j].index) {
+                    foo = i;
+                    break;
+                  }
+                }
+                temp.splice(foo, 1);
+                changeState("otherFamilyMembers", temp);
+              }}
+            >
+              Delete
+              <RemoveIcon />
+            </Button>
 
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={(e) => {
+                e.preventDefault();
+                var temp = [...values.otherFamilyMembers];
+                temp.push({
+                  index: values.otherFamilyMembers.length + 1,
+                  name: "",
+                  city: "",
+                  zipCode: "",
+                  state: "",
+                  address: "",
+                  relationship: "",
+                });
+                changeState("otherFamilyMembers", temp);
+              }}
+            >
+              Add More
+              <AddIcon />
+            </Button>
 
-                <Button className="mr-3" color="primary" variant="contained" disabled={values.otherFamilyMembers.length === 1} onClick={(e) => {
-                    var temp = [...values.otherFamilyMembers];                    
-                    var foo = -1;
-                    for(var j = 0; j < values.otherFamilyMembers.length; j++) {
-                        if(i+1 === values.otherFamilyMembers[j].index) {
-                            foo = i;
-                            break;
-                        }
-                    }
-                    temp.splice(foo, 1)                
-                    changeState("otherFamilyMembers", temp);
-                }}>Delete<RemoveIcon /></Button>
+            <hr
+              style={{
+                marginBottom: "3rem",
+                marginTop: "3rem",
+                border: "1px solid #000",
+              }}
+            ></hr>
+          </div>
+        ))}
 
-                <Button variant="contained" color="primary" onClick={(e) => {
-                    e.preventDefault();
-                    var temp = [...values.otherFamilyMembers];
-                    temp.push({
-                        index: values.otherFamilyMembers.length + 1,
-                        name: "",
-                    });
-                    changeState("otherFamilyMembers", temp);
-                }}>Add More<AddIcon /></Button>                  
+        <button className="btn btn-primary" onClick={Previous}>
+          Prev
+        </button>
+        <button className="btn btn-primary" onClick={Continue}>
+          Next
+        </button>
+      </Form>
+    </FormContainer>
+  );
+};
 
-                </div>)}                
-
-                <Button className="mt-5 mb-5 mr-5" variant="contained" color="primary" onClick={Previous}>Back</Button>
-                <Button className="mt-5 mb-5" variant="contained" color="primary" type="submit">Continue</Button>
-
-            </Form>
-        </FormContainer>
-    )
-
-}
-
-export default Step5Muslim
+export default Step5Muslim;

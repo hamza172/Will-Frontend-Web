@@ -1,159 +1,201 @@
-import React, { useState } from 'react';
-import FormContainer from '../FormContainer';
-import { Form } from 'react-bootstrap';
+import React, { useState } from "react";
+import FormContainer from "../FormContainer";
+import { Form, Button } from "react-bootstrap";
+import axios from "axios";
+import { useHistory } from "react-router";
 
-import Button from "@material-ui/core/Button";
-import axios from 'axios';
+const Step16Muslim = ({
+  nextStep,
+  prevStep,
+  handleChange,
+  changeState,
+  onFileChange,
+  values,
+}) => {
+  const history = useHistory();
+  const submitForm = (e) => {
+    e.preventDefault();
 
-const Step16Muslim = ({nextStep, prevStep, handleChange, changeState, onFileChange, values}) => {
+    let formData = new FormData();
 
-    const Continue = (e) => {        
-        e.preventDefault();
+    // pre
+    formData.append("makingFor", values.makingFor);
 
-        const form = e.currentTarget;
-        if (form.checkValidity() === false) {
-            e.stopPropagation();
-        }
-        else {
-            var formData = new FormData();
+    // step 1
+    formData.append("step1Prefix", values.step1Prefix);
+    formData.append("step1FirstName", values.step1FirstName);
+    formData.append("step1MiddleName", values.step1MiddleName);
+    formData.append("step1LastName", values.step1LastName);
+    formData.append("step1Suffix", values.step1Suffix);
+    formData.append("step1Gender", values.step1Gender);
+    formData.append("step1Address", values.step1Address);
+    formData.append("step1Town", values.step1Town);
+    formData.append("step1Country", values.step1Country);
+    formData.append("step1County", values.step1County);
+    formData.append("step1PhoneNumber", values.step1PhoneNumber);
+    formData.append("step1Email", values.step1Email);
+    formData.append("step1MaritalStatus", values.step1MaritalStatus);
 
-            // step 1
-            formData.append("prefix", values.prefix);
-            formData.append("firstName", values.firstName);
-            formData.append("middleName", values.middleName);
-            formData.append("lastName", values.lastName);
-            formData.append("suffix", values.suffix);
-            formData.append("gender", values.gender);
-            formData.append("address", values.address);
-            formData.append("town", values.town);
-            formData.append("country", values.country);
-            formData.append("county", values.county);
-            formData.append("phoneNumber", values.phoneNumber);
-            formData.append("email", values.email);
-            formData.append("maritalStatus", values.maritalStatus);
+    // step 2
+    formData.append("prefix", values.prefix);
+    formData.append("firstName", values.firstName);
+    formData.append("middleName", values.middleName);
+    formData.append("lastName", values.lastName);
+    formData.append("suffix", values.suffix);
+    formData.append("gender", values.gender);
+    formData.append("address", values.address);
+    formData.append("town", values.town);
+    formData.append("country", values.country);
+    formData.append("county", values.county);
+    formData.append("phoneNumber", values.phoneNumber);
+    formData.append("email", values.email);
+    formData.append("maritalStatus", values.maritalStatus);
 
-            // step 2
-            formData.append("wivesDetails", JSON.stringify(values.wivesDetails));
-            
-            // step 4
-            formData.append("children", JSON.stringify(values.children));
+    // step 3
+    formData.append("wivesDetails", JSON.stringify(values.wivesDetails));
 
-            // step 5
-            formData.append("otherFamilyMembers", JSON.stringify(values.otherFamilyMembers));
+    // step 4
+    formData.append("children", JSON.stringify(values.children));
 
-            // step 6
-            formData.append("guardianDetails", JSON.stringify(values.guardianDetails));
+    // step 5
+    formData.append(
+      "otherFamilyMembers",
+      JSON.stringify(values.otherFamilyMembers)
+    );
 
-            // step 7
-            formData.append("executorDetails", JSON.stringify(values.executorDetails));
-            formData.append("step7Question", values.step7Question);
-            formData.append("addAltExec", values.addAltExec);
-            formData.append("isRenumerated", values.isRenumerated);
-            formData.append("execRenumeration", values.execRenumeration); 
+    // step 6
+    formData.append("guardianDetails", JSON.stringify(values.guardianDetails));
 
-            // step 8
-            formData.append("beneficiaryAssets", JSON.stringify(values.beneficiaryAssets));
-            formData.append("beneficiary", values.beneficiary);
-            formData.append("beneficiaryName", values.beneficiaryName);
-            formData.append("beneficiaryAddress", values.beneficiaryAddress);
-            formData.append("beneficiaryEmail", values.beneficiaryEmail);
-            formData.append("beneficiaryPhone", values.beneficiaryPhone);
-            formData.append("selectedChild", values.selectedChild);
-            formData.append("selectedWife", values.selectedWife);
-
-            // step 10
-            formData.append("priorityArray", JSON.stringify(values.priorityArray));
-
-            // step 11
-            formData.append("otherTransferBeneficiary", values.otherTransferBeneficiary);
-            formData.append("otherGiftMadeTo", values.otherGiftMadeTo);
-            formData.append("otherName", values.otherName);
-            formData.append("otherRelationship", values.otherRelationship);
-            formData.append("otherAddress", values.otherAddress);
-            formData.append("otherContest", values.otherContest);
-            formData.append("otherTrusteeName", values.otherTrusteeName);
-            formData.append("otherTrusteeAdd", values.otherTrusteeAdd);
-            
-            // step 12
-            formData.append("giftToPet", values.giftToPet);
-            formData.append("petName", values.petName);
-            formData.append("petDescription", values.petDescription);
-            formData.append("petAmount", values.petAmount);
-            formData.append("petCaretaker", values.petCaretaker);
-            formData.append("petCareTakerName", values.petCareTakerName);
-            formData.append("petAddress", values.petAddress);                        
-
-            // step 13
-            formData.append("burialDescription", values.burialDescription);   
-
-            // step 14
-            formData.append("additionalInstructions", JSON.stringify(values.additionalInstructions));
-            formData.append("isLiterate", values.isLiterate);   
-            formData.append("additionalName", values.additionalName);   
-            formData.append("additionalAddress", values.additionalAddress);   
-            
-            // step 15
-            formData.append("signingDetails", JSON.stringify(values.signingDetails));
-            
-            // step 16
-            formData.append("selfie1", values.selfie1);   
-            formData.append("selfie2", values.selfie2);
-            formData.append("selfie2", values.selfie3); 
-            
-            formData.append("userID", localStorage.getItem("id")); 
-
-            axios.post(process.env.REACT_APP_API_URL + "/willcreation/createwill/muslim", formData)
-            .then((response) => {
-                console.log("Form Submitted")
-                console.log(response);
-                window.location.href = "/success"
-            })
-            .catch((err) => {
-                console.log(err);
-            })            
-        }
-        setValidated(true);        
+    // step 7 & 9
+    for (let i = 0; i < values.step7AssetDetails.length; i++) {
+      let fileEXT = values.step7AssetDetails[i].assetFile?.name
+        .split(".")
+        .pop();
+      let filename =
+        values.step7AssetDetails[i].assetType +
+        " " +
+        values.step7AssetDetails[i].documentLocation +
+        "." +
+        fileEXT;
+      values.step7AssetDetails[i].assetFileName = filename;
+      formData.append(filename, values.step7AssetDetails[i].assetFile);
     }
+    formData.append(
+      "step7AssetDetails",
+      JSON.stringify(values.step7AssetDetails)
+    );
 
-    const Previous = e => {
-        e.preventDefault();
-        prevStep();
-    }
+    // step 8
+    formData.append("step8Question", values.step8Question);
+    formData.append(
+      "step8ExecutorDetails",
+      JSON.stringify(values.step8ExecutorDetails)
+    );
 
-    const [validated, setValidated] = useState(false);
+    // step 10
+    formData.append("priorityArray", JSON.stringify(values.priorityArray));
 
-    return(
-        <FormContainer>
+    // step 11
+    formData.append(
+      "otherTransferBeneficiary",
+      values.otherTransferBeneficiary
+    );
+    formData.append("otherGiftMadeTo", values.otherGiftMadeTo);
+    formData.append("otherName", values.otherName);
+    formData.append("otherRelationship", values.otherRelationship);
+    formData.append("otherAddress", values.otherAddress);
+    formData.append("otherContest", values.otherContest);
+    formData.append("otherTrusteeName", values.otherTrusteeName);
+    formData.append("otherTrusteeAdd", values.otherTrusteeAdd);
 
-            <h3>Validation</h3>
+    // step 12
+    formData.append("petCaretaker", values.petCaretaker);
+    formData.append("petCareTakerName", values.petCareTakerName);
+    formData.append("petAddress", values.petAddress);
 
-            <Form noValidate validated={validated} onSubmit={Continue}>
+    // step 13
+    formData.append("burialDescription", values.burialDescription);
 
-                <Form.Group controlId="file1">
-                    <Form.Label>Selfie of the person that prepared </Form.Label>
-                    <Form.Control type="file" onChange={(e) => {onFileChange("selfie1", e)}}></Form.Control>
-                </Form.Group>
+    // step 14
+    formData.append(
+      "additionalInstructions",
+      JSON.stringify(values.additionalInstructions)
+    );
+    formData.append("isLiterate", values.isLiterate);
+    formData.append("additionalName", values.additionalName);
+    formData.append("additionalAddress", values.additionalAddress);
 
-                <Form.Group controlId="file2">
-                    <Form.Label>Selfie of the person that read </Form.Label>
-                    <Form.Control type="file" onChange={(e) => {onFileChange("selfie2", e)}}></Form.Control>
-                    <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
-                </Form.Group>
+    // step 15
+    formData.append("signingDetails", JSON.stringify(values.signingDetails));
 
-                <Form.Group controlId="file3">
-                    <Form.Label>Selfie of Testator</Form.Label>
-                    <Form.Control type="file" onChange={(e) => {onFileChange("selfie3", e)}}></Form.Control>
-                    <Form.Control.Feedback type="invalid">Please fill the required field.</Form.Control.Feedback>
-                </Form.Group>
+    // step 16
+    formData.append("selfie1", values.selfie1);
+    formData.append("selfie2", values.selfie2);
+    formData.append("selfie3", values.selfie3);
 
-                <Button className="mt-5 mb-5 mr-5" variant="contained" color="primary" onClick={Previous}>Back</Button>
-                <Button className="mt-5 mb-5" variant="contained" color="primary" type="submit">Submit Form</Button>
+    formData.append("userID", localStorage.getItem("id"));
 
-            </Form>
+    axios
+      .post(
+        process.env.REACT_APP_API_URL + "/willcreation/createwill/muslim",
+        formData
+      )
+      .then((response) => {
+        history.push("/success");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-        </FormContainer>
-    )
+  const Previous = (e) => {
+    e.preventDefault();
+    prevStep();
+  };
 
-}
+  return (
+    <FormContainer>
+      <h3>Step 16: Validation</h3>
 
-export default Step16Muslim
+      <Form onSubmit={submitForm}>
+        <Form.Group controlId="file1">
+          <Form.Label>Selfie of the person that prepared </Form.Label>
+          <Form.Control
+            type="file"
+            onChange={(e) => {
+              onFileChange("selfie1", e.target.files[0]);
+            }}
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId="file2">
+          <Form.Label>Selfie of the person that read </Form.Label>
+          <Form.Control
+            type="file"
+            onChange={(e) => {
+              onFileChange("selfie2", e.target.files[0]);
+            }}
+          ></Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId="file3">
+          <Form.Label>Selfie of Testator</Form.Label>
+          <Form.Control
+            type="file"
+            onChange={(e) => {
+              onFileChange("selfie3", e.target.files[0]);
+            }}
+          ></Form.Control>
+        </Form.Group>
+        <Button type="submit" variant="primary">
+          Submit Form
+        </Button>
+      </Form>
+      <button className="btn btn-primary" onClick={Previous}>
+        Prev
+      </button>
+    </FormContainer>
+  );
+};
+
+export default Step16Muslim;

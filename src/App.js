@@ -58,37 +58,12 @@ import BalanceRequests from "./components/adminControls/balanceReq";
 import WillCreationForm from "./components/products/willcreation/willCreationForm";
 import EditFlyer from "./components/adminControls/editFlyer";
 import EditDiscount from "./components/adminControls/editDiscount";
-import PersonalForm from "./components/products/willcreation/PersonalDetails";
-import WivesDetails from "./components/products/willcreation/WivesDetails";
-import ExecutorDetails from "./components/products/willcreation/ExecutorDetails";
-import Children from "./components/products/willcreation/Children";
-import GuardianDetails from "./components/products/willcreation/GuardianDetails";
-import DistributionDetails from "./components/products/willcreation/DistributionDetails";
-import RemainderDetails from "./components/products/willcreation/RemainderDetails";
-import OtherDetails from "./components/products/willcreation/OthersDetails";
-import PetDetails from "./components/products/willcreation/PetDetails";
-import BurialDetails from "./components/products/willcreation/BurialDetails";
-import AdditionDetails from "./components/products/willcreation/AdditionalDetails";
-import SigningDetails from "./components/products/willcreation/SigningDetails";
-import Validation from "./components/products/willcreation/Validation";
-import Sucess from "./components/products/willcreation/Sucess";
 import CreatedWills from "./components/individualUser/Will";
 import ViewSales from "./components/ViewSales";
 import AmbBalanceRequests from "./components/Org Users/AmbBalReq";
 
 import ManageWill from "./components/products/manageWill/manageWill";
 import AddCodicil from "./components/products/manageWill/addCodicil";
-import ManageWivesDetails from "./components/products/manageWill/wivesDetails";
-import ManageExecutorDetails from "./components/products/manageWill/executorDetails";
-import ManageChildren from "./components/products/manageWill/children";
-import ManageGuardianDetails from "./components/products/manageWill/guardianDetails";
-import ManageDistributionDetails from "./components/products/manageWill/distributionDetails";
-import ManageRemainderDetails from "./components/products/manageWill/remainderDetails";
-import ManageOtherDetails from "./components/products/manageWill/othersDetails";
-import ManagePetDetails from "./components/products/manageWill/petDetails";
-import ManageBurialDetails from "./components/products/manageWill/burialDetails";
-import ManageAdditionDetails from "./components/products/manageWill/additionalDetails";
-import ManageSigningDetails from "./components/products/manageWill/signingDetails";
 
 import ViewWillPDF from "./components/products/manageWill/viewWillPDF";
 import ViewCodicils from "./components/products/manageWill/viewCodicils";
@@ -228,26 +203,6 @@ class App extends React.Component {
             path="/willcreation/personal_will_creation"
             component={NonMuslimWillCreation}
           />
-          {/* <Route path="/willcreation/personal" component={PersonalForm} />
-          <Route path="/willcreation/wives" component={WivesDetails} />
-          <Route path="/willcreation/executor" component={ExecutorDetails} />
-          <Route path="/willcreation/children" component={Children} />
-          <Route path="/willcreation/guardian" component={GuardianDetails} />
-          <Route
-            path="/willcreation/distribution"
-            component={DistributionDetails}
-          />
-          <Route
-            path="/willcreation/remainder-of-estate"
-            component={RemainderDetails}
-          />
-          <Route path="/willcreation/others" component={OtherDetails} />
-          <Route path="/willcreation/pet" component={PetDetails} />
-          <Route path="/willcreation/burial" component={BurialDetails} />
-          <Route path="/willcreation/additional" component={AdditionDetails} />
-          <Route path="/willcreation/signing" component={SigningDetails} />
-          <Route path="/willcreation/validation" component={Validation} />
-          <Route path="/success" component={Sucess} /> */}
 
           {/* Muslim Will */}
           <Route
@@ -268,32 +223,6 @@ class App extends React.Component {
             path="/managewill/addcodicil_nonmuslim"
             component={NonMuslimCodicil}
           />
-          {/* <Route path="/managewill/wives" component={ManageWivesDetails} />
-          <Route
-            path="/managewill/executor"
-            component={ManageExecutorDetails}
-          />
-          <Route path="/managewill/children" component={ManageChildren} />
-          <Route
-            path="/managewill/guardian"
-            component={ManageGuardianDetails}
-          />
-          <Route
-            path="/managewill/distribution"
-            component={ManageDistributionDetails}
-          />
-          <Route
-            path="/managewill/remainder-of-estate"
-            component={ManageRemainderDetails}
-          />
-          <Route path="/managewill/others" component={ManageOtherDetails} />
-          <Route path="/managewill/pet" component={ManagePetDetails} />
-          <Route path="/managewill/burial" component={ManageBurialDetails} />
-          <Route
-            path="/managewill/additional"
-            component={ManageAdditionDetails}
-          />
-          <Route path="/managewill/signing" component={ManageSigningDetails} /> */}
 
           <Route path="/managewill/viewwillpdf" component={ViewWillPDF} />
           <Route path="/managewill/viewcodicils" component={ViewCodicils} />

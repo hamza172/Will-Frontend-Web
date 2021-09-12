@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 import Step1MuslimCodicil from "./Step1MuslimCodicil";
 import Step2MuslimCodicil from "./Step2MuslimCodicil";
 import Step4MuslimCodicil from "./Step4MuslimCodicil";
@@ -14,33 +15,12 @@ import Step13MuslimCodicil from "./Step13MuslimCodicil";
 import Step14MuslimCodicil from "./Step14MuslimCodicil";
 import Step15MuslimCodicil from "./Step15MuslimCodicil";
 
-function parseURLParams(url) {
-  var queryStart = url.indexOf("?") + 1,
-    queryEnd = url.indexOf("#") + 1 || url.length + 1,
-    query = url.slice(queryStart, queryEnd - 1),
-    pairs = query.replace(/\+/g, " ").split("&"),
-    parms = {},
-    i,
-    n,
-    v,
-    nv;
-
-  if (query === url || query === "") return;
-
-  for (i = 0; i < pairs.length; i++) {
-    nv = pairs[i].split("=", 2);
-    n = decodeURIComponent(nv[0]);
-    v = decodeURIComponent(nv[1]);
-
-    if (!parms.hasOwnProperty(n)) parms[n] = [];
-    parms[n].push(nv.length === 2 ? v : null);
-  }
-  return parms;
-}
-
 export default class MuslimCodicil extends Component {
   state = {
     step: 1,
+
+    // pre
+    makingFor: "",
 
     // step 1
     prefix: "",
@@ -200,13 +180,45 @@ export default class MuslimCodicil extends Component {
     selfie3: null,
   };
 
+  prevStep = () => {
+    const { step } = this.state;
+    this.setState({ step: step - 1 });
+  };
+
+  nextStep = () => {
+    const { step } = this.state;
+    this.setState({ step: step + 1 });
+  };
+
+  handleChange = (input, e) => {
+    this.setState({ [input]: e.target.value });
+  };
+
+  changeState = (input, val) => {
+    this.setState({ [input]: val });
+  };
+
+  onFileChange = (input, val) => {
+    this.setState({ [input]: val });
+  };
+
   componentDidMount() {
     axios
       .post(process.env.REACT_APP_API_URL + "/managewill/getWill", {
-        willID: parseURLParams(window.location.href).will_id[0],
+        willID: new URLSearchParams(this.props.history.location.search).get(
+          "will_id"
+        ),
       })
       .then((response) => {
         var will = response.data.will;
+
+        // pre
+        this.setState({ makingFor: will.makingFor });
+        if (this.state.makingFor === "Yes") {
+          this.setState({ step: 0 });
+        } else {
+          this.setState({ step: 1 });
+        }
 
         // step 1
         this.setState({ prefix: will.prefix });
@@ -291,28 +303,6 @@ export default class MuslimCodicil extends Component {
         console.log(err);
       });
   }
-
-  prevStep = () => {
-    const { step } = this.state;
-    this.setState({ step: step - 1 });
-  };
-
-  nextStep = () => {
-    const { step } = this.state;
-    this.setState({ step: step + 1 });
-  };
-
-  handleChange = (input, e) => {
-    this.setState({ [input]: e.target.value });
-  };
-
-  changeState = (input, val) => {
-    this.setState({ [input]: val });
-  };
-
-  onFileChange = (event) => {
-    this.setState({ selectedFile: event.target.files[0] });
-  };
 
   updateAndClose = (e, postStatus) => {
     e.preventDefault();
@@ -430,7 +420,7 @@ export default class MuslimCodicil extends Component {
       formData.append("userID", localStorage.getItem("id"));
       formData.append(
         "willID",
-        parseURLParams(window.location.href).will_id[0]
+        new URLSearchParams(this.props.history.location.search).get("will_id")
       );
 
       axios

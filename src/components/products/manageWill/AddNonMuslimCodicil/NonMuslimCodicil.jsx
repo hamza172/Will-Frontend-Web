@@ -20,6 +20,7 @@ export default class NonMuslimCodicil extends Component {
   state = {
     step: 1,
 
+    // pre
     makingFor: "",
 
     // step 1
@@ -350,7 +351,6 @@ export default class NonMuslimCodicil extends Component {
         ),
       })
       .then((response) => {
-        console.log(response.data.will);
         var will = response.data.will;
 
         // pre

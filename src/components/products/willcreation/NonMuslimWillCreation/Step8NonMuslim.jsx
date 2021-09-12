@@ -25,10 +25,10 @@ const Step8NonMuslim = ({
       <h3>Step 8: Distribution Details</h3>
 
       <Form>
-        {[...Array(values.step7AssetDetails.length)].map((e, i) => (
+        {[...Array(values.step7AssetDetails?.length)].map((e, i) => (
           <div key={i + 1}>
             <h5>
-              Add Beneficiaries For Asset
+              Add Beneficiaries For Asset:{" "}
               {values.step7AssetDetails[i].assetType}
             </h5>
             {[...Array(values.step7AssetDetails[i].beneficiaries.length)].map(
