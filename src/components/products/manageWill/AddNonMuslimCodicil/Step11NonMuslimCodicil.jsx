@@ -6,28 +6,28 @@ import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
 
 const Step11NonMuslimCodicil = ({
-  values,
-  nextStep,
-  prevStep,
-  handleChange,
-  changeState,
-  updateAndClose,
+    values,
+    nextStep,
+    prevStep,
+    handleChange,
+    changeState,
+    updateAndClose,
 }) => {
-  const Continue = (e) => {
-    e.preventDefault();
-    nextStep();
-  };
+    const Continue = (e) => {
+        e.preventDefault();
+        nextStep();
+    };
 
-  const Previous = (e) => {
-    e.preventDefault();
-    prevStep();
-  };
-  return (
-    <FormContainer>
-      <h3>Step 11: Pets</h3>
+    const Previous = (e) => {
+        e.preventDefault();
+        prevStep();
+    };
+    return (
+        <FormContainer>
+            <h3>Step 11: Pets</h3>
 
-      <Form>
-        <Form.Group controlId="giftToPet">
+            <Form>
+                {/* <Form.Group controlId="giftToPet">
           <Form.Label>Any gift to Pet?</Form.Label>
           <Form.Control
             as="select"
@@ -41,9 +41,9 @@ const Step11NonMuslimCodicil = ({
               No
             </option>
           </Form.Control>
-        </Form.Group>
+        </Form.Group> */}
 
-        {values.step11AnyGiftToPet === "Yes" && (
+                {/* {values.step11AnyGiftToPet === "Yes" && (
           <>
             <Form.Group controlId="name">
               <Form.Label>Name</Form.Label>
@@ -83,76 +83,76 @@ const Step11NonMuslimCodicil = ({
               ></Form.Control>
             </Form.Group>
           </>
-        )}
+        )} */}
 
-        {values.step11AnyGiftToPet === "No" && (
-          <>
-            <Form.Group controlId="caretaker">
-              <Form.Label>
-                Do you want executor to appoint a pet caretaker?
-              </Form.Label>
-              <Form.Control
-                as="select"
-                value={values.step11AppointCareTaker}
-                onChange={(e) => {
-                  handleChange("step11AppointCareTaker", e);
+                {/* {values.step11AnyGiftToPet === "No" && (
+          <> */}
+                <Form.Group controlId="caretaker">
+                    <Form.Label>
+                        Do you want executor to appoint a pet caretaker?
+                    </Form.Label>
+                    <Form.Control
+                        as="select"
+                        value={values.step11AppointCareTaker}
+                        onChange={(e) => {
+                            handleChange("step11AppointCareTaker", e);
+                        }}
+                    >
+                        <option value="Yes">Yes</option>
+                        <option value="No" selected={true}>
+                            No
+                        </option>
+                    </Form.Control>
+                </Form.Group>
+                {/* </>
+        )} */}
+
+                {values.step11AppointCareTaker === "Yes" && (
+                    <>
+                        <Form.Group controlId="careTakerName">
+                            <Form.Label>CareTaker Name </Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter CareTaker Name"
+                                value={values.step11CareTakerName}
+                                onChange={(e) => {
+                                    handleChange("step11CareTakerName", e);
+                                }}
+                            ></Form.Control>
+                        </Form.Group>
+
+                        <Form.Group controlId="address">
+                            <Form.Label>Address</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Enter Address"
+                                value={values.step11CareTakerAddress}
+                                onChange={(e) => {
+                                    handleChange("step11CareTakerAddress", e);
+                                }}
+                            ></Form.Control>
+                        </Form.Group>
+                    </>
+                )}
+            </Form>
+
+            <button className="btn btn-primary" onClick={Previous}>
+                Prev
+            </button>
+            <button className="btn btn-primary" onClick={Continue}>
+                Next
+            </button>
+            <br></br>
+            <button
+                className="btn btn-primary"
+                onClick={(e) => {
+                    updateAndClose(e);
                 }}
-              >
-                <option value="Yes">Yes</option>
-                <option value="No" selected={true}>
-                  No
-                </option>
-              </Form.Control>
-            </Form.Group>
-          </>
-        )}
-
-        {values.step11AppointCareTaker === "Yes" && (
-          <>
-            <Form.Group controlId="careTakerName">
-              <Form.Label>CareTaker Name </Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter CareTaker Name"
-                value={values.step11CareTakerName}
-                onChange={(e) => {
-                  handleChange("step11CareTakerName", e);
-                }}
-              ></Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId="address">
-              <Form.Label>Address</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter Address"
-                value={values.step11CareTakerAddress}
-                onChange={(e) => {
-                  handleChange("step11CareTakerAddress", e);
-                }}
-              ></Form.Control>
-            </Form.Group>
-          </>
-        )}
-      </Form>
-
-      <button className="btn btn-primary" onClick={Previous}>
-        Prev
-      </button>
-      <button className="btn btn-primary" onClick={Continue}>
-        Next
-      </button>
-      <br></br>
-      <button
-        className="btn btn-primary"
-        onClick={(e) => {
-          updateAndClose(e);
-        }}
-      >
-        Update & Close
-      </button>
-    </FormContainer>
-  );
+            >
+                Update & Close
+            </button>
+        </FormContainer>
+    );
 };
 
 export default Step11NonMuslimCodicil;

@@ -6,10 +6,14 @@ import Popup from "./popup";
 
 function parseURLParams(url) {
     var queryStart = url.indexOf("?") + 1,
-        queryEnd   = url.indexOf("#") + 1 || url.length + 1,
+        queryEnd = url.indexOf("#") + 1 || url.length + 1,
         query = url.slice(queryStart, queryEnd - 1),
         pairs = query.replace(/\+/g, " ").split("&"),
-        parms = {}, i, n, v, nv;
+        parms = {},
+        i,
+        n,
+        v,
+        nv;
 
     if (query === url || query === "") return;
 
@@ -25,63 +29,82 @@ function parseURLParams(url) {
 }
 
 export default class ViewDocuments extends React.Component {
-
-	constructor(props) {
-		super(props);
-		this.state = {
+    constructor(props) {
+        super(props);
+        this.state = {
             documents: [],
-			serverURL: null,
-		};
-	}
+            serverURL: null,
+        };
+    }
 
-	componentDidMount() {
-		axios.post('/managewill/getalldocuments', {
-			willID: parseURLParams(window.location.href).will_id[0]
-		})
-		.then((response) => {
-			this.setState({ documents: response.data.allDocuments});
-            this.setState({ serverURL: response.data.serverURL });
-		})
-		.catch((error) => {
-			console.log(error);
-		});
-	}
+    componentDidMount() {
+        axios
+            .post("/managewill/getalldocuments", {
+                willID: parseURLParams(window.location.href).will_id[0],
+            })
+            .then((response) => {
+                console.log(response);
+                this.setState({ documents: response.data.allDocuments });
+                this.setState({ serverURL: response.data.serverURL });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
 
-	render() {
-	    return (
-    		<div>
-    			<h3>Will Documents</h3>
-				<table className="table">
+    render() {
+        return (
+            <div>
+                <h3>Will Documents</h3>
+                <table className="table">
+                    {/* Header */}
+                    <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Reg No.</th>
+                        <th>Created From</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Location</th>
+                        <th>Document</th>
+                    </tr>
 
-				{/* Header */}
-				<tr>
-					<th>#</th>
-					<th>Date</th>
-					<th>Reg No.</th>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                    <th>Location</th>
-                    <th>Document</th>
-				</tr>
-
-				{/* Body */}
-				{this.state.documents.map((doc, index) => {
-                    return(
-                        <tr>
-                            <td>{index + 1}</td>
-                            <td>{doc.dateCreated ? doc.dateCreated:doc.createdAt}</td>
-                            <td>{doc._id}</td>
-                            <td>{doc.name}</td>
-                            <td>{doc.type}</td>
-                            <td>{doc.desc}</td>
-                            <td>{doc.location}</td>
-                            <td><a target="_blank" download={doc.originalDocumentName} className="btn btn-primary" href={this.state.serverURL + "uploads\\" + doc.newDocumentName}>Open</a></td>
-                        </tr>
-                    );
-                })}
-			</table>
-    	</div>          
-  	);
-	};
+                    {/* Body */}
+                    {this.state.documents.map((doc, index) => {
+                        return (
+                            <tr>
+                                <td>{index + 1}</td>
+                                <td>
+                                    {doc.dateCreated
+                                        ? doc.dateCreated
+                                        : doc.createdAt}
+                                </td>
+                                <td>{doc._id}</td>
+                                <td>{doc.from}</td>
+                                <td>{doc.name}</td>
+                                <td>{doc.type}</td>
+                                <td>{doc.desc}</td>
+                                <td>{doc.location}</td>
+                                <td>
+                                    <a
+                                        target="_blank"
+                                        download={doc.originalDocumentName}
+                                        className="btn btn-primary"
+                                        href={
+                                            this.state.serverURL +
+                                            "uploads\\" +
+                                            doc.newDocumentName
+                                        }
+                                    >
+                                        Open
+                                    </a>
+                                </td>
+                            </tr>
+                        );
+                    })}
+                </table>
+            </div>
+        );
+    }
 }

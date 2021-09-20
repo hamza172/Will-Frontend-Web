@@ -5,10 +5,14 @@ import axios from "axios";
 
 function parseURLParams(url) {
     var queryStart = url.indexOf("?") + 1,
-        queryEnd   = url.indexOf("#") + 1 || url.length + 1,
+        queryEnd = url.indexOf("#") + 1 || url.length + 1,
         query = url.slice(queryStart, queryEnd - 1),
         pairs = query.replace(/\+/g, " ").split("&"),
-        parms = {}, i, n, v, nv;
+        parms = {},
+        i,
+        n,
+        v,
+        nv;
 
     if (query === url || query === "") return;
 
@@ -24,69 +28,84 @@ function parseURLParams(url) {
 }
 
 export default class ViewDeedofGift extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            deedOfGifts: [],
+        };
+    }
+    componentDidMount() {
+        if (parseURLParams(window.location.href) === undefined) {
+            axios
+                .post(
+                    process.env.REACT_APP_API_URL +
+                        "/managewill/get_deed_of_gifts",
+                    {
+                        willID: "",
+                        userID: localStorage.getItem("id"),
+                    }
+                )
+                .then((response) => {
+                    this.setState({ deedOfGifts: response.data.deedOfGifts });
+                    console.log(response.data.deedOfGifts);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        } else {
+            axios
+                .post(
+                    process.env.REACT_APP_API_URL +
+                        "/managewill/get_deed_of_gifts",
+                    {
+                        willID: parseURLParams(window.location.href).will_id[0],
+                        userID: localStorage.getItem("id"),
+                    }
+                )
+                .then((response) => {
+                    this.setState({ deedOfGifts: response.data.deedOfGifts });
+                    console.log(response.data.deedOfGifts);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+    }
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			deedOfGifts: []
-		};
-	}
-	componentDidMount() {
-		if(parseURLParams(window.location.href) === undefined) {
-			axios.post(process.env.REACT_APP_API_URL + '/managewill/get_deed_of_gifts', {
-				willID: "",
-				userID: localStorage.getItem("id")
-			})
-			.then((response) => {			
-				this.setState( {deedOfGifts: response.data.deedOfGifts} );
-				console.log(response.data.deedOfGifts);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-		}
-		else {
-			axios.post(process.env.REACT_APP_API_URL + '/managewill/get_deed_of_gifts', {
-				willID: parseURLParams(window.location.href).will_id[0],
-				userID: localStorage.getItem("id")
-			})
-			.then((response) => {			
-				this.setState( {deedOfGifts: response.data.deedOfGifts} );
-				console.log(response.data.deedOfGifts);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-		}
-	}
+    render() {
+        return (
+            <div>
+                <h3>Deed of Gifts Table</h3>
+                <table className="table">
+                    {/* Header */}
+                    <tr>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Reg No.</th>
+                        <th>Print</th>
+                    </tr>
 
-	render() {
-	    return (
-    		<div>
-    			<h3>Deed of Gifts Table</h3>
-				<table className="table">
-
-				{/* Header */}
-				<tr>
-					<th>#</th>
-					<th>Date</th>
-					<th>Reg No.</th>
-					<th>Print</th>
-				</tr>
-
-                {this.state.deedOfGifts.map((deed, index) => {
-                    return(
-                        <tr>
-                            <td>{this.state.deedOfGifts.length - index}</td>
-                            <td>{deed.dateCreated}</td>
-                            <td>{deed._id}</td>
-                            <td><a className="btn btn-primary" href={"print_deed_of_gift?deed_id=" + deed._id}>Print</a></td>
-                        </tr>
-                    );
-                })}
-
-			</table>
-    	</div>          
-  	);
-	};
+                    {this.state.deedOfGifts.map((deed, index) => {
+                        return (
+                            <tr>
+                                <td>{this.state.deedOfGifts.length - index}</td>
+                                <td>{deed.dateCreated}</td>
+                                <td>{deed._id}</td>
+                                <td>
+                                    <a
+                                        className="btn btn-primary"
+                                        href="#"
+                                        style={{ backgroundColor: "#333" }}
+                                    >
+                                        Print(Currently Disabled)
+                                    </a>
+                                </td>
+                                {/* <td><a className="btn btn-primary" href={"print_deed_of_gift?deed_id=" + deed._id}>Print</a></td> */}
+                            </tr>
+                        );
+                    })}
+                </table>
+            </div>
+        );
+    }
 }

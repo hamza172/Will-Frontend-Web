@@ -30,6 +30,8 @@ const Step8NonMuslim = ({
             <h5>
               Add Beneficiaries For Asset:{" "}
               {values.step7AssetDetails[i].assetType}
+              <br></br>
+              Desc: {values.step7AssetDetails[i].desc}
             </h5>
             {[...Array(values.step7AssetDetails[i].beneficiaries.length)].map(
               (e, j) => (
@@ -188,6 +190,29 @@ const Step8NonMuslim = ({
                             }}
                           ></Form.Control>
                         </Form.Group>
+
+                        {values.step7AssetDetails[i].beneficiaries.length >
+                          1 && (
+                          <Form.Group>
+                            <Form.Label>Percentage</Form.Label>
+                            <Form.Control
+                              value={
+                                values.step7AssetDetails[i].beneficiaries[j]
+                                  .percentage
+                              }
+                              type="number"
+                              onChange={(e) => {
+                                values.step7AssetDetails[i].beneficiaries[
+                                  j
+                                ].percentage = e.target.value;
+                                changeState(
+                                  values.step7AssetDetails[i].beneficiaries[j]
+                                    .percentage
+                                );
+                              }}
+                            ></Form.Control>
+                          </Form.Group>
+                        )}
                       </>
                     )}
                 </div>
@@ -218,6 +243,7 @@ const Step8NonMuslim = ({
                   address: "",
                   email: "",
                   phoneNumber: "",
+                  percentage: "",
                 });
                 changeState(values.step7AssetDetails[i].beneficiaries);
               }}
