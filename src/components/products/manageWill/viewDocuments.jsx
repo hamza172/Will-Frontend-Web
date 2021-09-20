@@ -89,13 +89,8 @@ export default class ViewDocuments extends React.Component {
                                 <td>
                                     <a
                                         target="_blank"
-                                        download={doc.originalDocumentName}
                                         className="btn btn-primary"
-                                        href={
-                                            this.state.serverURL +
-                                            "uploads\\" +
-                                            doc.newDocumentName
-                                        }
+                                        href={doc.url}
                                     >
                                         Open
                                     </a>
