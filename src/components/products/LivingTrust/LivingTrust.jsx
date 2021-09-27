@@ -56,6 +56,7 @@ export default class LivingTrust extends Component {
             {
                 giftID: uuidv4(),
                 assetType: "Real Estate",
+                descForIdentifyingAsset: "",
                 realEstateAddress: "",
                 realEstateType: "",
                 financialAccountName: "",

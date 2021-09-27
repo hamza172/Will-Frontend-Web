@@ -125,6 +125,7 @@ const Step9NonMuslimCodicil = ({
 
                                     {values.step9specificIndividuals[i].type ===
                                         "Wife" && (
+                                            <>
                                         <select
                                             value={
                                                 values.step9specificIndividuals[
@@ -159,9 +160,29 @@ const Step9NonMuslimCodicil = ({
                                                 );
                                             })}
                                         </select>
+                                        <Form.Group>
+                                            <Form.Label>
+                                                Percentage To Distribute
+                                            </Form.Label>
+                                            <Form.Control
+                                                type="number"
+                                                placeholder="Percentage To Distribute"
+                                                value={
+                                                    values.step9specificIndividuals[i].percentage
+                                                }
+                                                onChange={(e) => {
+                                                    values.step9specificIndividuals[i].percentage = e.target.value;
+                                                    changeState(
+                                                        values.step9specificIndividuals[i].percentage
+                                                    );
+                                                }}
+                                            ></Form.Control>
+                                        </Form.Group>
+                                        </>
                                     )}
                                     {values.step9specificIndividuals[i].type ===
                                         "Child" && (
+                                            <>
                                         <select
                                             value={
                                                 values.step9specificIndividuals[
@@ -200,6 +221,25 @@ const Step9NonMuslimCodicil = ({
                                                 }
                                             )}
                                         </select>
+                                        <Form.Group>
+                                            <Form.Label>
+                                                Percentage To Distribute
+                                            </Form.Label>
+                                            <Form.Control
+                                                type="number"
+                                                placeholder="Percentage To Distribute"
+                                                value={
+                                                    values.step9specificIndividuals[i].percentage
+                                                }
+                                                onChange={(e) => {
+                                                    values.step9specificIndividuals[i].percentage = e.target.value;
+                                                    changeState(
+                                                        values.step9specificIndividuals[i].percentage
+                                                    );
+                                                }}
+                                            ></Form.Control>
+                                        </Form.Group>
+                                        </>
                                     )}
 
                                     {values.step9specificIndividuals[i].type !==
@@ -344,10 +384,7 @@ const Step9NonMuslimCodicil = ({
                                                 ...values.step9specificIndividuals,
                                             ];
                                             temp.push({
-                                                index:
-                                                    values
-                                                        .step9specificIndividuals
-                                                        .length + 1,
+                                                index: values.step9specificIndividuals.length + 1,
                                                 name: "",
                                                 address: "",
                                                 percentage: "",

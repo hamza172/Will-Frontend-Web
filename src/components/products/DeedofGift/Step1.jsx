@@ -276,6 +276,12 @@ const Step1 = ({ nextStep, prevStep, handleChange, values }) => {
                     </select>                    
                 </Form.Group>
 
+                {/* Name of Gift */}
+                <Form.Group>
+                    <Form.Label>Give a Name to this Gift</Form.Label>
+                    <Form.Control value={values.nameOfGift} type="text" onChange={(e) => {handleChange("nameOfGift", e)}}></Form.Control>
+                </Form.Group>
+
                 {/* State */}
                 <Form.Group>
                     <Form.Label>State of Gift</Form.Label>

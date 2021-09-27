@@ -35,6 +35,9 @@ const Step5 = ({ nextStep, prevStep, handleChange, changeState, values }) => {
                             Add Beneficiaries For Asset:{" "}
                             {values.step4Gifts[i].assetType}
                         </h5>
+                        <h5>
+                            Identification Description : {values.step4Gifts[i].descForIdentifyingAsset}
+                        </h5>
                         {[
                             ...Array(values.step4Gifts[i].beneficiaries.length),
                         ].map((e, j) => (

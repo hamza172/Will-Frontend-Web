@@ -82,6 +82,7 @@ export default class ViewDeedofGift extends React.Component {
                         <th>#</th>
                         <th>Date</th>
                         <th>Reg No.</th>
+                        <th>Name of Gift</th>
                         <th>Print</th>
                     </tr>
 
@@ -91,6 +92,7 @@ export default class ViewDeedofGift extends React.Component {
                                 <td>{this.state.deedOfGifts.length - index}</td>
                                 <td>{deed.dateCreated}</td>
                                 <td>{deed._id}</td>
+                                <td>{deed.nameOfGift}</td>
                                 <td>
                                     <a
                                         className="btn btn-primary"

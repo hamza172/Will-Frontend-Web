@@ -106,8 +106,7 @@ const Step7NonMuslim = ({
               <Form.Label>Document Location</Form.Label>
               <Form.Control
                 required
-                name="amount"
-                type="number"
+                type="text"
                 value={values.step7AssetDetails[i].documentLocation}
                 onChange={(e) => {
                   values.step7AssetDetails[i].documentLocation = e.target.value;

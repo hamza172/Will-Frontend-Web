@@ -120,6 +120,7 @@ const Step7 = ({
 
             // Step 1
             formData.append("countryOfGift", values.countryOfGift);
+            formData.append("nameOfGift", values.nameOfGift);
             formData.append("stateOfGift", values.stateOfGift);
             formData.append("revokeThisGift", values.revokeThisGift);
             formData.append("dateOfTransfer", values.dateOfTransfer);

@@ -65,24 +65,33 @@ const Step4 = ({
                             </select>
                         </Form.Group>
 
+                        <Form.Group>
+                            <Form.Label>Description for identifying this Asset</Form.Label>
+                            <Form.Control
+                                type="text"
+                                value={values.step4Gifts[i].descForIdentifyingAsset}
+                                onChange={(e) => {
+                                    values.step4Gifts[i].descForIdentifyingAsset = e.target.value;
+                                    changeState(
+                                        values.step4Gifts[i].descForIdentifyingAsset
+                                    );
+                                }}
+                            >
+
+                            </Form.Control>
+                        </Form.Group>
+
                         {values.step4Gifts[i].assetType === "Real Estate" && (
                             <div>
                                 <Form.Group>
                                     <Form.Label>Address</Form.Label>
                                     <Form.Control
-                                        value={
-                                            values.step4Gifts[i]
-                                                .realEstateAddress
-                                        }
+                                        value={values.step4Gifts[i].realEstateAddress}
                                         type="text"
                                         onChange={(e) => {
-                                            values.step4Gifts[
-                                                i
-                                            ].realEstateAddress =
-                                                e.target.value;
+                                            values.step4Gifts[i].realEstateAddress = e.target.value;
                                             changeState(
-                                                values.step4Gifts[i]
-                                                    .realEstateAddress
+                                                values.step4Gifts[i].realEstateAddress
                                             );
                                         }}
                                     ></Form.Control>
@@ -744,6 +753,7 @@ const Step4 = ({
                         values.step4Gifts.push({
                             giftID: uuidv4(),
                             assetType: "Real Estate",
+                            descForIdentifyingAsset: "",
                             realEstateAddress: "",
                             realEstateType: "",
                             financialAccountName: "",

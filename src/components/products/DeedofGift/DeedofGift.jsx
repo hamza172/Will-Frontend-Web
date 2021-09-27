@@ -15,6 +15,7 @@ export default class DeedofGift extends Component {
 
         // Step 1
         countryOfGift: "Nigeria",
+        nameOfGift: "",
         stateOfGift: "",
         revokeThisGift: "",
         dateOfTransfer: "",
@@ -102,7 +103,7 @@ export default class DeedofGift extends Component {
 
         const { step } = this.state;
 
-        const { countryOfGift, stateOfGift, revokeThisGift, dateOfTransfer,
+        const { countryOfGift, nameOfGift, stateOfGift, revokeThisGift, dateOfTransfer,
                 typeOfDonor, donorFullName, donorCity, donorZipCode, donorState, donorAddress,
                 typeOfDonee, doneeFullName, doneeCity, doneeZipCode, doneeState, doneeAddress, relationshipDonorDonee, otherRelationshipDonorDonee, isDoneeMinor, doneeGuardianName, doneeGuardianAddress, 
                 step4AssetsCount, step4Assets, 
@@ -110,7 +111,7 @@ export default class DeedofGift extends Component {
                 agentFullName, agentCity, agentZipCode, agentState, agentAddress, addAlternateAgent, alternateAgentFullName, alternateAgentCity, alternateAgentZipCode, alternateAgentState, alternateAgentAddress, 
                 selectedFile, signature } = this.state;
 
-        const values = { countryOfGift, stateOfGift, revokeThisGift, dateOfTransfer,
+        const values = { countryOfGift, nameOfGift, stateOfGift, revokeThisGift, dateOfTransfer,
                         typeOfDonor, donorFullName, donorCity, donorZipCode, donorState, donorAddress, 
                         typeOfDonee, doneeFullName, doneeCity, doneeZipCode, doneeState, doneeAddress, relationshipDonorDonee, otherRelationshipDonorDonee, isDoneeMinor, doneeGuardianName, doneeGuardianAddress, 
                         step4AssetsCount, step4Assets,
